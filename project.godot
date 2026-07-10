@@ -1,0 +1,67 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="RobichauxAdam_FinalProject"
+run/main_scene="uid://vxarjjbctsa4"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="Worship"
+config/features=PackedStringArray("4.6", "Mobile")
+config/icon="res://0_Art/icon.svg"
+
+[autoload]
+
+Settings="*uid://5hv8ri514r8s"
+Keybinds="*uid://di6iyetqfed4w"
+Overlay="*uid://dr7wxf0bqidpr"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/resizable=false
+window/size/minimize_disabled=true
+window/size/maximize_disabled=true
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
+
+[file_customization]
+
+folder_colors={
+"res://0_Art/": "yellow",
+"res://1_Scenes/": "red",
+"res://2_Scripts/": "green",
+"res://3_Resources/": "gray",
+"res://4_Shaders/": "purple"
+}
+
+[gui]
+
+common/snap_controls_to_pixels=false
+
+[input]
+
+fullscreen={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":70,"key_label":0,"unicode":102,"location":0,"echo":false,"script":null)
+]
+}
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"
+renderer/rendering_method="mobile"
