@@ -1,0 +1,278 @@
+[gd_scene format=3 uid="uid://vxarjjbctsa4"]
+
+[ext_resource type="Shader" uid="uid://b587mqqt48v4a" path="res://4_Shaders/0_Scripts/pixel border.gdshader" id="1_3udmd"]
+[ext_resource type="Texture2D" uid="uid://cj7uatshnc4ta" path="res://0_Art/square.png" id="2_1t528"]
+[ext_resource type="PackedScene" uid="uid://b5a2ooy3glas6" path="res://1_Scenes/1_Objects/player 1 tile.tscn" id="3_2syus"]
+[ext_resource type="Material" uid="uid://beamboy1ru8kr" path="res://4_Shaders/1_Materials/swap color.tres" id="4_baij6"]
+[ext_resource type="Script" uid="uid://dykfsmobkej5m" path="res://2_Scripts/2_Independent/cursor.gd" id="5_2syus"]
+[ext_resource type="PackedScene" uid="uid://bgqrvtpns3fw7" path="res://1_Scenes/0_Screens/background.tscn" id="5_pb2ch"]
+[ext_resource type="PackedScene" uid="uid://bvrrey8fp0u50" path="res://1_Scenes/1_Objects/player 2 tile.tscn" id="6_ahkic"]
+[ext_resource type="Texture2D" uid="uid://cqvddfi21macg" path="res://0_Art/cursor-Sheet.png" id="6_baij6"]
+[ext_resource type="Script" uid="uid://d36ttweofcoy1" path="res://2_Scripts/2_Independent/board move manager.gd" id="7_rkkk6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2syus"]
+shader = ExtResource("1_3udmd")
+shader_parameter/borderEnabled = true
+shader_parameter/borderColor = Color(0, 0, 0, 1)
+shader_parameter/borderWidthPixels = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1r6ij"]
+atlas = ExtResource("6_baij6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii050"]
+atlas = ExtResource("6_baij6")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_baij6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1r6ij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii050")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sqkm3"]
+shader = ExtResource("1_3udmd")
+shader_parameter/borderEnabled = true
+shader_parameter/borderColor = Color(0, 0, 0, 1)
+shader_parameter/borderWidthPixels = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ux1m"]
+shader = ExtResource("1_3udmd")
+shader_parameter/borderEnabled = true
+shader_parameter/borderColor = Color(0, 0, 0, 1)
+shader_parameter/borderWidthPixels = 1.0
+
+[node name="Gameplay" type="Control" unique_id=1494847808]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=96229226]
+
+[node name="Cursor" type="Control" parent="CanvasLayer" unique_id=1150532939 node_paths=PackedStringArray("imageNode")]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("5_2syus")
+imageNode = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Cursor" unique_id=218686513]
+material = SubResource("ShaderMaterial_2syus")
+position = Vector2(7, 7)
+sprite_frames = SubResource("SpriteFrames_baij6")
+
+[node name="Board Move Manager" type="Button" parent="CanvasLayer" unique_id=1653113624 node_paths=PackedStringArray("board")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+script = ExtResource("7_rkkk6")
+board = NodePath("../../SubViewportContainer/Board Viewport/tiles board")
+
+[node name="Tray" type="MarginContainer" parent="CanvasLayer" unique_id=796654713]
+custom_minimum_size = Vector2(0, 44)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_behavior_recursive = 1
+theme_override_constants/margin_top = -4
+theme_override_constants/margin_bottom = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Tray" unique_id=459038837]
+self_modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_sqkm3")
+layout_mode = 2
+mouse_filter = 0
+mouse_behavior_recursive = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Tray" unique_id=835640723]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Player 1 Tile" parent="CanvasLayer/Tray/HBoxContainer" unique_id=267476513 instance=ExtResource("3_2syus")]
+layout_mode = 2
+
+[node name="Player 1 Tile2" parent="CanvasLayer/Tray/HBoxContainer" unique_id=1896947639 instance=ExtResource("3_2syus")]
+layout_mode = 2
+
+[node name="Player 1 Tile3" parent="CanvasLayer/Tray/HBoxContainer" unique_id=313649145 instance=ExtResource("3_2syus")]
+layout_mode = 2
+
+[node name="Player 1 Tile4" parent="CanvasLayer/Tray/HBoxContainer" unique_id=1677403343 instance=ExtResource("3_2syus")]
+layout_mode = 2
+
+[node name="Color Swap" type="CanvasLayer" parent="." unique_id=1170140382]
+
+[node name="ColorRect" type="ColorRect" parent="Color Swap" unique_id=969559455]
+material = ExtResource("4_baij6")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1460159882]
+material = SubResource("ShaderMaterial_1ux1m")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="Background Viewport" type="SubViewport" parent="SubViewportContainer" unique_id=1653398459]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(320, 180)
+render_target_update_mode = 4
+
+[node name="Background" parent="SubViewportContainer/Background Viewport" unique_id=2085872941 instance=ExtResource("5_pb2ch")]
+
+[node name="Board Viewport" type="SubViewport" parent="SubViewportContainer" unique_id=840172666]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(320, 180)
+render_target_update_mode = 4
+
+[node name="tiles board" type="Control" parent="SubViewportContainer/Board Viewport" unique_id=1350024890]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Player 1 Tile" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=68278747 instance=ExtResource("3_2syus")]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 30.0
+offset_right = 166.0
+offset_bottom = 68.0
+
+[node name="Player 1 Tile4" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=1830437956 instance=ExtResource("3_2syus")]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 51.0
+offset_right = 208.0
+offset_bottom = 89.0
+
+[node name="Player 1 Tile5" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=215785149 instance=ExtResource("3_2syus")]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 72.0
+offset_right = 166.0
+offset_bottom = 110.0
+
+[node name="Player 1 Tile2" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=1698802152 instance=ExtResource("3_2syus")]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 51.0
+offset_right = 180.0
+offset_bottom = 89.0
+
+[node name="Player 1 Tile6" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=905670079 instance=ExtResource("3_2syus")]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 51.0
+offset_right = 124.0
+offset_bottom = 89.0
+
+[node name="Player 1 Tile3" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=903720268 instance=ExtResource("3_2syus")]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 9.0
+offset_right = 180.0
+offset_bottom = 47.0
+
+[node name="Player 2 Tile" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=575924850 instance=ExtResource("6_ahkic")]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 30.0
+offset_right = 194.0
+offset_bottom = 68.0
+
+[node name="Player 2 Tile2" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=1417458131 instance=ExtResource("6_ahkic")]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 51.0
+offset_right = 152.0
+offset_bottom = 89.0
+
+[node name="Player 2 Tile3" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=1335333883 instance=ExtResource("6_ahkic")]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 30.0
+offset_right = 138.0
+offset_bottom = 68.0
+
+[node name="Player 2 Tile4" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=336220780 instance=ExtResource("6_ahkic")]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 9.0
+offset_right = 152.0
+offset_bottom = 47.0
+
+[node name="Player 2 Tile5" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=1173412383 instance=ExtResource("6_ahkic")]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 72.0
+offset_right = 194.0
+offset_bottom = 110.0
+
+[node name="Player 2 Tile6" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=745246672 instance=ExtResource("6_ahkic")]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 93.0
+offset_right = 180.0
+offset_bottom = 131.0
+
+[node name="Player 2 Tile7" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=237971513 instance=ExtResource("6_ahkic")]
+layout_mode = 0
+offset_left = 198.0
+offset_top = 51.0
+offset_right = 236.0
+offset_bottom = 89.0
+
+[node name="Player 2 Tile8" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=1108606925 instance=ExtResource("6_ahkic")]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 72.0
+offset_right = 138.0
+offset_bottom = 110.0
+
+[node name="Player 2 Tile9" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=815803723 instance=ExtResource("6_ahkic")]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 93.0
+offset_right = 152.0
+offset_bottom = 131.0

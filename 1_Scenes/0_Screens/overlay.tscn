@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://dr7wxf0bqidpr"]
 
-[ext_resource type="Shader" uid="uid://dhw5u2cbng7lr" path="res://4_Shaders/general pp.gdshader" id="1_ncivp"]
-[ext_resource type="Shader" uid="uid://dpgmim6nexyy1" path="res://4_Shaders/crt.gdshader" id="2_uy6oh"]
-[ext_resource type="Shader" uid="uid://conx1phadmjpy" path="res://4_Shaders/tv warp.gdshader" id="3_i53fj"]
+[ext_resource type="Shader" uid="uid://dhw5u2cbng7lr" path="res://4_Shaders/0_Scripts/general pp.gdshader" id="1_ncivp"]
+[ext_resource type="Material" uid="uid://beamboy1ru8kr" path="res://4_Shaders/1_Materials/swap color.tres" id="1_tbbhu"]
+[ext_resource type="Shader" uid="uid://dpgmim6nexyy1" path="res://4_Shaders/0_Scripts/crt.gdshader" id="2_uy6oh"]
+[ext_resource type="Shader" uid="uid://conx1phadmjpy" path="res://4_Shaders/0_Scripts/tv warp.gdshader" id="3_i53fj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uy6oh"]
 shader = ExtResource("1_ncivp")
@@ -11,9 +12,9 @@ shader_parameter/enableBloom = true
 shader_parameter/enableGrain = false
 shader_parameter/enableChromAb = false
 shader_parameter/enableColorGrade = true
-shader_parameter/vignetteRadius = 1.05
-shader_parameter/vignetteSoftness = 0.45
-shader_parameter/vignetteStrength = 0.22
+shader_parameter/vignetteRadius = 0.650000030875
+shader_parameter/vignetteSoftness = 0.6000000285
+shader_parameter/vignetteStrength = 0.550000026125
 shader_parameter/bloomStrength = 0.2
 shader_parameter/bloomMipLevel = 3.5
 shader_parameter/grainAmount = 0.035
@@ -48,7 +49,18 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1357903037]
-position = Vector2(320, 180)
+position = Vector2(160, 90)
+
+[node name="Color Swap" type="CanvasLayer" parent="." unique_id=1945922195]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Color Swap" unique_id=786414441]
+material = ExtResource("1_tbbhu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="PPF" type="CanvasLayer" parent="." unique_id=241552281]
 
@@ -61,6 +73,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CRT" type="CanvasLayer" parent="." unique_id=1881907633]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CRT" unique_id=84497909]
 material = SubResource("ShaderMaterial_i53fj")
@@ -71,6 +84,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TV Warp" type="CanvasLayer" parent="." unique_id=114267018]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="TV Warp" unique_id=1069748715]
 material = SubResource("ShaderMaterial_tbbhu")

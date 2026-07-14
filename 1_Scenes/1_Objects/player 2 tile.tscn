@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bvrrey8fp0u50"]
+
+[ext_resource type="Shader" uid="uid://b587mqqt48v4a" path="res://4_Shaders/0_Scripts/pixel border.gdshader" id="1_5r4qq"]
+[ext_resource type="Texture2D" uid="uid://s2w8gtfldsxw" path="res://0_Art/tile.png" id="2_wmy2e"]
+[ext_resource type="Theme" uid="uid://bo13vq025j5e1" path="res://6_Other/main text font theme.tres" id="3_xklvf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6wgrq"]
+shader = ExtResource("1_5r4qq")
+shader_parameter/borderEnabled = false
+shader_parameter/borderColor = Color(0, 1, 1, 1)
+shader_parameter/borderWidthPixels = 1.0
+
+[node name="Player 2 Tile" type="Control" unique_id=267476513]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 3
+anchors_preset = 0
+offset_left = -19.0
+offset_top = -19.0
+offset_right = 19.0
+offset_bottom = 19.0
+pivot_offset = Vector2(19, 19)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1049622843]
+self_modulate = Color(1, 0, 0, 1)
+material = SubResource("ShaderMaterial_6wgrq")
+layout_mode = 0
+offset_right = 38.0
+offset_bottom = 38.0
+pivot_offset = Vector2(19, 19)
+texture = ExtResource("2_wmy2e")
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect" unique_id=1905090579]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 30.0
+offset_bottom = 30.0
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/MarginContainer" unique_id=1878182259]
+layout_mode = 2
+theme = ExtResource("3_xklvf")
+theme_override_colors/default_color = Color(0, 1, 1, 1)
+text = "7"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1

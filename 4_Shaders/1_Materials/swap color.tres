@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://beamboy1ru8kr"]
+
+[ext_resource type="Shader" uid="uid://kt07jt878hbv" path="res://4_Shaders/0_Scripts/color swap.gdshader" id="1_71o88"]
+
+[resource]
+shader = ExtResource("1_71o88")
+shader_parameter/colorCount = 7
+shader_parameter/originalOutlineColor = Color(0, 1, 1, 1)
+shader_parameter/originalTextColor = Color(0, 0, 0, 1)
+shader_parameter/originalPrimaryPlayerOneColor = Color(0, 0, 1, 1)
+shader_parameter/originalPrimaryPlayerTwoColor = Color(1, 0, 0, 1)
+shader_parameter/originalSecondaryPlayerColor = Color(0, 1, 0, 1)
+shader_parameter/originalBackgroundOne = Color(1, 1, 0, 1)
+shader_parameter/originalBackgroundTwo = Color(1, 0, 1, 1)
+shader_parameter/outlineColor = Color(0.13725491, 0.13333334, 0.15686275, 1)
+shader_parameter/textColor = Color(0.92156863, 0.9254902, 0.8627451, 1)
+shader_parameter/primaryPlayerOneColor = Color(0.32941177, 0.7294118, 0.8235294, 1)
+shader_parameter/primaryPlayerTwoColor = Color(0.7764706, 0.3137255, 0.27450982, 1)
+shader_parameter/secondaryPlayerColor = Color(0.8901961, 0.7529412, 0.32941177, 1)
+shader_parameter/backgroundOne = Color(0.33333334, 0.627451, 0.34509805, 1)
+shader_parameter/backgroundTwo = Color(0.11764706, 0.45490196, 0.3254902, 1)
+shader_parameter/tolerance = 0.01

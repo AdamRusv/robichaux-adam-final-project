@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://bo13vq025j5e1"]
+
+[ext_resource type="FontFile" uid="uid://b1a2jygc1vlhj" path="res://6_Other/Custom Font.ttf" id="1_6lwee"]
+
+[resource]
+default_font = ExtResource("1_6lwee")
+default_font_size = 16
