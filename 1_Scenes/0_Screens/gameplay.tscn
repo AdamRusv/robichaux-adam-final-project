@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bgqrvtpns3fw7" path="res://1_Scenes/0_Screens/background.tscn" id="5_pb2ch"]
 [ext_resource type="PackedScene" uid="uid://bvrrey8fp0u50" path="res://1_Scenes/1_Objects/player 2 tile.tscn" id="6_ahkic"]
 [ext_resource type="Texture2D" uid="uid://cqvddfi21macg" path="res://0_Art/cursor-Sheet.png" id="6_baij6"]
+[ext_resource type="Texture2D" uid="uid://s2w8gtfldsxw" path="res://0_Art/tile.png" id="6_pb2ch"]
+[ext_resource type="Theme" uid="uid://bo13vq025j5e1" path="res://6_Other/main text font theme.tres" id="7_ahkic"]
 [ext_resource type="Script" uid="uid://d36ttweofcoy1" path="res://2_Scripts/2_Independent/board move manager.gd" id="7_rkkk6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2syus"]
@@ -43,6 +45,16 @@ shader = ExtResource("1_3udmd")
 shader_parameter/borderEnabled = true
 shader_parameter/borderColor = Color(0, 0, 0, 1)
 shader_parameter/borderWidthPixels = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pb2ch"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_baij6"]
+shader = ExtResource("1_3udmd")
+shader_parameter/borderEnabled = true
+shader_parameter/borderColor = Color(0, 0, 0, 1)
+shader_parameter/borderWidthPixels = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ahkic"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1ux1m"]
 shader = ExtResource("1_3udmd")
@@ -85,20 +97,24 @@ flat = true
 script = ExtResource("7_rkkk6")
 board = NodePath("../../SubViewportContainer/Board Viewport/tiles board")
 
-[node name="Tray" type="MarginContainer" parent="CanvasLayer" unique_id=796654713]
-custom_minimum_size = Vector2(0, 44)
+[node name="Bottom" type="HBoxContainer" parent="CanvasLayer" unique_id=384163672]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -10.0
+offset_top = -48.0
 grow_horizontal = 2
 grow_vertical = 0
+alignment = 1
+
+[node name="Tray" type="MarginContainer" parent="CanvasLayer/Bottom" unique_id=796654713]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
 mouse_behavior_recursive = 1
 theme_override_constants/margin_top = -4
 theme_override_constants/margin_bottom = 4
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Tray" unique_id=459038837]
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Bottom/Tray" unique_id=459038837]
 self_modulate = Color(1, 0, 1, 1)
 material = SubResource("ShaderMaterial_sqkm3")
 layout_mode = 2
@@ -110,22 +126,410 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Tray" unique_id=835640723]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Bottom/Tray" unique_id=835640723]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_constants/separation = -2
 alignment = 1
 
-[node name="Player 1 Tile" parent="CanvasLayer/Tray/HBoxContainer" unique_id=267476513 instance=ExtResource("3_2syus")]
+[node name="VSeparator2" type="VSeparator" parent="CanvasLayer/Bottom/Tray/HBoxContainer" unique_id=1946764335]
+layout_mode = 2
+theme_override_constants/separation = 7
+theme_override_styles/separator = SubResource("StyleBoxEmpty_pb2ch")
+
+[node name="Player Slot 1" type="Control" parent="CanvasLayer/Bottom/Tray/HBoxContainer" unique_id=267476513]
+custom_minimum_size = Vector2(38, 38)
 layout_mode = 2
 
-[node name="Player 1 Tile2" parent="CanvasLayer/Tray/HBoxContainer" unique_id=1896947639 instance=ExtResource("3_2syus")]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Bottom/Tray/HBoxContainer/Player Slot 1" unique_id=1049622843]
+self_modulate = Color(0, 0, 1, 1)
+material = SubResource("ShaderMaterial_baij6")
+layout_mode = 0
+offset_right = 38.0
+offset_bottom = 38.0
+pivot_offset = Vector2(19, 19)
+texture = ExtResource("6_pb2ch")
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Bottom/Tray/HBoxContainer/Player Slot 1/TextureRect" unique_id=1905090579]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 30.0
+offset_bottom = 30.0
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Bottom/Tray/HBoxContainer/Player Slot 1/TextureRect/MarginContainer" unique_id=1878182259]
+layout_mode = 2
+theme = ExtResource("7_ahkic")
+theme_override_colors/default_color = Color(0, 1, 1, 1)
+text = "6"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player Slot 2" type="Control" parent="CanvasLayer/Bottom/Tray/HBoxContainer" unique_id=1896947639]
+custom_minimum_size = Vector2(38, 38)
 layout_mode = 2
 
-[node name="Player 1 Tile3" parent="CanvasLayer/Tray/HBoxContainer" unique_id=313649145 instance=ExtResource("3_2syus")]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Bottom/Tray/HBoxContainer/Player Slot 2" unique_id=356014512]
+self_modulate = Color(0, 0, 1, 1)
+material = SubResource("ShaderMaterial_baij6")
+layout_mode = 0
+offset_right = 38.0
+offset_bottom = 38.0
+pivot_offset = Vector2(19, 19)
+texture = ExtResource("6_pb2ch")
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Bottom/Tray/HBoxContainer/Player Slot 2/TextureRect" unique_id=1839902757]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 30.0
+offset_bottom = 30.0
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Bottom/Tray/HBoxContainer/Player Slot 2/TextureRect/MarginContainer" unique_id=1644346359]
+layout_mode = 2
+theme = ExtResource("7_ahkic")
+theme_override_colors/default_color = Color(0, 1, 1, 1)
+text = "6"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player Slot 3" type="Control" parent="CanvasLayer/Bottom/Tray/HBoxContainer" unique_id=313649145]
+custom_minimum_size = Vector2(38, 38)
 layout_mode = 2
 
-[node name="Player 1 Tile4" parent="CanvasLayer/Tray/HBoxContainer" unique_id=1677403343 instance=ExtResource("3_2syus")]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Bottom/Tray/HBoxContainer/Player Slot 3" unique_id=1214822798]
+self_modulate = Color(0, 0, 1, 1)
+material = SubResource("ShaderMaterial_baij6")
+layout_mode = 0
+offset_right = 38.0
+offset_bottom = 38.0
+pivot_offset = Vector2(19, 19)
+texture = ExtResource("6_pb2ch")
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Bottom/Tray/HBoxContainer/Player Slot 3/TextureRect" unique_id=763399715]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 30.0
+offset_bottom = 30.0
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Bottom/Tray/HBoxContainer/Player Slot 3/TextureRect/MarginContainer" unique_id=482436387]
 layout_mode = 2
+theme = ExtResource("7_ahkic")
+theme_override_colors/default_color = Color(0, 1, 1, 1)
+text = "6"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player Slot 4" type="Control" parent="CanvasLayer/Bottom/Tray/HBoxContainer" unique_id=1677403343]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Bottom/Tray/HBoxContainer/Player Slot 4" unique_id=2005338099]
+self_modulate = Color(0, 0, 1, 1)
+material = SubResource("ShaderMaterial_baij6")
+layout_mode = 0
+offset_right = 38.0
+offset_bottom = 38.0
+pivot_offset = Vector2(19, 19)
+texture = ExtResource("6_pb2ch")
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Bottom/Tray/HBoxContainer/Player Slot 4/TextureRect" unique_id=823387323]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 30.0
+offset_bottom = 30.0
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Bottom/Tray/HBoxContainer/Player Slot 4/TextureRect/MarginContainer" unique_id=719349992]
+layout_mode = 2
+theme = ExtResource("7_ahkic")
+theme_override_colors/default_color = Color(0, 1, 1, 1)
+text = "6"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="CanvasLayer/Bottom/Tray/HBoxContainer" unique_id=1839755525]
+layout_mode = 2
+theme_override_constants/separation = 7
+theme_override_styles/separator = SubResource("StyleBoxEmpty_pb2ch")
+
+[node name="Remaining" type="MarginContainer" parent="CanvasLayer/Bottom" unique_id=1184778111]
+visible = false
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+mouse_behavior_recursive = 1
+theme_override_constants/margin_top = -4
+theme_override_constants/margin_bottom = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Bottom/Remaining" unique_id=1950222818]
+self_modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_sqkm3")
+layout_mode = 2
+mouse_filter = 0
+mouse_behavior_recursive = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Bottom/Remaining" unique_id=59542045]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Bottom/Remaining/MarginContainer" unique_id=1172315379]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Bottom/Remaining/MarginContainer/MarginContainer" unique_id=915504843]
+layout_mode = 2
+theme = ExtResource("7_ahkic")
+theme_override_colors/default_color = Color(0, 1, 1, 1)
+text = "Tiles Remaining:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Top" type="HBoxContainer" parent="CanvasLayer" unique_id=954399020]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 34.0
+grow_horizontal = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="CanvasLayer/Top" unique_id=594961635]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ahkic")
+
+[node name="Blue" type="MarginContainer" parent="CanvasLayer/Top" unique_id=366270867]
+layout_mode = 2
+mouse_behavior_recursive = 1
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Top/Blue" unique_id=761009971]
+self_modulate = Color(0, 0, 1, 1)
+material = SubResource("ShaderMaterial_sqkm3")
+layout_mode = 2
+mouse_filter = 0
+mouse_behavior_recursive = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Top/Blue" unique_id=2120166574]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Top/Blue/MarginContainer2" unique_id=886338546]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Top/Blue/MarginContainer2/MarginContainer" unique_id=817350456]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("7_ahkic")
+theme_override_colors/default_color = Color(0, 1, 1, 1)
+text = "23"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Top/Blue/MarginContainer2/MarginContainer" unique_id=742367697]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("7_ahkic")
+theme_override_colors/default_color = Color(0, 1, 1, 1)
+text = "777"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator4" type="VSeparator" parent="CanvasLayer/Top" unique_id=1337644457]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ahkic")
+
+[node name="Menu" type="MarginContainer" parent="CanvasLayer/Top" unique_id=1040474714]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_behavior_recursive = 1
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Top/Menu" unique_id=1702053589]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_sqkm3")
+layout_mode = 2
+mouse_filter = 0
+mouse_behavior_recursive = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Top/Menu" unique_id=1728383807]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Top/Menu/MarginContainer2" unique_id=530892272]
+custom_minimum_size = Vector2(18, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = -6
+alignment = 1
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="CanvasLayer/Top/Menu/MarginContainer2/VBoxContainer" unique_id=2069270103]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 2
+mouse_filter = 0
+mouse_behavior_recursive = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="NinePatchRect3" type="NinePatchRect" parent="CanvasLayer/Top/Menu/MarginContainer2/VBoxContainer" unique_id=1194213137]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 2
+mouse_filter = 0
+mouse_behavior_recursive = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="NinePatchRect4" type="NinePatchRect" parent="CanvasLayer/Top/Menu/MarginContainer2/VBoxContainer" unique_id=1575699925]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 2
+mouse_filter = 0
+mouse_behavior_recursive = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="VSeparator" type="VSeparator" parent="CanvasLayer/Top" unique_id=412445312]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ahkic")
+
+[node name="Red" type="MarginContainer" parent="CanvasLayer/Top" unique_id=1727690314]
+layout_mode = 2
+mouse_behavior_recursive = 1
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Top/Red" unique_id=2077667424]
+self_modulate = Color(1, 0, 0, 1)
+material = SubResource("ShaderMaterial_sqkm3")
+layout_mode = 2
+mouse_filter = 0
+mouse_behavior_recursive = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Top/Red" unique_id=13410963]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Top/Red/MarginContainer2" unique_id=277281582]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Top/Red/MarginContainer2/MarginContainer" unique_id=1657226080]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("7_ahkic")
+theme_override_colors/default_color = Color(0, 1, 1, 1)
+text = "67"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Top/Red/MarginContainer2/MarginContainer" unique_id=2016776694]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("7_ahkic")
+theme_override_colors/default_color = Color(0, 1, 1, 1)
+text = "777"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator3" type="VSeparator" parent="CanvasLayer/Top" unique_id=1331085396]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ahkic")
 
 [node name="Color Swap" type="CanvasLayer" parent="." unique_id=1170140382]
 
@@ -174,105 +578,105 @@ mouse_filter = 2
 
 [node name="Player 1 Tile" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=68278747 instance=ExtResource("3_2syus")]
 layout_mode = 0
-offset_left = 128.0
-offset_top = 30.0
-offset_right = 166.0
-offset_bottom = 68.0
+offset_left = 132.0
+offset_top = 25.0
+offset_right = 170.0
+offset_bottom = 63.0
 
 [node name="Player 1 Tile4" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=1830437956 instance=ExtResource("3_2syus")]
 layout_mode = 0
-offset_left = 170.0
-offset_top = 51.0
-offset_right = 208.0
-offset_bottom = 89.0
+offset_left = 174.0
+offset_top = 46.0
+offset_right = 212.0
+offset_bottom = 84.0
 
 [node name="Player 1 Tile5" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=215785149 instance=ExtResource("3_2syus")]
 layout_mode = 0
-offset_left = 128.0
-offset_top = 72.0
-offset_right = 166.0
-offset_bottom = 110.0
+offset_left = 132.0
+offset_top = 67.0
+offset_right = 170.0
+offset_bottom = 105.0
 
 [node name="Player 1 Tile2" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=1698802152 instance=ExtResource("3_2syus")]
 layout_mode = 0
-offset_left = 142.0
-offset_top = 51.0
-offset_right = 180.0
-offset_bottom = 89.0
+offset_left = 146.0
+offset_top = 46.0
+offset_right = 184.0
+offset_bottom = 84.0
 
 [node name="Player 1 Tile6" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=905670079 instance=ExtResource("3_2syus")]
 layout_mode = 0
-offset_left = 86.0
-offset_top = 51.0
-offset_right = 124.0
-offset_bottom = 89.0
+offset_left = 90.0
+offset_top = 46.0
+offset_right = 128.0
+offset_bottom = 84.0
 
 [node name="Player 1 Tile3" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=903720268 instance=ExtResource("3_2syus")]
 layout_mode = 0
-offset_left = 142.0
-offset_top = 9.0
-offset_right = 180.0
-offset_bottom = 47.0
+offset_left = 146.0
+offset_top = 4.0
+offset_right = 184.0
+offset_bottom = 42.0
 
 [node name="Player 2 Tile" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=575924850 instance=ExtResource("6_ahkic")]
 layout_mode = 0
-offset_left = 156.0
-offset_top = 30.0
-offset_right = 194.0
-offset_bottom = 68.0
+offset_left = 160.0
+offset_top = 25.0
+offset_right = 198.0
+offset_bottom = 63.0
 
 [node name="Player 2 Tile2" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=1417458131 instance=ExtResource("6_ahkic")]
 layout_mode = 0
-offset_left = 114.0
-offset_top = 51.0
-offset_right = 152.0
-offset_bottom = 89.0
+offset_left = 118.0
+offset_top = 46.0
+offset_right = 156.0
+offset_bottom = 84.0
 
 [node name="Player 2 Tile3" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=1335333883 instance=ExtResource("6_ahkic")]
 layout_mode = 0
-offset_left = 100.0
-offset_top = 30.0
-offset_right = 138.0
-offset_bottom = 68.0
+offset_left = 104.0
+offset_top = 25.0
+offset_right = 142.0
+offset_bottom = 63.0
 
 [node name="Player 2 Tile4" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=336220780 instance=ExtResource("6_ahkic")]
 layout_mode = 0
-offset_left = 114.0
-offset_top = 9.0
-offset_right = 152.0
-offset_bottom = 47.0
+offset_left = 118.0
+offset_top = 4.0
+offset_right = 156.0
+offset_bottom = 42.0
 
 [node name="Player 2 Tile5" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=1173412383 instance=ExtResource("6_ahkic")]
 layout_mode = 0
-offset_left = 156.0
-offset_top = 72.0
-offset_right = 194.0
-offset_bottom = 110.0
+offset_left = 160.0
+offset_top = 67.0
+offset_right = 198.0
+offset_bottom = 105.0
 
 [node name="Player 2 Tile6" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=745246672 instance=ExtResource("6_ahkic")]
 layout_mode = 0
-offset_left = 142.0
-offset_top = 93.0
-offset_right = 180.0
-offset_bottom = 131.0
+offset_left = 146.0
+offset_top = 88.0
+offset_right = 184.0
+offset_bottom = 126.0
 
 [node name="Player 2 Tile7" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=237971513 instance=ExtResource("6_ahkic")]
 layout_mode = 0
-offset_left = 198.0
-offset_top = 51.0
-offset_right = 236.0
-offset_bottom = 89.0
+offset_left = 202.0
+offset_top = 46.0
+offset_right = 240.0
+offset_bottom = 84.0
 
 [node name="Player 2 Tile8" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=1108606925 instance=ExtResource("6_ahkic")]
 layout_mode = 0
-offset_left = 100.0
-offset_top = 72.0
-offset_right = 138.0
-offset_bottom = 110.0
+offset_left = 104.0
+offset_top = 67.0
+offset_right = 142.0
+offset_bottom = 105.0
 
 [node name="Player 2 Tile9" parent="SubViewportContainer/Board Viewport/tiles board" unique_id=815803723 instance=ExtResource("6_ahkic")]
 layout_mode = 0
-offset_left = 114.0
-offset_top = 93.0
-offset_right = 152.0
-offset_bottom = 131.0
+offset_left = 118.0
+offset_top = 88.0
+offset_right = 156.0
+offset_bottom = 126.0
