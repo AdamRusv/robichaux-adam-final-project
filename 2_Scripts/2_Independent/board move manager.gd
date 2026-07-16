@@ -3,6 +3,7 @@ extends Button
 class_name BoardMoveManager
 
 @export var board : Control
+@export var tileMapBoard : Control
 
 var isDragging : bool = false
 
@@ -30,3 +31,4 @@ func _drag_board():
 	var mousePos : Vector2 = get_global_mouse_position()
 	
 	board.global_position = mousePos - mouseOffset
+	tileMapBoard.global_position = mousePos - mouseOffset

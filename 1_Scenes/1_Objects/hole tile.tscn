@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://cjsiqoxbl7dlx"]
 
+[ext_resource type="Script" uid="uid://c8f6ac56rbwm6" path="res://2_Scripts/2_Independent/tile.gd" id="1_6e5jn"]
+
 [node name="Hole Tile" type="Control" unique_id=1120360319]
 custom_minimum_size = Vector2(38, 38)
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_6e5jn")
+currentTeam = 4

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dy6cv7lxboor"]
+
+[ext_resource type="Script" uid="uid://w3smbrmlkfx" path="res://2_Scripts/2_Independent/tray tile.gd" id="1_mgrr5"]
+
+[node name="Tray Tile" type="Control" unique_id=1838578514 node_paths=PackedStringArray("button")]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_mgrr5")
+button = NodePath("Button")
+
+[node name="Button" type="Button" parent="." unique_id=486968423]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+flat = true

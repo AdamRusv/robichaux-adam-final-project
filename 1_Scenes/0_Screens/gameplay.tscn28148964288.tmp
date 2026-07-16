@@ -45,6 +45,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ahkic"]
+texture = ExtResource("6_pb2ch")
+texture_region_size = Vector2i(38, 38)
+0:0/0 = 0
+0:0/0/modulate = Color(0, 0, 0, 1)
+
+[sub_resource type="TileSet" id="TileSet_ahkic"]
+tile_shape = 3
+tile_size = Vector2i(28, 28)
+sources/0 = SubResource("TileSetAtlasSource_ahkic")
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ahkic"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sqkm3"]
@@ -66,17 +77,6 @@ shader = ExtResource("1_3udmd")
 shader_parameter/borderEnabled = true
 shader_parameter/borderColor = Color(0, 0, 0, 1)
 shader_parameter/borderWidthPixels = 1.0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ahkic"]
-texture = ExtResource("6_pb2ch")
-texture_region_size = Vector2i(38, 38)
-0:0/0 = 0
-0:0/0/modulate = Color(0, 0, 0, 1)
-
-[sub_resource type="TileSet" id="TileSet_ahkic"]
-tile_shape = 3
-tile_size = Vector2i(28, 28)
-sources/0 = SubResource("TileSetAtlasSource_ahkic")
 
 [node name="Gameplay" type="Control" unique_id=1494847808]
 layout_mode = 3
@@ -112,19 +112,21 @@ grow_vertical = 2
 flat = true
 script = ExtResource("7_rkkk6")
 board = NodePath("../../SubViewportContainer/Board Viewport/Map")
-tileMapBoard = NodePath("../Map Manager")
+tileMapBoard = NodePath("../Tile Map")
 
-[node name="Map Manager" type="Control" parent="CanvasLayer" unique_id=26708540 node_paths=PackedStringArray("boardMouseDetection", "mapGenerator", "trayManager", "tileMap")]
+[node name="Tile Map" type="Control" parent="CanvasLayer" unique_id=26708540 node_paths=PackedStringArray("mapGenerator", "tileMap")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 script = ExtResource("5_rkkk6")
-boardMouseDetection = NodePath("../Board Move Manager")
 mapGenerator = NodePath("../../SubViewportContainer/Board Viewport/Map")
-trayManager = NodePath("../Bottom/Tray")
-tileMap = NodePath("../../SubViewportContainer/Board Viewport/Map/TileMapLayer")
+tileMap = NodePath("TileMapLayer")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="CanvasLayer/Tile Map" unique_id=1241190667]
+position = Vector2(5, 5)
+tile_set = SubResource("TileSet_ahkic")
 
 [node name="Top" type="HBoxContainer" parent="CanvasLayer" unique_id=954399020]
 anchors_preset = 10
@@ -288,7 +290,7 @@ mouse_filter = 0
 theme_override_constants/margin_top = -4
 theme_override_constants/margin_bottom = 4
 script = ExtResource("9_fn5ot")
-tileMap = NodePath("../../Map Manager")
+tileMap = NodePath("../../Tile Map")
 mapTiles = [NodePath("Tiles/Map Tile"), NodePath("Tiles/Map Tile2"), NodePath("Tiles/Map Tile3"), NodePath("Tiles/Map Tile4")]
 trayTiles = [NodePath("Tiles/Map Tile/Tray Tile"), NodePath("Tiles/Map Tile2/Tray Tile"), NodePath("Tiles/Map Tile3/Tray Tile"), NodePath("Tiles/Map Tile4/Tray Tile")]
 
@@ -665,14 +667,10 @@ offset_bottom = 40.0
 mouse_filter = 2
 script = ExtResource("12_ahkic")
 visualMap = NodePath("Visual Map")
-tileMap = NodePath("TileMapLayer")
+tileMap = NodePath("../../../CanvasLayer/Tile Map/TileMapLayer")
 
 [node name="Visual Map" type="VBoxContainer" parent="SubViewportContainer/Board Viewport/Map" unique_id=983204740]
 layout_mode = 0
 offset_right = 192.0
 offset_bottom = 122.0
 theme_override_constants/separation = -17
-
-[node name="TileMapLayer" type="TileMapLayer" parent="SubViewportContainer/Board Viewport/Map" unique_id=1241190667]
-position = Vector2(5, 5)
-tile_set = SubResource("TileSet_ahkic")

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Deck" format=3 uid="uid://b5chiy31m1um2"]
+
+[ext_resource type="Script" uid="uid://du4k8yc7bijoc" path="res://2_Scripts/3_Dependent/deck.gd" id="1_2ggrc"]
+
+[resource]
+script = ExtResource("1_2ggrc")
+deck = Array[int]([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20])
+metadata/_custom_type_script = "uid://du4k8yc7bijoc"

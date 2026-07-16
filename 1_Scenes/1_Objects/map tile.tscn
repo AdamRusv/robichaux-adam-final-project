@@ -1,11 +1,14 @@
 [gd_scene format=3 uid="uid://qb3cceh1uyxf"]
 
 [ext_resource type="Texture2D" uid="uid://s2w8gtfldsxw" path="res://0_Art/tile.png" id="1_try1o"]
+[ext_resource type="Script" uid="uid://c8f6ac56rbwm6" path="res://2_Scripts/2_Independent/tile.gd" id="1_xris7"]
 
-[node name="Map Tile" type="Control" unique_id=816981165]
+[node name="Map Tile" type="Control" unique_id=816981165 node_paths=PackedStringArray("visual")]
 custom_minimum_size = Vector2(38, 38)
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_xris7")
+visual = NodePath("TextureRect")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=891075600]
 self_modulate = Color(1, 1, 1, 0.003921569)

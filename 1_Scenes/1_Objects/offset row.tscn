@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c3pyiqn8muheb"]
+
+[ext_resource type="Script" uid="uid://rd2i6rttsel1" path="res://2_Scripts/2_Independent/Visual Tile Row.gd" id="1_17xnv"]
+
+[node name="Offset Row" type="MarginContainer" unique_id=127658145 node_paths=PackedStringArray("horizontalContainer")]
+theme_override_constants/margin_left = 14
+script = ExtResource("1_17xnv")
+horizontalContainer = NodePath("HBoxContainer")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1623624922]
+layout_mode = 2
+theme_override_constants/separation = -10
