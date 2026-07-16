@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://qb3cceh1uyxf"]
+
+[ext_resource type="Texture2D" uid="uid://s2w8gtfldsxw" path="res://0_Art/tile.png" id="1_try1o"]
+
+[node name="Map Tile" type="Control" unique_id=816981165]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=891075600]
+self_modulate = Color(1, 1, 1, 0.003921569)
+layout_mode = 0
+offset_right = 38.0
+offset_bottom = 38.0
+pivot_offset = Vector2(19, 19)
+texture = ExtResource("1_try1o")
+stretch_mode = 2

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cjsiqoxbl7dlx"]
+
+[node name="Hole Tile" type="Control" unique_id=1120360319]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 3
+anchors_preset = 0

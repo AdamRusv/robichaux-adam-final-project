@@ -22,6 +22,7 @@ config/icon="res://0_Art/icon.svg"
 Settings="*uid://5hv8ri514r8s"
 Keybinds="*uid://di6iyetqfed4w"
 Overlay="*uid://dr7wxf0bqidpr"
+GameManager="*uid://bg4p4yra4o8cl"
 
 [display]
 
