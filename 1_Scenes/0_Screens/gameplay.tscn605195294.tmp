@@ -115,7 +115,7 @@ script = ExtResource("7_rkkk6")
 board = NodePath("../../SubViewportContainer/Board Viewport/Map")
 tileMapBoard = NodePath("../Map Manager")
 
-[node name="Map Manager" type="Control" parent="CanvasLayer" unique_id=26708540 node_paths=PackedStringArray("boardMouseDetection", "scoreBoardManager", "mapGenerator", "trayManager", "tileMap")]
+[node name="Map Manager" type="Control" parent="CanvasLayer" unique_id=26708540 node_paths=PackedStringArray("boardMouseDetection", "mapGenerator", "trayManager", "tileMap")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -123,12 +123,11 @@ offset_bottom = 40.0
 mouse_filter = 2
 script = ExtResource("5_rkkk6")
 boardMouseDetection = NodePath("../Board Move Manager")
-scoreBoardManager = NodePath("../Scoreboard")
 mapGenerator = NodePath("../../SubViewportContainer/Board Viewport/Map")
 trayManager = NodePath("../Bottom/Tray")
 tileMap = NodePath("../../SubViewportContainer/Board Viewport/Map/TileMapLayer")
 
-[node name="Scoreboard" type="HBoxContainer" parent="CanvasLayer" unique_id=954399020 node_paths=PackedStringArray("playerOneText", "playerTwoText")]
+[node name="Top" type="HBoxContainer" parent="CanvasLayer" unique_id=954399020]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 34.0
@@ -136,21 +135,19 @@ grow_horizontal = 2
 mouse_filter = 2
 alignment = 1
 script = ExtResource("6_1cjw6")
-playerOneText = NodePath("Blue/MarginContainer2/MarginContainer/RichTextLabel")
-playerTwoText = NodePath("Red/MarginContainer2/MarginContainer/RichTextLabel")
 
-[node name="VSeparator2" type="VSeparator" parent="CanvasLayer/Scoreboard" unique_id=594961635]
+[node name="VSeparator2" type="VSeparator" parent="CanvasLayer/Top" unique_id=594961635]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_ahkic")
 
-[node name="Blue" type="MarginContainer" parent="CanvasLayer/Scoreboard" unique_id=366270867]
+[node name="Blue" type="MarginContainer" parent="CanvasLayer/Top" unique_id=366270867]
 layout_mode = 2
 mouse_behavior_recursive = 1
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Scoreboard/Blue" unique_id=761009971]
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Top/Blue" unique_id=761009971]
 self_modulate = Color(0, 0, 1, 1)
 material = SubResource("ShaderMaterial_sqkm3")
 layout_mode = 2
@@ -162,20 +159,20 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Scoreboard/Blue" unique_id=2120166574]
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Top/Blue" unique_id=2120166574]
 layout_mode = 2
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Scoreboard/Blue/MarginContainer2" unique_id=886338546]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Top/Blue/MarginContainer2" unique_id=886338546]
 layout_mode = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Scoreboard/Blue/MarginContainer2/MarginContainer" unique_id=817350456]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Top/Blue/MarginContainer2/MarginContainer" unique_id=817350456]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -189,7 +186,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Scoreboard/Blue/MarginContainer2/MarginContainer" unique_id=742367697]
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Top/Blue/MarginContainer2/MarginContainer" unique_id=742367697]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
@@ -204,19 +201,19 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VSeparator4" type="VSeparator" parent="CanvasLayer/Scoreboard" unique_id=1337644457]
+[node name="VSeparator4" type="VSeparator" parent="CanvasLayer/Top" unique_id=1337644457]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_ahkic")
 
-[node name="Red" type="MarginContainer" parent="CanvasLayer/Scoreboard" unique_id=1727690314]
+[node name="Red" type="MarginContainer" parent="CanvasLayer/Top" unique_id=1727690314]
 layout_mode = 2
 mouse_behavior_recursive = 1
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Scoreboard/Red" unique_id=2077667424]
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Top/Red" unique_id=2077667424]
 self_modulate = Color(1, 0, 0, 1)
 material = SubResource("ShaderMaterial_sqkm3")
 layout_mode = 2
@@ -228,20 +225,20 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Scoreboard/Red" unique_id=13410963]
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Top/Red" unique_id=13410963]
 layout_mode = 2
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Scoreboard/Red/MarginContainer2" unique_id=277281582]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Top/Red/MarginContainer2" unique_id=277281582]
 layout_mode = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Scoreboard/Red/MarginContainer2/MarginContainer" unique_id=1657226080]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Top/Red/MarginContainer2/MarginContainer" unique_id=1657226080]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -255,7 +252,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Scoreboard/Red/MarginContainer2/MarginContainer" unique_id=2016776694]
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Top/Red/MarginContainer2/MarginContainer" unique_id=2016776694]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
@@ -270,7 +267,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VSeparator3" type="VSeparator" parent="CanvasLayer/Scoreboard" unique_id=1331085396]
+[node name="VSeparator3" type="VSeparator" parent="CanvasLayer/Top" unique_id=1331085396]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_ahkic")

@@ -4,9 +4,12 @@ class_name MapManager
 
 @export_category("References")
 @export var boardMouseDetection : Control
+@export var scoreBoardManager : ScoreboardManager
 @export var mapGenerator : MapGenerator
 @export var trayManager : TrayManager
 @export var tileMap : TileMapLayer
+
+var allVisualTiles : Array[Tile]
 
 func _place_tile(handIndex : int):
 	var currentTile : Tile = trayManager._get_current_tile_of_hand_index(handIndex)
@@ -22,10 +25,21 @@ func _add_tile_to_visual_parent(currentTile : Tile, hoveredTilePos : Vector2i):
 	var newCurrentTile : Tile = trayManager._clone_tile(currentTile)
 	newCurrentTile.gridLocation = hoveredTilePos
 	mapGenerator._assign_value_to_map_tile(newCurrentTile.gridLocation, newCurrentTile.currentValue)
-
+	allVisualTiles.append(newCurrentTile)
+	
 	tileMap.add_child(newCurrentTile)
 	newCurrentTile.position = tileMap.map_to_local(newCurrentTile.gridLocation)
 	newCurrentTile.position += Vector2(-19, -19)
+	
+	_trigger_tile_effect(newCurrentTile)
+
+func _trigger_tile_effect(currentTile : Tile):
+	currentTile._apply_effect(
+		self,
+		scoreBoardManager, 
+		mapGenerator,
+		trayManager,
+		tileMap)
 
 #- - -
 func _get_hovered_tile_pos() -> Vector2i:
@@ -46,3 +60,9 @@ func _is_pos_valid(pos : Vector2i) -> bool:
 				return true
 			break
 	return false
+
+func _get_tile_of_cell_pos(cell : Vector2i) -> Tile:
+	for tile in allVisualTiles:
+		if tile.gridLocation == cell:
+			return tile
+	return null

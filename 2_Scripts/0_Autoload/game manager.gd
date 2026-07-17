@@ -15,6 +15,9 @@ var customMapPath : String = "" #NOTE: map editor? (smaller visualization of map
 ##clicked and dragged tile
 var currentTile : Tile = null
 
+var playerOneScore : int = 0
+var playerTwoScore : int = 0
+
 #
 func _ready() -> void:
 	randomize()

@@ -42,7 +42,6 @@ folder_colors={
 "res://0_Art/": "yellow",
 "res://1_Scenes/": "red",
 "res://2_Scripts/": "green",
-"res://3_Resources/": "gray",
 "res://4_Shaders/": "purple",
 "res://5_Resources/": "gray"
 }
