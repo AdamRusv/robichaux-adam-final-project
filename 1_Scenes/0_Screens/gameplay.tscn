@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b5hlgyh3hj2wn" path="res://0_Art/arrow.png" id="8_ahkic"]
 [ext_resource type="Script" uid="uid://fcvapf6jvlft" path="res://2_Scripts/2_Independent/hover menu manager.gd" id="8_rkkk6"]
 [ext_resource type="Script" uid="uid://d4b8w5crg5fb" path="res://2_Scripts/2_Independent/tray manager.gd" id="9_fn5ot"]
+[ext_resource type="Script" uid="uid://bdjm6bymg07pu" path="res://2_Scripts/2_Independent/deck viewer menu.gd" id="9_g7yw3"]
 [ext_resource type="Script" uid="uid://c8f6ac56rbwm6" path="res://2_Scripts/2_Independent/tile.gd" id="9_ywih6"]
 [ext_resource type="PackedScene" uid="uid://dy6cv7lxboor" path="res://1_Scenes/1_Objects/tray tile.tscn" id="10_c4l6l"]
 [ext_resource type="Script" uid="uid://csyvx3nmr53ar" path="res://2_Scripts/2_Independent/map generator manager.gd" id="12_ahkic"]
@@ -53,6 +54,10 @@ shader = ExtResource("1_3udmd")
 shader_parameter/borderEnabled = true
 shader_parameter/borderColor = Color(0, 0, 0, 1)
 shader_parameter/borderWidthPixels = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1cjw6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g7yw3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pb2ch"]
 
@@ -275,6 +280,242 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_ahkic")
 
+[node name="Deck Viewer" type="MarginContainer" parent="CanvasLayer" unique_id=1762090208 node_paths=PackedStringArray("trayManager", "blueDeckGrid", "redDeckGrid", "swapToBlueParent", "swapToRedParent", "swapToBlueButton", "swapToRedButton", "hoverZone")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.0
+offset_top = -5.0
+offset_right = 38.0
+offset_bottom = 20.0
+grow_horizontal = 2
+mouse_filter = 2
+script = ExtResource("9_g7yw3")
+trayManager = NodePath("../Bottom/Tray")
+blueDeckGrid = NodePath("Panel Parent/Panel/MarginContainer/VBoxContainer/Blue Card Grid")
+redDeckGrid = NodePath("Panel Parent/Panel/MarginContainer/VBoxContainer/Red Card Grid")
+swapToBlueParent = NodePath("Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/blue swap")
+swapToRedParent = NodePath("Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/red swap")
+swapToBlueButton = NodePath("Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/blue swap/Button Holder/Button")
+swapToRedButton = NodePath("Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/red swap/Button Holder/Button")
+hoverZone = NodePath("Hover Detection Holder/TextureButton")
+bitMapPath = "res://0_Art/view deck detecttion bitmap.png"
+maxDistanceToMove = -81
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Deck Viewer" unique_id=887527832]
+self_modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_sqkm3")
+layout_mode = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Deck Viewer" unique_id=850552825]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 4
+
+[node name="View" type="MarginContainer" parent="CanvasLayer/Deck Viewer/MarginContainer2" unique_id=1384784705]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = -1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Deck Viewer/MarginContainer2/View" unique_id=668223560]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("7_ahkic")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "View Deck"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hover Detection Holder" type="Control" parent="CanvasLayer/Deck Viewer" unique_id=1087667006]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Deck Viewer/Hover Detection Holder" unique_id=2086238597]
+layout_mode = 0
+offset_left = -61.0
+offset_top = -81.0
+offset_right = -39.0
+offset_bottom = -57.0
+
+[node name="Panel Parent" type="Control" parent="CanvasLayer/Deck Viewer" unique_id=206967186]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Panel" type="MarginContainer" parent="CanvasLayer/Deck Viewer/Panel Parent" unique_id=526750272]
+custom_minimum_size = Vector2(200, 87)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.5
+offset_top = -105.0
+offset_right = 99.5
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel" unique_id=1118114757]
+self_modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_sqkm3")
+layout_mode = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel" unique_id=2110295752]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer" unique_id=1890243996]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer" unique_id=1963695116]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_1cjw6")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer" unique_id=1122392787]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=207586415]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxEmpty_g7yw3")
+
+[node name="blue swap" type="MarginContainer" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=88025332]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/blue swap" unique_id=739919776]
+self_modulate = Color(0, 0, 1, 1)
+material = SubResource("ShaderMaterial_sqkm3")
+layout_mode = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Button Holder" type="MarginContainer" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/blue swap" unique_id=1488215020]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/blue swap/Button Holder" unique_id=1386247078]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="red swap" type="MarginContainer" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=575894861]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/red swap" unique_id=169340144]
+self_modulate = Color(1, 0, 0, 1)
+material = SubResource("ShaderMaterial_sqkm3")
+layout_mode = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Button Holder" type="MarginContainer" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/red swap" unique_id=515620643]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/red swap/Button Holder" unique_id=932337310]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="VSeparator2" type="VSeparator" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1845455809]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxEmpty_g7yw3")
+
+[node name="Blue Card Grid" type="GridContainer" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer" unique_id=1177260594]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = -4
+columns = 5
+
+[node name="Red Card Grid" type="GridContainer" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer" unique_id=628097099]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = -4
+columns = 5
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer" unique_id=632897253]
+layout_mode = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxEmpty_1cjw6")
+
+[node name="Border Cover (pixel)" type="MarginContainer" parent="CanvasLayer/Deck Viewer/Panel Parent" unique_id=1997462083]
+layout_mode = 0
+offset_right = 75.0
+offset_bottom = 10.0
+mouse_filter = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Deck Viewer/Panel Parent/Border Cover (pixel)" unique_id=1021433613]
+self_modulate = Color(1, 0, 1, 1)
+layout_mode = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Border Cover" type="MarginContainer" parent="CanvasLayer/Deck Viewer/Panel Parent" unique_id=758899749]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -5.0
+offset_right = 76.0
+offset_bottom = 8.0
+mouse_filter = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Deck Viewer/Panel Parent/Border Cover" unique_id=2033113114]
+self_modulate = Color(1, 0, 1, 1)
+layout_mode = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
 [node name="Bottom" type="HBoxContainer" parent="CanvasLayer" unique_id=384163672]
 anchors_preset = 12
 anchor_top = 1.0
@@ -426,6 +667,8 @@ script = ExtResource("8_rkkk6")
 hoverZone = NodePath("Hover Detection Holder/TextureButton")
 textButtons = [NodePath("Panel Parent/Panel/VBoxContainer/Options/Button Holder/Button"), NodePath("Panel Parent/Panel/VBoxContainer/Help/Button Holder/Button"), NodePath("Panel Parent/Panel/VBoxContainer/Quit/Button Holder/Button")]
 texts = [NodePath("Panel Parent/Panel/VBoxContainer/Options/RichTextLabel"), NodePath("Panel Parent/Panel/VBoxContainer/Help/RichTextLabel"), NodePath("Panel Parent/Panel/VBoxContainer/Quit/RichTextLabel")]
+bitMapPath = "res://0_Art/Hover Menu Detection Bitmap.png"
+maxDistanceToMove = 64
 
 [node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Menu" unique_id=547490885]
 self_modulate = Color(1, 0, 1, 1)

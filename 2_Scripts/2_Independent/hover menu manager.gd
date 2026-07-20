@@ -6,6 +6,9 @@ class_name HoverMenuManager
 @export var hoverZone : TextureButton
 @export var textButtons : Array[Button]
 @export var texts : Array[RichTextLabel]
+@export var bitMapPath : String
+@export_category("Settings")
+@export var maxDistanceToMove : int
 
 var isMenuOpen : bool = false
 var closedPos : Vector2 = Vector2.ZERO
@@ -62,7 +65,7 @@ func _is_mouse_over_hover_bitmap() -> bool:
 
 func _create_bitmap():
 	var newBitmap : BitMap = BitMap.new()
-	var bitMapTexture : Image = Image.load_from_file("res://0_Art/Hover Menu Detection Bitmap.png")
+	var bitMapTexture : Image = Image.load_from_file(bitMapPath)
 	newBitmap.create_from_image_alpha(bitMapTexture)
 	hoverZone.texture_click_mask = newBitmap
 
@@ -78,7 +81,7 @@ func _open_menu():
 	var tween : Tween = create_tween()
 	tweens.append(tween)
 	
-	var endPosY : float = closedPos.y - 64
+	var endPosY : float = closedPos.y - maxDistanceToMove
 	
 	var distance : float = self.position.distance_to(Vector2(position.x, endPosY))
 	var duration : float = distance / menuMovementDurationModifier

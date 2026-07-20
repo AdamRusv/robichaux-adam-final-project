@@ -5,12 +5,10 @@ uniform vec4 borderColor : source_color = vec4(1.0, 1.0, 1.0, 1.0);
 uniform float borderWidthPixels : hint_range(1.0, 16.0) = 1.0;
 
 void fragment() {
-	// COLOR initially contains the Sprite2D's modulate and self_modulate.
-	vec4 spriteModulate = COLOR;
+	// COLOR already contains the texture, modulate, and self_modulate.
+	// Using it directly prevents the texture color from being applied twice.
+	vec4 mainColor = COLOR;
 	vec4 textureColor = texture(TEXTURE, UV);
-
-	// Apply modulate only to the original sprite.
-	vec4 mainColor = textureColor * spriteModulate;
 
 	float firstLayerAlpha = 0.0;
 	float finalBorderAlpha = 0.0;
@@ -52,8 +50,8 @@ void fragment() {
 						for (int iy = -1; iy <= 1; iy++) {
 							vec2 innerOffset = vec2(
 								float(ix),
-								float(iy)
-							) * TEXTURE_PIXEL_SIZE;
+								float(iy))
+								* TEXTURE_PIXEL_SIZE;
 
 							vec4 nearbyColor = texture(
 								TEXTURE,
@@ -78,14 +76,11 @@ void fragment() {
 
 	vec4 finalColor = mainColor;
 
-	// Use textureColor.a instead of mainColor.a so modulate does not
-	// change which pixels are considered part of the outline.
 	if (
 		borderEnabled
 		&& textureColor.a <= 0.0
 		&& finalBorderAlpha > 0.0
 	) {
-		// Do not multiply this by spriteModulate.
 		finalColor = borderColor;
 	}
 

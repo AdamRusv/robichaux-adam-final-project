@@ -11,6 +11,12 @@ class_name MapManager
 
 var allVisualTiles : Array[Tile]
 
+
+func _process(delta: float) -> void:
+	if GameManager.currentTrayTile != null:
+		_snap_dragging_tile_to_hovered(GameManager.currentTrayTile)
+
+#-----------------------------------
 func _place_tile(handIndex : int):
 	var currentTile : Tile = trayManager._get_current_tile_of_hand_index(handIndex)
 	
@@ -42,6 +48,20 @@ func _trigger_tile_effect(currentTile : Tile):
 		tileMap)
 
 #- - -
+func _snap_dragging_tile_to_hovered(draggingTile : TrayTile):
+	var currentTile : Tile = draggingTile.currentTile
+	
+	var hoveredTilePos : Vector2i = _get_hovered_tile_pos()
+	if _is_pos_valid(hoveredTilePos) == true:
+		draggingTile.pauseDrag = true
+		var tileMapLocalPos : Vector2 = tileMap.map_to_local(hoveredTilePos)
+		var globalPos : Vector2 = tileMap.to_global(tileMapLocalPos)
+		currentTile.global_position = round(globalPos) ##round since the tile gets offset by .75 or .25 at times (?)
+		currentTile.position += Vector2(-19, -19)
+	else:
+		draggingTile.pauseDrag = false
+
+#-------------------------------------------------
 func _get_hovered_tile_pos() -> Vector2i:
 	if _is_mouse_over_board() == false:
 		return Vector2i(-1, -1)

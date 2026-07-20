@@ -2,7 +2,12 @@
 
 [ext_resource type="Script" uid="uid://c8f6ac56rbwm6" path="res://2_Scripts/2_Independent/tile.gd" id="1_eptg6"]
 [ext_resource type="Texture2D" uid="uid://s2w8gtfldsxw" path="res://0_Art/tile.png" id="2_6wgrq"]
+[ext_resource type="Texture2D" uid="uid://dar7c13sl858w" path="res://0_Art/tile base.png" id="3_43hxg"]
 [ext_resource type="Theme" uid="uid://bo13vq025j5e1" path="res://6_Other/main text font theme.tres" id="3_eptg6"]
+[ext_resource type="Texture2D" uid="uid://bju4s16um5lpt" path="res://0_Art/tile dark.png" id="4_wqk04"]
+[ext_resource type="Texture2D" uid="uid://251pfcey12c8" path="res://0_Art/tile darker.png" id="5_4kn8c"]
+[ext_resource type="Texture2D" uid="uid://pkkgxbtt6ymn" path="res://0_Art/tile shine.png" id="6_4kn8c"]
+[ext_resource type="Texture2D" uid="uid://ryhwf6d6j778" path="res://0_Art/tile outline.png" id="6_wqk04"]
 
 [node name="Player 1 Tile" type="Control" unique_id=267476513 node_paths=PackedStringArray("visual", "valueText")]
 custom_minimum_size = Vector2(38, 38)
@@ -15,11 +20,11 @@ offset_bottom = 19.0
 pivot_offset = Vector2(19, 19)
 mouse_filter = 2
 script = ExtResource("1_eptg6")
-visual = NodePath("TextureRect")
-valueText = NodePath("TextureRect/MarginContainer/RichTextLabel")
+visual = NodePath("bottom")
+valueText = NodePath("MarginContainer/RichTextLabel")
 currentTeam = 1
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1049622843]
+[node name="bottom" type="TextureRect" parent="." unique_id=1049622843]
 self_modulate = Color(0, 0, 1, 1)
 layout_mode = 0
 offset_right = 38.0
@@ -29,7 +34,58 @@ mouse_filter = 2
 texture = ExtResource("2_6wgrq")
 stretch_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="TextureRect" unique_id=1905090579]
+[node name="base" type="TextureRect" parent="." unique_id=1436084019]
+self_modulate = Color(0, 0, 0.8039216, 1)
+layout_mode = 0
+offset_right = 38.0
+offset_bottom = 38.0
+pivot_offset = Vector2(19, 19)
+mouse_filter = 2
+texture = ExtResource("3_43hxg")
+stretch_mode = 2
+
+[node name="dark" type="TextureRect" parent="." unique_id=424147983]
+self_modulate = Color(0, 0, 0.60784316, 1)
+layout_mode = 0
+offset_right = 38.0
+offset_bottom = 38.0
+pivot_offset = Vector2(19, 19)
+mouse_filter = 2
+texture = ExtResource("4_wqk04")
+stretch_mode = 2
+
+[node name="darker" type="TextureRect" parent="." unique_id=1102005607]
+self_modulate = Color(0, 0, 0.4117647, 1)
+layout_mode = 0
+offset_right = 38.0
+offset_bottom = 38.0
+pivot_offset = Vector2(19, 19)
+mouse_filter = 2
+texture = ExtResource("5_4kn8c")
+stretch_mode = 2
+
+[node name="shine" type="TextureRect" parent="." unique_id=571566261]
+self_modulate = Color(0, 0, 0.21568628, 1)
+layout_mode = 0
+offset_right = 38.0
+offset_bottom = 38.0
+pivot_offset = Vector2(19, 19)
+mouse_filter = 2
+texture = ExtResource("6_4kn8c")
+stretch_mode = 2
+
+[node name="outline" type="TextureRect" parent="." unique_id=687001879]
+visible = false
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_right = 38.0
+offset_bottom = 38.0
+pivot_offset = Vector2(19, 19)
+mouse_filter = 2
+texture = ExtResource("6_wqk04")
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1905090579]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
@@ -40,12 +96,12 @@ theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/MarginContainer" unique_id=1878182259]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer" unique_id=1878182259]
 layout_mode = 2
 mouse_filter = 2
 theme = ExtResource("3_eptg6")
 theme_override_colors/default_color = Color(0, 1, 1, 1)
-text = "6"
+text = "88"
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1

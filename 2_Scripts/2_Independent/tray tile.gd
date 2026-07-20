@@ -35,7 +35,7 @@ func _click():
 		return
 	
 	mouseOffset = get_global_mouse_position() - currentTile.global_position
-	GameManager._assign_current_tile(currentTile)
+	GameManager._assign_current_tile(currentTile, self)
 	isDragging = true
 
 func _release():
@@ -47,8 +47,10 @@ func _release():
 	GameManager._clear_current_tile()
 
 #----------------------------
+##used for grid snap
+var pauseDrag : bool
 func _drag_tile():
-	if currentTile == null:
+	if currentTile == null || pauseDrag == true:
 		return
 	
 	var mousePos : Vector2 = get_global_mouse_position()

@@ -14,6 +14,8 @@ var customMapPath : String = "" #NOTE: map editor? (smaller visualization of map
 #these are fleeting local varaible used to connect scripts together
 ##clicked and dragged tile
 var currentTile : Tile = null
+##selected tile's TrayTile
+var currentTrayTile : TrayTile = null
 
 var playerOneScore : int = 0
 var playerTwoScore : int = 0
@@ -23,7 +25,9 @@ func _ready() -> void:
 	randomize()
 
 #-------------------------------------------------
-func _assign_current_tile(newCurrentTile : Tile):
+func _assign_current_tile(newCurrentTile : Tile, newCurrentTrayTile : TrayTile):
 	currentTile = newCurrentTile
+	currentTrayTile = newCurrentTrayTile
 func _clear_current_tile():
 	currentTile = null
+	currentTrayTile = null
