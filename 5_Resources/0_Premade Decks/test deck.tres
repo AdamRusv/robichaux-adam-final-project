@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_tx4gj")
-deck = Array[int]([1, 2, 3, 4])
+deck = Array[int]([1, 1, 1, 2, 2, 3, 4])
 metadata/_custom_type_script = "uid://du4k8yc7bijoc"

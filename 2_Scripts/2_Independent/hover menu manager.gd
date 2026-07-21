@@ -9,6 +9,7 @@ class_name HoverMenuManager
 @export var bitMapPath : String
 @export_category("Settings")
 @export var maxDistanceToMove : int
+@export var speedModifier : float = 150
 
 var isMenuOpen : bool = false
 var closedPos : Vector2 = Vector2.ZERO
@@ -71,7 +72,6 @@ func _create_bitmap():
 
 #----------------------------------
 var tweens : Array[Tween]
-var menuMovementDurationModifier : float = 150
 func _clear_previous_tweens():
 	for tween in tweens:
 		tween.kill()
@@ -84,7 +84,7 @@ func _open_menu():
 	var endPosY : float = closedPos.y - maxDistanceToMove
 	
 	var distance : float = self.position.distance_to(Vector2(position.x, endPosY))
-	var duration : float = distance / menuMovementDurationModifier
+	var duration : float = distance / speedModifier
 	
 	tween.tween_property(self, "position:y", endPosY, duration)
 
@@ -94,7 +94,7 @@ func _close_menu():
 	tweens.append(tween)
 	
 	var distance : float = self.position.distance_to(Vector2(position.x, closedPos.y))
-	var duration : float = distance / menuMovementDurationModifier
+	var duration : float = distance / speedModifier
 	
 	tween.tween_property(self, "position:y", closedPos.y, duration)
 

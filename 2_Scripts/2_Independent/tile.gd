@@ -3,7 +3,7 @@ extends Control
 class_name Tile
 
 @export_category("References")
-@export var visual : TextureRect
+@export var visuals : Array[TextureRect]
 @export var valueText : RichTextLabel
 @export var button : Button
 
@@ -43,12 +43,20 @@ func _swap_team(scoreboard : ScoreboardManager):
 		currentTeam = Team.player_two
 		scoreboard._change_score(TrayManager.Player.one, -currentValue)
 		scoreboard._change_score(TrayManager.Player.two, currentValue)
-		visual.self_modulate = Color(1, 0, 0)
+		visuals[0].self_modulate = Color(1, 0, 0)
+		visuals[1].self_modulate = Color(0.804, 0.0, 0.0, 1.0)
+		visuals[2].self_modulate = Color(0.608, 0.0, 0.0, 1.0)
+		visuals[3].self_modulate = Color(0.412, 0.0, 0.0, 1.0)
+		visuals[4].self_modulate = Color(0.216, 0.0, 0.0, 1.0)
 	else: #change to one
 		currentTeam = Team.player_one
 		scoreboard._change_score(TrayManager.Player.one, currentValue)
 		scoreboard._change_score(TrayManager.Player.two, -currentValue)
-		visual.self_modulate = Color(0, 0, 1)
+		visuals[0].self_modulate = Color(0, 0, 1)
+		visuals[1].self_modulate = Color(0, 0.0, 0.804, 1.0)
+		visuals[2].self_modulate = Color(0, 0.0, 0.608, 1.0)
+		visuals[3].self_modulate = Color(0, 0.0, 0.412, 1.0)
+		visuals[4].self_modulate = Color(0, 0.0, 0.216, 1.0)
 
 #- - -
 ##can override this with subclass for different effects (currently default surrounding capture)

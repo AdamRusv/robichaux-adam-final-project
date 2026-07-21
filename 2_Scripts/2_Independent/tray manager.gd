@@ -7,9 +7,9 @@ class_name TrayManager
 @export var mapTiles : Array[Tile]
 @export var trayTiles : Array[TrayTile]
 
-##cards not visible
+##cards not visible, must be in numarical order
 var playerOneCurrentDeck : Array[int]
-##cards not visible
+##cards not visible, must be in numarical order
 var playerTwoCurrentDeck : Array[int]
 
 ##cards in Tray

@@ -6,10 +6,9 @@
 [ext_resource type="Theme" uid="uid://bo13vq025j5e1" path="res://6_Other/main text font theme.tres" id="3_xklvf"]
 [ext_resource type="Texture2D" uid="uid://bju4s16um5lpt" path="res://0_Art/tile dark.png" id="4_ffi3v"]
 [ext_resource type="Texture2D" uid="uid://251pfcey12c8" path="res://0_Art/tile darker.png" id="5_xov6q"]
-[ext_resource type="Texture2D" uid="uid://ryhwf6d6j778" path="res://0_Art/tile outline.png" id="6_ffi3v"]
 [ext_resource type="Texture2D" uid="uid://pkkgxbtt6ymn" path="res://0_Art/tile shine.png" id="6_xov6q"]
 
-[node name="Player 2 Tile" type="Control" unique_id=267476513 node_paths=PackedStringArray("visual", "valueText")]
+[node name="Player 2 Tile" type="Control" unique_id=267476513 node_paths=PackedStringArray("visuals", "valueText")]
 custom_minimum_size = Vector2(38, 38)
 layout_mode = 3
 anchors_preset = 0
@@ -20,7 +19,7 @@ offset_bottom = 19.0
 pivot_offset = Vector2(19, 19)
 mouse_filter = 2
 script = ExtResource("1_5r4qq")
-visual = NodePath("bottom")
+visuals = [NodePath("bottom"), NodePath("base"), NodePath("dark"), NodePath("darker"), NodePath("shine")]
 valueText = NodePath("MarginContainer/RichTextLabel")
 currentTeam = 2
 
@@ -72,17 +71,6 @@ offset_bottom = 38.0
 pivot_offset = Vector2(19, 19)
 mouse_filter = 2
 texture = ExtResource("6_xov6q")
-stretch_mode = 2
-
-[node name="outline" type="TextureRect" parent="." unique_id=574385711]
-visible = false
-self_modulate = Color(0, 1, 1, 1)
-layout_mode = 0
-offset_right = 38.0
-offset_bottom = 38.0
-pivot_offset = Vector2(19, 19)
-mouse_filter = 2
-texture = ExtResource("6_ffi3v")
 stretch_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1905090579]

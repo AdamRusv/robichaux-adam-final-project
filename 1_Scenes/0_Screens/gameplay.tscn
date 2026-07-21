@@ -1,6 +1,7 @@
-[gd_scene format=3 uid="uid://vxarjjbctsa4"]
+[gd_scene format=4 uid="uid://vxarjjbctsa4"]
 
 [ext_resource type="Shader" uid="uid://b587mqqt48v4a" path="res://4_Shaders/0_Scripts/pixel border.gdshader" id="1_3udmd"]
+[ext_resource type="Script" uid="uid://chpwtvy50fe3r" path="res://2_Scripts/2_Independent/screen manager.gd" id="1_fb3j3"]
 [ext_resource type="Texture2D" uid="uid://cj7uatshnc4ta" path="res://0_Art/square.png" id="2_1t528"]
 [ext_resource type="Material" uid="uid://beamboy1ru8kr" path="res://4_Shaders/1_Materials/swap color.tres" id="4_baij6"]
 [ext_resource type="Script" uid="uid://dykfsmobkej5m" path="res://2_Scripts/2_Independent/cursor.gd" id="5_2syus"]
@@ -13,6 +14,7 @@
 [ext_resource type="Script" uid="uid://d36ttweofcoy1" path="res://2_Scripts/2_Independent/board move manager.gd" id="7_rkkk6"]
 [ext_resource type="Texture2D" uid="uid://b5hlgyh3hj2wn" path="res://0_Art/arrow.png" id="8_ahkic"]
 [ext_resource type="Script" uid="uid://fcvapf6jvlft" path="res://2_Scripts/2_Independent/hover menu manager.gd" id="8_rkkk6"]
+[ext_resource type="Texture2D" uid="uid://cownrquhq3kkj" path="res://0_Art/scoreboard texture-Sheet.png" id="9_0hcow"]
 [ext_resource type="Script" uid="uid://d4b8w5crg5fb" path="res://2_Scripts/2_Independent/tray manager.gd" id="9_fn5ot"]
 [ext_resource type="Script" uid="uid://bdjm6bymg07pu" path="res://2_Scripts/2_Independent/deck viewer menu.gd" id="9_g7yw3"]
 [ext_resource type="Script" uid="uid://c8f6ac56rbwm6" path="res://2_Scripts/2_Independent/tile.gd" id="9_ywih6"]
@@ -55,6 +57,23 @@ shader_parameter/borderEnabled = true
 shader_parameter/borderColor = Color(0, 0, 0, 1)
 shader_parameter/borderWidthPixels = 1.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fb3j3"]
+atlas = ExtResource("9_0hcow")
+region = Rect2(0, 0, 29, 18)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0hcow"]
+load_path = "res://.godot/imported/scoreboard texture-Sheet.png-c2da88975b390af583d0d3b6ad313c53.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6eb78"]
+atlas = SubResource("CompressedTexture2D_0hcow")
+region = Rect2(29, 0, 29, 18)
+
+[sub_resource type="BitMap" id="BitMap_fb3j3"]
+data = {
+"data": PackedByteArray("/v//////////////////////////////9//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+//////////////////////////////8HAAAAAAAAAPj//////////wEAAAAAAAAAAAAAAAAAAID//////////x8AAAAAAAAAAAAAAAAAAAD4//////////8BAAAAAAAAAAAAAAAAAACA//////////8fAAAAAAAAAAAAAAAAAAAA+P//////////AQAAAAAAAAAAAAAAAAAAgP//////////HwAAAAAAAAAAAAAAAAAAAPj//////////wEAAAAAAAAAAAAAAAAAAID//////////x8AAAAAAAAAAAAAAAAAAAD4//////////8BAAAAAAAAAAAAAAAAAACA//////////8fAAAAAAAAAAAAAAAAAAAA+P//////////AQAAAAAAAAAAAAAAAAAAgP//////////HwAAAAAAAAAAAAAAAAAAAPj//////////wEAAAAAAAAAAAAAAAAAAID//////////x8AAAAAAAAAAAAAAAAAAAD4//////////8BAAAAAAAAAAAAAAAAAACA//////////8fAAAAAAAAAAAAAAAAAAAA+P//////////AQAAAAAAAAAAAAAAAAAAAP//////////DwAAAAAAAAAA"),
+"size": Vector2i(196, 101)
+}
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1cjw6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g7yw3"]
@@ -91,10 +110,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_fb3j3")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=96229226]
+[node name="UI" type="CanvasLayer" parent="." unique_id=96229226]
+unique_name_in_owner = true
 
-[node name="Cursor" type="Control" parent="CanvasLayer" unique_id=1150532939 node_paths=PackedStringArray("imageNode")]
+[node name="Cursor" type="Control" parent="UI" unique_id=1150532939 node_paths=PackedStringArray("imageNode")]
 z_index = 1
 layout_mode = 3
 anchors_preset = 0
@@ -104,12 +125,12 @@ mouse_filter = 2
 script = ExtResource("5_2syus")
 imageNode = NodePath("AnimatedSprite2D")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Cursor" unique_id=218686513]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="UI/Cursor" unique_id=218686513]
 material = SubResource("ShaderMaterial_2syus")
 position = Vector2(7, 7)
 sprite_frames = SubResource("SpriteFrames_baij6")
 
-[node name="Board Move Manager" type="Button" parent="CanvasLayer" unique_id=1653113624 node_paths=PackedStringArray("board", "tileMapBoard")]
+[node name="Board Move Manager" type="Button" parent="UI" unique_id=1653113624 node_paths=PackedStringArray("board", "tileMapBoard")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -120,7 +141,7 @@ script = ExtResource("7_rkkk6")
 board = NodePath("../../SubViewportContainer/Board Viewport/Map")
 tileMapBoard = NodePath("../Map Manager")
 
-[node name="Map Manager" type="Control" parent="CanvasLayer" unique_id=26708540 node_paths=PackedStringArray("boardMouseDetection", "scoreBoardManager", "mapGenerator", "trayManager", "tileMap")]
+[node name="Map Manager" type="Control" parent="UI" unique_id=26708540 node_paths=PackedStringArray("boardMouseDetection", "scoreBoardManager", "mapGenerator", "trayManager", "tileMap")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -133,7 +154,7 @@ mapGenerator = NodePath("../../SubViewportContainer/Board Viewport/Map")
 trayManager = NodePath("../Bottom/Tray")
 tileMap = NodePath("../../SubViewportContainer/Board Viewport/Map/TileMapLayer")
 
-[node name="Scoreboard" type="HBoxContainer" parent="CanvasLayer" unique_id=954399020 node_paths=PackedStringArray("playerOneText", "playerTwoText")]
+[node name="Scoreboard" type="HBoxContainer" parent="UI" unique_id=954399020 node_paths=PackedStringArray("playerOneText", "playerTwoText")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 34.0
@@ -144,18 +165,19 @@ script = ExtResource("6_1cjw6")
 playerOneText = NodePath("Blue/MarginContainer2/MarginContainer/RichTextLabel")
 playerTwoText = NodePath("Red/MarginContainer2/MarginContainer/RichTextLabel")
 
-[node name="VSeparator2" type="VSeparator" parent="CanvasLayer/Scoreboard" unique_id=594961635]
+[node name="VSeparator2" type="VSeparator" parent="UI/Scoreboard" unique_id=594961635]
 layout_mode = 2
 mouse_filter = 2
+theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxEmpty_ahkic")
 
-[node name="Blue" type="MarginContainer" parent="CanvasLayer/Scoreboard" unique_id=366270867]
+[node name="Blue" type="MarginContainer" parent="UI/Scoreboard" unique_id=366270867]
 layout_mode = 2
 mouse_behavior_recursive = 1
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Scoreboard/Blue" unique_id=761009971]
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Scoreboard/Blue" unique_id=761009971]
 self_modulate = Color(0, 0, 1, 1)
 material = SubResource("ShaderMaterial_sqkm3")
 layout_mode = 2
@@ -167,34 +189,39 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Scoreboard/Blue" unique_id=2120166574]
+[node name="TextureRect" type="TextureRect" parent="UI/Scoreboard/Blue" unique_id=923692651]
+layout_mode = 2
+texture = SubResource("AtlasTexture_fb3j3")
+stretch_mode = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/Scoreboard/Blue" unique_id=2120166574]
 layout_mode = 2
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Scoreboard/Blue/MarginContainer2" unique_id=886338546]
+[node name="MarginContainer" type="MarginContainer" parent="UI/Scoreboard/Blue/MarginContainer2" unique_id=886338546]
 layout_mode = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Scoreboard/Blue/MarginContainer2/MarginContainer" unique_id=817350456]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Scoreboard/Blue/MarginContainer2/MarginContainer" unique_id=817350456]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("7_ahkic")
 theme_override_colors/default_color = Color(0, 1, 1, 1)
-text = "23"
+text = "823"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Scoreboard/Blue/MarginContainer2/MarginContainer" unique_id=742367697]
+[node name="RichTextLabel2" type="RichTextLabel" parent="UI/Scoreboard/Blue/MarginContainer2/MarginContainer" unique_id=742367697]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
@@ -209,19 +236,19 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VSeparator4" type="VSeparator" parent="CanvasLayer/Scoreboard" unique_id=1337644457]
+[node name="VSeparator4" type="VSeparator" parent="UI/Scoreboard" unique_id=1337644457]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_ahkic")
 
-[node name="Red" type="MarginContainer" parent="CanvasLayer/Scoreboard" unique_id=1727690314]
+[node name="Red" type="MarginContainer" parent="UI/Scoreboard" unique_id=1727690314]
 layout_mode = 2
 mouse_behavior_recursive = 1
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Scoreboard/Red" unique_id=2077667424]
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Scoreboard/Red" unique_id=2077667424]
 self_modulate = Color(1, 0, 0, 1)
 material = SubResource("ShaderMaterial_sqkm3")
 layout_mode = 2
@@ -233,20 +260,25 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Scoreboard/Red" unique_id=13410963]
+[node name="TextureRect2" type="TextureRect" parent="UI/Scoreboard/Red" unique_id=704438835]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6eb78")
+stretch_mode = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/Scoreboard/Red" unique_id=13410963]
 layout_mode = 2
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Scoreboard/Red/MarginContainer2" unique_id=277281582]
+[node name="MarginContainer" type="MarginContainer" parent="UI/Scoreboard/Red/MarginContainer2" unique_id=277281582]
 layout_mode = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Scoreboard/Red/MarginContainer2/MarginContainer" unique_id=1657226080]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Scoreboard/Red/MarginContainer2/MarginContainer" unique_id=1657226080]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -260,7 +292,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Scoreboard/Red/MarginContainer2/MarginContainer" unique_id=2016776694]
+[node name="RichTextLabel2" type="RichTextLabel" parent="UI/Scoreboard/Red/MarginContainer2/MarginContainer" unique_id=2016776694]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
@@ -275,19 +307,20 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VSeparator3" type="VSeparator" parent="CanvasLayer/Scoreboard" unique_id=1331085396]
+[node name="VSeparator3" type="VSeparator" parent="UI/Scoreboard" unique_id=1331085396]
 layout_mode = 2
 mouse_filter = 2
+theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxEmpty_ahkic")
 
-[node name="Deck Viewer" type="MarginContainer" parent="CanvasLayer" unique_id=1762090208 node_paths=PackedStringArray("trayManager", "blueDeckGrid", "redDeckGrid", "swapToBlueParent", "swapToRedParent", "swapToBlueButton", "swapToRedButton", "hoverZone")]
+[node name="Deck Viewer" type="MarginContainer" parent="UI" unique_id=1762090208 node_paths=PackedStringArray("trayManager", "blueDeckGrid", "redDeckGrid", "swapToBlueParent", "swapToRedParent", "swapToBlueButton", "swapToRedButton", "hoverZone")]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -37.0
 offset_top = -5.0
 offset_right = 38.0
-offset_bottom = 20.0
+offset_bottom = 20.000042
 grow_horizontal = 2
 mouse_filter = 2
 script = ExtResource("9_g7yw3")
@@ -301,8 +334,9 @@ swapToRedButton = NodePath("Panel Parent/Panel/MarginContainer/VBoxContainer/HBo
 hoverZone = NodePath("Hover Detection Holder/TextureButton")
 bitMapPath = "res://0_Art/view deck detecttion bitmap.png"
 maxDistanceToMove = -81
+speedModifier = 190.0
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Deck Viewer" unique_id=887527832]
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Deck Viewer" unique_id=887527832]
 self_modulate = Color(1, 0, 1, 1)
 material = SubResource("ShaderMaterial_sqkm3")
 layout_mode = 2
@@ -312,7 +346,7 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Deck Viewer" unique_id=850552825]
+[node name="MarginContainer2" type="MarginContainer" parent="UI/Deck Viewer" unique_id=850552825]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 3
@@ -320,7 +354,7 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 4
 
-[node name="View" type="MarginContainer" parent="CanvasLayer/Deck Viewer/MarginContainer2" unique_id=1384784705]
+[node name="View" type="MarginContainer" parent="UI/Deck Viewer/MarginContainer2" unique_id=1384784705]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 5
@@ -328,7 +362,7 @@ theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = -1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Deck Viewer/MarginContainer2/View" unique_id=668223560]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Deck Viewer/MarginContainer2/View" unique_id=668223560]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -343,22 +377,23 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Hover Detection Holder" type="Control" parent="CanvasLayer/Deck Viewer" unique_id=1087667006]
+[node name="Hover Detection Holder" type="Control" parent="UI/Deck Viewer" unique_id=1087667006]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Deck Viewer/Hover Detection Holder" unique_id=2086238597]
+[node name="TextureButton" type="TextureButton" parent="UI/Deck Viewer/Hover Detection Holder" unique_id=2086238597]
 layout_mode = 0
 offset_left = -61.0
 offset_top = -81.0
 offset_right = -39.0
 offset_bottom = -57.0
+texture_click_mask = SubResource("BitMap_fb3j3")
 
-[node name="Panel Parent" type="Control" parent="CanvasLayer/Deck Viewer" unique_id=206967186]
+[node name="Panel Parent" type="Control" parent="UI/Deck Viewer" unique_id=206967186]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Panel" type="MarginContainer" parent="CanvasLayer/Deck Viewer/Panel Parent" unique_id=526750272]
+[node name="Panel" type="MarginContainer" parent="UI/Deck Viewer/Panel Parent" unique_id=526750272]
 custom_minimum_size = Vector2(200, 87)
 layout_mode = 1
 anchors_preset = 7
@@ -374,7 +409,7 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel" unique_id=1118114757]
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Deck Viewer/Panel Parent/Panel" unique_id=1118114757]
 self_modulate = Color(1, 0, 1, 1)
 material = SubResource("ShaderMaterial_sqkm3")
 layout_mode = 2
@@ -384,40 +419,39 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel" unique_id=2110295752]
+[node name="MarginContainer" type="MarginContainer" parent="UI/Deck Viewer/Panel Parent/Panel" unique_id=2110295752]
 layout_mode = 2
 theme_override_constants/margin_left = 7
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 7
 theme_override_constants/margin_bottom = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer" unique_id=1890243996]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer" unique_id=1890243996]
 layout_mode = 2
 theme_override_constants/separation = 0
-alignment = 1
 
-[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer" unique_id=1963695116]
+[node name="HSeparator2" type="HSeparator" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer" unique_id=1963695116]
 layout_mode = 2
 theme_override_constants/separation = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_1cjw6")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer" unique_id=1122392787]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer" unique_id=1122392787]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=207586415]
+[node name="VSeparator" type="VSeparator" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=207586415]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 30
 theme_override_styles/separator = SubResource("StyleBoxEmpty_g7yw3")
 
-[node name="blue swap" type="MarginContainer" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=88025332]
+[node name="blue swap" type="MarginContainer" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=88025332]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/blue swap" unique_id=739919776]
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/blue swap" unique_id=739919776]
 self_modulate = Color(0, 0, 1, 1)
 material = SubResource("ShaderMaterial_sqkm3")
 layout_mode = 2
@@ -427,21 +461,21 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="Button Holder" type="MarginContainer" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/blue swap" unique_id=1488215020]
+[node name="Button Holder" type="MarginContainer" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/blue swap" unique_id=1488215020]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/blue swap/Button Holder" unique_id=1386247078]
+[node name="Button" type="Button" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/blue swap/Button Holder" unique_id=1386247078]
 layout_mode = 2
 focus_mode = 0
 flat = true
 
-[node name="red swap" type="MarginContainer" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=575894861]
+[node name="red swap" type="MarginContainer" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=575894861]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/red swap" unique_id=169340144]
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/red swap" unique_id=169340144]
 self_modulate = Color(1, 0, 0, 1)
 material = SubResource("ShaderMaterial_sqkm3")
 layout_mode = 2
@@ -451,46 +485,46 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="Button Holder" type="MarginContainer" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/red swap" unique_id=515620643]
+[node name="Button Holder" type="MarginContainer" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/red swap" unique_id=515620643]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/red swap/Button Holder" unique_id=932337310]
+[node name="Button" type="Button" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/red swap/Button Holder" unique_id=932337310]
 layout_mode = 2
 focus_mode = 0
 flat = true
 
-[node name="VSeparator2" type="VSeparator" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1845455809]
+[node name="VSeparator2" type="VSeparator" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1845455809]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 30
 theme_override_styles/separator = SubResource("StyleBoxEmpty_g7yw3")
 
-[node name="Blue Card Grid" type="GridContainer" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer" unique_id=1177260594]
+[node name="Blue Card Grid" type="GridContainer" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer" unique_id=1177260594]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = -4
 columns = 5
 
-[node name="Red Card Grid" type="GridContainer" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer" unique_id=628097099]
+[node name="Red Card Grid" type="GridContainer" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer" unique_id=628097099]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = -4
 columns = 5
 
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer" unique_id=632897253]
+[node name="HSeparator" type="HSeparator" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer" unique_id=632897253]
 layout_mode = 2
 theme_override_constants/separation = 0
 theme_override_styles/separator = SubResource("StyleBoxEmpty_1cjw6")
 
-[node name="Border Cover (pixel)" type="MarginContainer" parent="CanvasLayer/Deck Viewer/Panel Parent" unique_id=1997462083]
+[node name="Border Cover (pixel)" type="MarginContainer" parent="UI/Deck Viewer/Panel Parent" unique_id=1997462083]
 layout_mode = 0
 offset_right = 75.0
 offset_bottom = 10.0
 mouse_filter = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Deck Viewer/Panel Parent/Border Cover (pixel)" unique_id=1021433613]
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Deck Viewer/Panel Parent/Border Cover (pixel)" unique_id=1021433613]
 self_modulate = Color(1, 0, 1, 1)
 layout_mode = 2
 texture = ExtResource("2_1t528")
@@ -499,7 +533,7 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="Border Cover" type="MarginContainer" parent="CanvasLayer/Deck Viewer/Panel Parent" unique_id=758899749]
+[node name="Border Cover" type="MarginContainer" parent="UI/Deck Viewer/Panel Parent" unique_id=758899749]
 layout_mode = 0
 offset_left = -1.0
 offset_top = -5.0
@@ -507,7 +541,7 @@ offset_right = 76.0
 offset_bottom = 8.0
 mouse_filter = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Deck Viewer/Panel Parent/Border Cover" unique_id=2033113114]
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Deck Viewer/Panel Parent/Border Cover" unique_id=2033113114]
 self_modulate = Color(1, 0, 1, 1)
 layout_mode = 2
 texture = ExtResource("2_1t528")
@@ -516,7 +550,7 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="Bottom" type="HBoxContainer" parent="CanvasLayer" unique_id=384163672]
+[node name="Bottom" type="HBoxContainer" parent="UI" unique_id=384163672]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -527,7 +561,7 @@ grow_vertical = 0
 mouse_filter = 2
 alignment = 1
 
-[node name="Tray" type="MarginContainer" parent="CanvasLayer/Bottom" unique_id=796654713 node_paths=PackedStringArray("tileMap", "mapTiles", "trayTiles")]
+[node name="Tray" type="MarginContainer" parent="UI/Bottom" unique_id=796654713 node_paths=PackedStringArray("tileMap", "mapTiles", "trayTiles")]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 mouse_filter = 0
@@ -538,7 +572,7 @@ tileMap = NodePath("../../Map Manager")
 mapTiles = [NodePath("Tiles/Map Tile"), NodePath("Tiles/Map Tile2"), NodePath("Tiles/Map Tile3"), NodePath("Tiles/Map Tile4")]
 trayTiles = [NodePath("Tiles/Map Tile/Tray Tile"), NodePath("Tiles/Map Tile2/Tray Tile"), NodePath("Tiles/Map Tile3/Tray Tile"), NodePath("Tiles/Map Tile4/Tray Tile")]
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Bottom/Tray" unique_id=459038837]
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Bottom/Tray" unique_id=459038837]
 self_modulate = Color(1, 0, 1, 1)
 material = SubResource("ShaderMaterial_sqkm3")
 layout_mode = 2
@@ -549,25 +583,24 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="Tiles" type="HBoxContainer" parent="CanvasLayer/Bottom/Tray" unique_id=835640723]
+[node name="Tiles" type="HBoxContainer" parent="UI/Bottom/Tray" unique_id=835640723]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = -2
 alignment = 1
 
-[node name="VSeparator2" type="VSeparator" parent="CanvasLayer/Bottom/Tray/Tiles" unique_id=1946764335]
+[node name="VSeparator2" type="VSeparator" parent="UI/Bottom/Tray/Tiles" unique_id=1946764335]
 layout_mode = 2
 theme_override_constants/separation = 7
 theme_override_styles/separator = SubResource("StyleBoxEmpty_pb2ch")
 
-[node name="Map Tile" type="Control" parent="CanvasLayer/Bottom/Tray/Tiles" unique_id=816981165 node_paths=PackedStringArray("visual")]
+[node name="Map Tile" type="Control" parent="UI/Bottom/Tray/Tiles" unique_id=816981165]
 custom_minimum_size = Vector2(38, 38)
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("9_ywih6")
-visual = NodePath("TextureRect")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Bottom/Tray/Tiles/Map Tile" unique_id=891075600]
+[node name="TextureRect" type="TextureRect" parent="UI/Bottom/Tray/Tiles/Map Tile" unique_id=891075600]
 self_modulate = Color(1, 1, 1, 0.003921569)
 material = SubResource("ShaderMaterial_baij6")
 layout_mode = 0
@@ -578,19 +611,18 @@ mouse_filter = 2
 texture = ExtResource("6_pb2ch")
 stretch_mode = 2
 
-[node name="Tray Tile" parent="CanvasLayer/Bottom/Tray/Tiles/Map Tile" unique_id=1838578514 instance=ExtResource("10_c4l6l")]
+[node name="Tray Tile" parent="UI/Bottom/Tray/Tiles/Map Tile" unique_id=1838578514 instance=ExtResource("10_c4l6l")]
 layout_mode = 0
 offset_right = 38.0
 offset_bottom = 38.0
 
-[node name="Map Tile2" type="Control" parent="CanvasLayer/Bottom/Tray/Tiles" unique_id=79851753 node_paths=PackedStringArray("visual")]
+[node name="Map Tile2" type="Control" parent="UI/Bottom/Tray/Tiles" unique_id=79851753]
 custom_minimum_size = Vector2(38, 38)
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("9_ywih6")
-visual = NodePath("TextureRect")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Bottom/Tray/Tiles/Map Tile2" unique_id=882460971]
+[node name="TextureRect" type="TextureRect" parent="UI/Bottom/Tray/Tiles/Map Tile2" unique_id=882460971]
 self_modulate = Color(1, 1, 1, 0.003921569)
 material = SubResource("ShaderMaterial_baij6")
 layout_mode = 0
@@ -601,19 +633,18 @@ mouse_filter = 2
 texture = ExtResource("6_pb2ch")
 stretch_mode = 2
 
-[node name="Tray Tile" parent="CanvasLayer/Bottom/Tray/Tiles/Map Tile2" unique_id=1462886687 instance=ExtResource("10_c4l6l")]
+[node name="Tray Tile" parent="UI/Bottom/Tray/Tiles/Map Tile2" unique_id=1462886687 instance=ExtResource("10_c4l6l")]
 layout_mode = 0
 offset_right = 38.0
 offset_bottom = 38.0
 
-[node name="Map Tile3" type="Control" parent="CanvasLayer/Bottom/Tray/Tiles" unique_id=1359061410 node_paths=PackedStringArray("visual")]
+[node name="Map Tile3" type="Control" parent="UI/Bottom/Tray/Tiles" unique_id=1359061410]
 custom_minimum_size = Vector2(38, 38)
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("9_ywih6")
-visual = NodePath("TextureRect")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Bottom/Tray/Tiles/Map Tile3" unique_id=1431780568]
+[node name="TextureRect" type="TextureRect" parent="UI/Bottom/Tray/Tiles/Map Tile3" unique_id=1431780568]
 self_modulate = Color(1, 1, 1, 0.003921569)
 material = SubResource("ShaderMaterial_baij6")
 layout_mode = 0
@@ -624,19 +655,18 @@ mouse_filter = 2
 texture = ExtResource("6_pb2ch")
 stretch_mode = 2
 
-[node name="Tray Tile" parent="CanvasLayer/Bottom/Tray/Tiles/Map Tile3" unique_id=423032606 instance=ExtResource("10_c4l6l")]
+[node name="Tray Tile" parent="UI/Bottom/Tray/Tiles/Map Tile3" unique_id=423032606 instance=ExtResource("10_c4l6l")]
 layout_mode = 0
 offset_right = 38.0
 offset_bottom = 38.0
 
-[node name="Map Tile4" type="Control" parent="CanvasLayer/Bottom/Tray/Tiles" unique_id=3191288 node_paths=PackedStringArray("visual")]
+[node name="Map Tile4" type="Control" parent="UI/Bottom/Tray/Tiles" unique_id=3191288]
 custom_minimum_size = Vector2(38, 38)
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("9_ywih6")
-visual = NodePath("TextureRect")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Bottom/Tray/Tiles/Map Tile4" unique_id=832038368]
+[node name="TextureRect" type="TextureRect" parent="UI/Bottom/Tray/Tiles/Map Tile4" unique_id=832038368]
 self_modulate = Color(1, 1, 1, 0.003921569)
 material = SubResource("ShaderMaterial_baij6")
 layout_mode = 0
@@ -647,17 +677,17 @@ mouse_filter = 2
 texture = ExtResource("6_pb2ch")
 stretch_mode = 2
 
-[node name="Tray Tile" parent="CanvasLayer/Bottom/Tray/Tiles/Map Tile4" unique_id=329582283 instance=ExtResource("10_c4l6l")]
+[node name="Tray Tile" parent="UI/Bottom/Tray/Tiles/Map Tile4" unique_id=329582283 instance=ExtResource("10_c4l6l")]
 layout_mode = 0
 offset_right = 38.0
 offset_bottom = 38.0
 
-[node name="VSeparator" type="VSeparator" parent="CanvasLayer/Bottom/Tray/Tiles" unique_id=1839755525]
+[node name="VSeparator" type="VSeparator" parent="UI/Bottom/Tray/Tiles" unique_id=1839755525]
 layout_mode = 2
 theme_override_constants/separation = 7
 theme_override_styles/separator = SubResource("StyleBoxEmpty_pb2ch")
 
-[node name="Menu" type="MarginContainer" parent="CanvasLayer" unique_id=1154878455 node_paths=PackedStringArray("hoverZone", "textButtons", "texts")]
+[node name="Menu" type="MarginContainer" parent="UI" unique_id=1154878455 node_paths=PackedStringArray("hoverZone", "textButtons", "texts")]
 offset_left = 10.0
 offset_top = 160.0
 offset_right = 32.0
@@ -670,7 +700,7 @@ texts = [NodePath("Panel Parent/Panel/VBoxContainer/Options/RichTextLabel"), Nod
 bitMapPath = "res://0_Art/Hover Menu Detection Bitmap.png"
 maxDistanceToMove = 64
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Menu" unique_id=547490885]
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Menu" unique_id=547490885]
 self_modulate = Color(1, 0, 1, 1)
 material = SubResource("ShaderMaterial_sqkm3")
 layout_mode = 2
@@ -680,7 +710,7 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Menu" unique_id=608382769]
+[node name="MarginContainer2" type="MarginContainer" parent="UI/Menu" unique_id=608382769]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 3
@@ -688,27 +718,27 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 4
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Menu/MarginContainer2" unique_id=1605738266]
+[node name="TextureRect" type="TextureRect" parent="UI/Menu/MarginContainer2" unique_id=1605738266]
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("8_ahkic")
 stretch_mode = 3
 
-[node name="Hover Detection Holder" type="Control" parent="CanvasLayer/Menu" unique_id=745981923]
+[node name="Hover Detection Holder" type="Control" parent="UI/Menu" unique_id=745981923]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Menu/Hover Detection Holder" unique_id=1870723568]
+[node name="TextureButton" type="TextureButton" parent="UI/Menu/Hover Detection Holder" unique_id=1870723568]
 layout_mode = 0
 offset_right = 22.0
 offset_bottom = 24.0
 
-[node name="Panel Parent" type="Control" parent="CanvasLayer/Menu" unique_id=1719614148]
+[node name="Panel Parent" type="Control" parent="UI/Menu" unique_id=1719614148]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Panel" type="MarginContainer" parent="CanvasLayer/Menu/Panel Parent" unique_id=147675561]
+[node name="Panel" type="MarginContainer" parent="UI/Menu/Panel Parent" unique_id=147675561]
 custom_minimum_size = Vector2(62.985, 70.27)
 layout_mode = 0
 offset_top = 18.0
@@ -716,7 +746,7 @@ offset_right = 62.985
 offset_bottom = 88.27
 mouse_filter = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Menu/Panel Parent/Panel" unique_id=1267603384]
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Menu/Panel Parent/Panel" unique_id=1267603384]
 self_modulate = Color(1, 0, 1, 1)
 material = SubResource("ShaderMaterial_sqkm3")
 layout_mode = 2
@@ -726,20 +756,20 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Menu/Panel Parent/Panel" unique_id=2041676631]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Menu/Panel Parent/Panel" unique_id=2041676631]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="Options" type="MarginContainer" parent="CanvasLayer/Menu/Panel Parent/Panel/VBoxContainer" unique_id=601537132]
+[node name="Options" type="MarginContainer" parent="UI/Menu/Panel Parent/Panel/VBoxContainer" unique_id=601537132]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Menu/Panel Parent/Panel/VBoxContainer/Options" unique_id=1705278016]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Menu/Panel Parent/Panel/VBoxContainer/Options" unique_id=1705278016]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -754,10 +784,10 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button Holder" type="Control" parent="CanvasLayer/Menu/Panel Parent/Panel/VBoxContainer/Options" unique_id=728846684]
+[node name="Button Holder" type="Control" parent="UI/Menu/Panel Parent/Panel/VBoxContainer/Options" unique_id=728846684]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="CanvasLayer/Menu/Panel Parent/Panel/VBoxContainer/Options/Button Holder" unique_id=1808556504]
+[node name="Button" type="Button" parent="UI/Menu/Panel Parent/Panel/VBoxContainer/Options/Button Holder" unique_id=1808556504]
 layout_mode = 0
 offset_left = 7.0
 offset_top = -2.0
@@ -766,14 +796,14 @@ offset_bottom = 17.0
 focus_mode = 0
 flat = true
 
-[node name="Help" type="MarginContainer" parent="CanvasLayer/Menu/Panel Parent/Panel/VBoxContainer" unique_id=1811564850]
+[node name="Help" type="MarginContainer" parent="UI/Menu/Panel Parent/Panel/VBoxContainer" unique_id=1811564850]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Menu/Panel Parent/Panel/VBoxContainer/Help" unique_id=1350204216]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Menu/Panel Parent/Panel/VBoxContainer/Help" unique_id=1350204216]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -788,10 +818,10 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button Holder" type="Control" parent="CanvasLayer/Menu/Panel Parent/Panel/VBoxContainer/Help" unique_id=1944394291]
+[node name="Button Holder" type="Control" parent="UI/Menu/Panel Parent/Panel/VBoxContainer/Help" unique_id=1944394291]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="CanvasLayer/Menu/Panel Parent/Panel/VBoxContainer/Help/Button Holder" unique_id=1434041935]
+[node name="Button" type="Button" parent="UI/Menu/Panel Parent/Panel/VBoxContainer/Help/Button Holder" unique_id=1434041935]
 layout_mode = 0
 offset_left = 7.0
 offset_top = -2.0
@@ -800,14 +830,14 @@ offset_bottom = 17.0
 focus_mode = 0
 flat = true
 
-[node name="Quit" type="MarginContainer" parent="CanvasLayer/Menu/Panel Parent/Panel/VBoxContainer" unique_id=294423339]
+[node name="Quit" type="MarginContainer" parent="UI/Menu/Panel Parent/Panel/VBoxContainer" unique_id=294423339]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Menu/Panel Parent/Panel/VBoxContainer/Quit" unique_id=950688761]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Menu/Panel Parent/Panel/VBoxContainer/Quit" unique_id=950688761]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -822,10 +852,10 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button Holder" type="Control" parent="CanvasLayer/Menu/Panel Parent/Panel/VBoxContainer/Quit" unique_id=997714808]
+[node name="Button Holder" type="Control" parent="UI/Menu/Panel Parent/Panel/VBoxContainer/Quit" unique_id=997714808]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="CanvasLayer/Menu/Panel Parent/Panel/VBoxContainer/Quit/Button Holder" unique_id=146354054]
+[node name="Button" type="Button" parent="UI/Menu/Panel Parent/Panel/VBoxContainer/Quit/Button Holder" unique_id=146354054]
 layout_mode = 0
 offset_left = 7.0
 offset_top = -2.0
@@ -834,14 +864,14 @@ offset_bottom = 17.0
 focus_mode = 0
 flat = true
 
-[node name="Border Cover (pixel)" type="MarginContainer" parent="CanvasLayer/Menu/Panel Parent" unique_id=312779474]
+[node name="Border Cover (pixel)" type="MarginContainer" parent="UI/Menu/Panel Parent" unique_id=312779474]
 layout_mode = 0
 offset_top = 17.0
 offset_right = 23.0
 offset_bottom = 28.0
 mouse_filter = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Menu/Panel Parent/Border Cover (pixel)" unique_id=2099759279]
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Menu/Panel Parent/Border Cover (pixel)" unique_id=2099759279]
 self_modulate = Color(1, 0, 1, 1)
 layout_mode = 2
 texture = ExtResource("2_1t528")
@@ -850,14 +880,14 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="Border Cover" type="MarginContainer" parent="CanvasLayer/Menu/Panel Parent" unique_id=432383471]
+[node name="Border Cover" type="MarginContainer" parent="UI/Menu/Panel Parent" unique_id=432383471]
 layout_mode = 0
 offset_top = 15.0
 offset_right = 22.0
 offset_bottom = 28.0
 mouse_filter = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Menu/Panel Parent/Border Cover" unique_id=1634759289]
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Menu/Panel Parent/Border Cover" unique_id=1634759289]
 self_modulate = Color(1, 0, 1, 1)
 layout_mode = 2
 texture = ExtResource("2_1t528")

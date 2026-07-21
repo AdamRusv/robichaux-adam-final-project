@@ -7,7 +7,8 @@ uniform int colorCount : hint_range(0, 20, 1) = 1;
 
 group_uniforms OriginalColors;
 // Colors to search for.
-uniform vec4 originalOutlineColor : source_color = vec4(1.0);
+uniform vec4 originalBackgroundColor : source_color = vec4(1.0);
+uniform vec4 originalBackground2Color : source_color = vec4(1.0);
 uniform vec4 originalTextColor : source_color = vec4(1.0);
 uniform vec4 originalPrimaryPlayerOneColor : source_color = vec4(1.0);
 uniform vec4 originalBasePlayerOneColor : source_color = vec4(1.0);
@@ -20,12 +21,13 @@ uniform vec4 originalDarkPlayerTwoColor : source_color = vec4(1.0);
 uniform vec4 originalDarkerPlayerTwoColor : source_color = vec4(1.0);
 uniform vec4 originalShinePlayerTwoColor : source_color = vec4(1.0);
 uniform vec4 originalSecondaryPlayerColor : source_color = vec4(1.0);
-uniform vec4 originalBackgroundOne : source_color = vec4(1.0);
-uniform vec4 originalBackgroundTwo : source_color = vec4(1.0);
+uniform vec4 originalUIOne : source_color = vec4(1.0);
+uniform vec4 originalUITwo : source_color = vec4(1.0);
 
 group_uniforms ReplacementColors;
 // Replacement colors.
-uniform vec4 outlineColor : source_color = vec4(1.0);
+uniform vec4 backgroundColor : source_color = vec4(1.0);
+uniform vec4 background2Color : source_color = vec4(1.0);
 uniform vec4 textColor : source_color = vec4(1.0);
 uniform vec4 primaryPlayerOneColor : source_color = vec4(1.0);
 uniform vec4 primaryBasePlayerOneColor : source_color = vec4(1.0);
@@ -38,8 +40,8 @@ uniform vec4 primaryDarkPlayerTwoColor : source_color = vec4(1.0);
 uniform vec4 primaryDarkerPlayerTwoColor : source_color = vec4(1.0);
 uniform vec4 primaryShinePlayerTwoColor : source_color = vec4(1.0);
 uniform vec4 secondaryPlayerColor : source_color = vec4(1.0);
-uniform vec4 backgroundOne : source_color = vec4(1.0);
-uniform vec4 backgroundTwo : source_color = vec4(1.0);
+uniform vec4 uiOne : source_color = vec4(1.0);
+uniform vec4 uiTwo : source_color = vec4(1.0);
 
 // Increase this if colors are not being detected.
 uniform float tolerance : hint_range(0.0, 0.25, 0.001) = 0.01;
@@ -47,38 +49,40 @@ uniform float tolerance : hint_range(0.0, 0.25, 0.001) = 0.01;
 vec4 get_original_color(int index) {
 	switch (index) {
 		case 0:
-			return originalOutlineColor;
+			return originalBackgroundColor;
 		case 1:
+			return originalBackground2Color;
+		case 2:
 			return originalTextColor;
 			
-		case 2:
-			return originalPrimaryPlayerOneColor;
 		case 3:
-			return originalBasePlayerOneColor;
+			return originalPrimaryPlayerOneColor;
 		case 4:
-			return originalDarkPlayerOneColor;
+			return originalBasePlayerOneColor;
 		case 5:
-			return originalDarkerPlayerOneColor;
+			return originalDarkPlayerOneColor;
 		case 6:
+			return originalDarkerPlayerOneColor;
+		case 7:
 			return originalShinePlayerOneColor;
 			
-		case 7:
-			return originalPrimaryPlayerTwoColor;
 		case 8:
-			return originalBasePlayerTwoColor;
+			return originalPrimaryPlayerTwoColor;
 		case 9:
-			return originalDarkPlayerTwoColor;
+			return originalBasePlayerTwoColor;
 		case 10:
-			return originalDarkerPlayerTwoColor;
+			return originalDarkPlayerTwoColor;
 		case 11:
+			return originalDarkerPlayerTwoColor;
+		case 12:
 			return originalShinePlayerTwoColor;
 			
-		case 12:
-			return originalSecondaryPlayerColor;
 		case 13:
-			return originalBackgroundOne;
+			return originalSecondaryPlayerColor;
 		case 14:
-			return originalBackgroundTwo;
+			return originalUIOne;
+		case 15:
+			return originalUITwo;
 	}
 
 	return vec4(0.0);
@@ -87,38 +91,40 @@ vec4 get_original_color(int index) {
 vec4 get_replacement_color(int index) {
 	switch (index) {
 		case 0:
-			return outlineColor;
+			return backgroundColor;
 		case 1:
+			return background2Color;
+		case 2:
 			return textColor;
 			
-		case 2:
-			return primaryPlayerOneColor;
 		case 3:
-			return primaryBasePlayerOneColor;
+			return primaryPlayerOneColor;
 		case 4:
-			return primaryDarkPlayerOneColor;
+			return primaryBasePlayerOneColor;
 		case 5:
-			return primaryDarkerPlayerOneColor;
+			return primaryDarkPlayerOneColor;
 		case 6:
+			return primaryDarkerPlayerOneColor;
+		case 7:
 			return primaryShinePlayerOneColor;
 			
-		case 7:
-			return primaryPlayerTwoColor;
 		case 8:
-			return primaryBasePlayerTwoColor;
+			return primaryPlayerTwoColor;
 		case 9:
-			return primaryDarkPlayerTwoColor;
+			return primaryBasePlayerTwoColor;
 		case 10:
-			return primaryDarkerPlayerTwoColor;
+			return primaryDarkPlayerTwoColor;
 		case 11:
+			return primaryDarkerPlayerTwoColor;
+		case 12:
 			return primaryShinePlayerTwoColor;
 			
-		case 12:
-			return secondaryPlayerColor;
 		case 13:
-			return backgroundOne;
+			return secondaryPlayerColor;
 		case 14:
-			return backgroundTwo;
+			return uiOne;
+		case 15:
+			return uiTwo;
 	}
 
 	return vec4(0.0);

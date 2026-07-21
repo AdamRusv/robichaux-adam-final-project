@@ -24,6 +24,12 @@ Keybinds="*uid://di6iyetqfed4w"
 Overlay="*uid://dr7wxf0bqidpr"
 GameManager="*uid://bg4p4yra4o8cl"
 
+[debug]
+
+gdscript/warnings/unused_variable=0
+gdscript/warnings/unused_parameter=0
+gdscript/warnings/narrowing_conversion=0
+
 [display]
 
 window/size/viewport_width=320
