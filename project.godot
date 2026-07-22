@@ -14,7 +14,7 @@ config/name="RobichauxAdam_FinalProject"
 run/main_scene="uid://vxarjjbctsa4"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Worship"
-config/features=PackedStringArray("4.6", "Mobile")
+config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://0_Art/icon.svg"
 
 [autoload]

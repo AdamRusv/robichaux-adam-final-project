@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://c8f6ac56rbwm6" path="res://2_Scripts/2_Independent/tile.gd" id="9_ywih6"]
 [ext_resource type="PackedScene" uid="uid://dy6cv7lxboor" path="res://1_Scenes/1_Objects/tray tile.tscn" id="10_c4l6l"]
 [ext_resource type="Script" uid="uid://csyvx3nmr53ar" path="res://2_Scripts/2_Independent/map generator manager.gd" id="12_ahkic"]
+[ext_resource type="Script" uid="uid://bbbs28evdehsu" path="res://2_Scripts/3_Dependent/view deck card.gd" id="14_6eb78"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2syus"]
 shader = ExtResource("1_3udmd")
@@ -44,7 +45,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ii050")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
@@ -77,6 +78,28 @@ data = {
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1cjw6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g7yw3"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_neqfg"]
+grow_begin = -17.0
+grow_end = -17.0
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32h7f"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+shadow_color = Color(0, 0, 0, 0)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_68y56"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+
+[sub_resource type="Theme" id="Theme_6eb78"]
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_32h7f")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_32h7f")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_32h7f")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_68y56")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pb2ch"]
 
@@ -313,7 +336,7 @@ mouse_filter = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxEmpty_ahkic")
 
-[node name="Deck Viewer" type="MarginContainer" parent="UI" unique_id=1762090208 node_paths=PackedStringArray("trayManager", "blueDeckGrid", "redDeckGrid", "swapToBlueParent", "swapToRedParent", "swapToBlueButton", "swapToRedButton", "hoverZone")]
+[node name="Deck Viewer" type="MarginContainer" parent="UI" unique_id=1762090208 node_paths=PackedStringArray("trayManager", "blueDeckParent", "redDeckParent", "blueScrollContainer", "redScrollContainer", "blueDeckGrid", "redDeckGrid", "swapToBlueParent", "swapToRedParent", "swapToBlueButton", "swapToRedButton", "hoverZone")]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -325,8 +348,12 @@ grow_horizontal = 2
 mouse_filter = 2
 script = ExtResource("9_g7yw3")
 trayManager = NodePath("../Bottom/Tray")
-blueDeckGrid = NodePath("Panel Parent/Panel/MarginContainer/VBoxContainer/Blue Card Grid")
-redDeckGrid = NodePath("Panel Parent/Panel/MarginContainer/VBoxContainer/Red Card Grid")
+blueDeckParent = NodePath("Panel Parent/Panel/MarginContainer/VBoxContainer/Blue")
+redDeckParent = NodePath("Panel Parent/Panel/MarginContainer/VBoxContainer/Red")
+blueScrollContainer = NodePath("Panel Parent/Panel/MarginContainer/VBoxContainer/Blue/ScrollContainer")
+redScrollContainer = NodePath("Panel Parent/Panel/MarginContainer/VBoxContainer/Red/ScrollContainer")
+blueDeckGrid = NodePath("Panel Parent/Panel/MarginContainer/VBoxContainer/Blue/ScrollContainer/Blue Card Grid")
+redDeckGrid = NodePath("Panel Parent/Panel/MarginContainer/VBoxContainer/Red/ScrollContainer/Red Card Grid")
 swapToBlueParent = NodePath("Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/blue swap")
 swapToRedParent = NodePath("Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/red swap")
 swapToBlueButton = NodePath("Panel Parent/Panel/MarginContainer/VBoxContainer/HBoxContainer/blue swap/Button Holder/Button")
@@ -499,19 +526,65 @@ layout_mode = 2
 theme_override_constants/separation = 30
 theme_override_styles/separator = SubResource("StyleBoxEmpty_g7yw3")
 
-[node name="Blue Card Grid" type="GridContainer" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer" unique_id=1177260594]
+[node name="HSeparator3" type="HSeparator" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer" unique_id=586952762]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_1cjw6")
+
+[node name="Blue" type="VBoxContainer" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer" unique_id=441035006]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="HSeparator" type="HSeparator" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/Blue" unique_id=1811202347]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_neqfg")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/Blue" unique_id=1719456248]
+custom_minimum_size = Vector2(0, 49.85)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_6eb78")
+horizontal_scroll_mode = 0
+
+[node name="Blue Card Grid" type="GridContainer" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/Blue/ScrollContainer" unique_id=1177260594]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = -4
 columns = 5
 
-[node name="Red Card Grid" type="GridContainer" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer" unique_id=628097099]
+[node name="HSeparator2" type="HSeparator" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/Blue" unique_id=1397174269]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_neqfg")
+
+[node name="Red" type="VBoxContainer" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer" unique_id=73880138]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="HSeparator" type="HSeparator" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/Red" unique_id=1018603350]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_neqfg")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/Red" unique_id=967347468]
+custom_minimum_size = Vector2(0, 49.85)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_6eb78")
+horizontal_scroll_mode = 0
+
+[node name="Red Card Grid" type="GridContainer" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/Red/ScrollContainer" unique_id=628097099]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = -4
 columns = 5
+
+[node name="HSeparator2" type="HSeparator" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/Red" unique_id=1775842493]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_neqfg")
 
 [node name="HSeparator" type="HSeparator" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer" unique_id=632897253]
 layout_mode = 2
@@ -542,6 +615,267 @@ offset_bottom = 8.0
 mouse_filter = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="UI/Deck Viewer/Panel Parent/Border Cover" unique_id=2033113114]
+self_modulate = Color(1, 0, 1, 1)
+layout_mode = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Other Hand" type="MarginContainer" parent="UI" unique_id=378239469 node_paths=PackedStringArray("hoverZone")]
+offset_left = 279.0
+offset_top = 140.0
+offset_right = 301.0
+offset_bottom = 164.0
+mouse_filter = 2
+script = ExtResource("8_rkkk6")
+hoverZone = NodePath("Hover Detection Holder/TextureButton")
+bitMapPath = "res://0_Art/Hover Menu Detection Bitmap.png"
+maxDistanceToMove = 64
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Other Hand" unique_id=1376787684]
+self_modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_sqkm3")
+layout_mode = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/Other Hand" unique_id=310524217]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 4
+
+[node name="TextureRect" type="TextureRect" parent="UI/Other Hand/MarginContainer2" unique_id=1867195314]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_rotation = 1.5707964
+mouse_filter = 2
+texture = ExtResource("8_ahkic")
+stretch_mode = 3
+
+[node name="Hover Detection Holder" type="Control" parent="UI/Other Hand" unique_id=1710320335]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureButton" type="TextureButton" parent="UI/Other Hand/Hover Detection Holder" unique_id=892400186]
+layout_mode = 0
+offset_right = 22.0
+offset_bottom = 24.0
+
+[node name="Panel Parent" type="Control" parent="UI/Other Hand" unique_id=2080352675]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Panel" type="MarginContainer" parent="UI/Other Hand/Panel Parent" unique_id=329265399]
+layout_mode = 0
+offset_left = -47.0
+offset_top = -8.0
+offset_right = 6.9850006
+offset_bottom = 32.0
+mouse_filter = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Other Hand/Panel Parent/Panel" unique_id=890152260]
+self_modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_sqkm3")
+layout_mode = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Other Hand/Panel Parent/Panel" unique_id=349327936]
+layout_mode = 2
+theme_override_constants/separation = -4
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Other Hand/Panel Parent/Panel/HBoxContainer" unique_id=702272861]
+layout_mode = 2
+theme_override_constants/separation = -2
+alignment = 1
+
+[node name="view deck Card2" type="MarginContainer" parent="UI/Other Hand/Panel Parent/Panel/HBoxContainer/VBoxContainer" unique_id=889748214 node_paths=PackedStringArray("textRef", "buttonRef")]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 0
+script = ExtResource("14_6eb78")
+textRef = NodePath("RichTextLabel")
+buttonRef = NodePath("Button Holder/Button")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Other Hand/Panel Parent/Panel/HBoxContainer/VBoxContainer/view deck Card2" unique_id=1797069823]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("7_ahkic")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "88"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="Control" parent="UI/Other Hand/Panel Parent/Panel/HBoxContainer/VBoxContainer/view deck Card2" unique_id=1385092910]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="UI/Other Hand/Panel Parent/Panel/HBoxContainer/VBoxContainer/view deck Card2/Button Holder" unique_id=741152797]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 22.0
+offset_bottom = 16.0
+focus_mode = 0
+flat = true
+
+[node name="view deck Card3" type="MarginContainer" parent="UI/Other Hand/Panel Parent/Panel/HBoxContainer/VBoxContainer" unique_id=1084369586 node_paths=PackedStringArray("textRef", "buttonRef")]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 0
+script = ExtResource("14_6eb78")
+textRef = NodePath("RichTextLabel")
+buttonRef = NodePath("Button Holder/Button")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Other Hand/Panel Parent/Panel/HBoxContainer/VBoxContainer/view deck Card3" unique_id=1166541347]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("7_ahkic")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "88"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="Control" parent="UI/Other Hand/Panel Parent/Panel/HBoxContainer/VBoxContainer/view deck Card3" unique_id=227798146]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="UI/Other Hand/Panel Parent/Panel/HBoxContainer/VBoxContainer/view deck Card3/Button Holder" unique_id=215847108]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 22.0
+offset_bottom = 16.0
+focus_mode = 0
+flat = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/Other Hand/Panel Parent/Panel/HBoxContainer" unique_id=1405847921]
+layout_mode = 2
+theme_override_constants/separation = -2
+alignment = 1
+
+[node name="view deck Card2" type="MarginContainer" parent="UI/Other Hand/Panel Parent/Panel/HBoxContainer/VBoxContainer2" unique_id=556082426 node_paths=PackedStringArray("textRef", "buttonRef")]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 0
+script = ExtResource("14_6eb78")
+textRef = NodePath("RichTextLabel")
+buttonRef = NodePath("Button Holder/Button")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Other Hand/Panel Parent/Panel/HBoxContainer/VBoxContainer2/view deck Card2" unique_id=1603469950]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("7_ahkic")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "88"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="Control" parent="UI/Other Hand/Panel Parent/Panel/HBoxContainer/VBoxContainer2/view deck Card2" unique_id=865973675]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="UI/Other Hand/Panel Parent/Panel/HBoxContainer/VBoxContainer2/view deck Card2/Button Holder" unique_id=519659006]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 22.0
+offset_bottom = 16.0
+focus_mode = 0
+flat = true
+
+[node name="view deck Card3" type="MarginContainer" parent="UI/Other Hand/Panel Parent/Panel/HBoxContainer/VBoxContainer2" unique_id=381579589 node_paths=PackedStringArray("textRef", "buttonRef")]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 0
+script = ExtResource("14_6eb78")
+textRef = NodePath("RichTextLabel")
+buttonRef = NodePath("Button Holder/Button")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Other Hand/Panel Parent/Panel/HBoxContainer/VBoxContainer2/view deck Card3" unique_id=1813005500]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("7_ahkic")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "88"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="Control" parent="UI/Other Hand/Panel Parent/Panel/HBoxContainer/VBoxContainer2/view deck Card3" unique_id=110242013]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="UI/Other Hand/Panel Parent/Panel/HBoxContainer/VBoxContainer2/view deck Card3/Button Holder" unique_id=1673220024]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 22.0
+offset_bottom = 16.0
+focus_mode = 0
+flat = true
+
+[node name="Border Cover (pixel)" type="MarginContainer" parent="UI/Other Hand/Panel Parent" unique_id=1041640164]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -1.0
+offset_right = 7.0
+offset_bottom = 25.0
+mouse_filter = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Other Hand/Panel Parent/Border Cover (pixel)" unique_id=1092139681]
+self_modulate = Color(1, 0, 1, 1)
+layout_mode = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Border Cover" type="MarginContainer" parent="UI/Other Hand/Panel Parent" unique_id=1220849883]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 10.0
+offset_bottom = 24.0
+mouse_filter = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Other Hand/Panel Parent/Border Cover" unique_id=399197046]
 self_modulate = Color(1, 0, 1, 1)
 layout_mode = 2
 texture = ExtResource("2_1t528")

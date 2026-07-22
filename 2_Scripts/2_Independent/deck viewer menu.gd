@@ -3,6 +3,10 @@ extends HoverMenuManager
 
 @export_category("References")
 @export var trayManager : TrayManager
+@export var blueDeckParent : Control
+@export var redDeckParent : Control
+@export var blueScrollContainer : ScrollContainer
+@export var redScrollContainer : ScrollContainer
 @export var blueDeckGrid : GridContainer
 @export var redDeckGrid : GridContainer
 @export var swapToBlueParent : Control
@@ -25,12 +29,7 @@ func _ready() -> void:
 	super._ready()
 	_create_decks()
 func _set_connections():
-	swapToBlueButton.mouse_entered.connect(_create_tooltip.bind("Click to Swap to Blue"))
-	swapToBlueButton.mouse_exited.connect(_destroy_tooltip)
 	swapToBlueButton.pressed.connect(_swap_to_blue)
-	
-	swapToRedButton.mouse_entered.connect(_create_tooltip.bind("Click to Swap to Red"))
-	swapToRedButton.mouse_exited.connect(_destroy_tooltip)
 	swapToRedButton.pressed.connect(_swap_to_red)
 	
 	for i in range(0, trayManager.trayTiles.size()):
@@ -39,17 +38,8 @@ func _set_connections():
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
-	
+
 	super._process(delta)
-
-#-
-func _create_tooltip(displayText : String):
-	var newToolTip : ToolTip = GameManager._create_tooltip()
-	newToolTip.displayText = displayText
-	GameManager._add_tooltip_to_scene(newToolTip)
-
-func _destroy_tooltip():
-	GameManager._destroy_tooltip()
 
 #-------------------------------------
 func _create_decks():
@@ -72,8 +62,6 @@ func _create_deck(deckGrid : GridContainer, playerCards : Array[ViewDeckCard], d
 		deckGrid.add_child(newPlayerCard)
 		
 		newPlayerCard.buttonRef.mouse_entered.connect(_hover_text.bind(newPlayerCard.textRef))
-		newPlayerCard.buttonRef.mouse_entered.connect(_create_tooltip.bind(str(duplicates) + " Remaining"))
-		newPlayerCard.buttonRef.mouse_exited.connect(_destroy_tooltip)
 		newPlayerCard.buttonRef.mouse_exited.connect(_exit_text.bind(newPlayerCard.textRef))
 
 func _update_decks():
@@ -92,14 +80,14 @@ func _clear_decks():
 
 #- - -
 func _swap_to_blue():
-	blueDeckGrid.visible = true
-	redDeckGrid.visible = false
+	blueDeckParent.visible = true
+	redDeckParent.visible = false
 	
 	swapToBlueParent.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	swapToRedParent.size_flags_horizontal = Control.SIZE_FILL
 func _swap_to_red():
-	blueDeckGrid.visible = false
-	redDeckGrid.visible = true
+	blueDeckParent.visible = false
+	redDeckParent.visible = true
 
 	swapToBlueParent.size_flags_horizontal = Control.SIZE_FILL
 	swapToRedParent.size_flags_horizontal = Control.SIZE_EXPAND_FILL
