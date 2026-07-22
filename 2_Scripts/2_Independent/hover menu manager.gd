@@ -27,7 +27,7 @@ func _set_connections():
 func _process(delta: float) -> void:
 	var isMouseInside : bool = _is_mouse_over_hover_bitmap()
 	
-	if isMouseInside == true && isMenuOpen == false:
+	if isMouseInside == true && isMenuOpen == false && _is_mouse_over_other() == false:
 		isMenuOpen = true
 		_open_menu()
 	elif isMouseInside == false && isMenuOpen == true:
@@ -104,3 +104,7 @@ func _hover_text(currentText : RichTextLabel):
 
 func _exit_text(currentText : RichTextLabel):
 	currentText.add_theme_color_override("default_color", Color(0, 0, 0))
+
+#- - -
+func _is_mouse_over_other() -> bool:
+	return get_viewport().gui_get_hovered_control() != hoverZone

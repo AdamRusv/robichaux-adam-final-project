@@ -4,6 +4,7 @@ class_name TrayManager
 
 @export_category("References")
 @export var tileMap : MapManager
+@export var otherHand : OtherHand
 @export var mapTiles : Array[Tile]
 @export var trayTiles : Array[TrayTile]
 
@@ -103,9 +104,11 @@ func _swap_current_player():
 	if currentTurn == Player.one:
 		currentTurn = Player.two
 		_start_player_turn(playerTwoCurrentDeck, playerTwoCurrentHand)
+		otherHand._update_cards(playerOneCurrentHand)
 	else:
 		currentTurn = Player.one
 		_start_player_turn(playerOneCurrentDeck, playerOneCurrentHand)
+		otherHand._update_cards(playerTwoCurrentHand)
 
 #- - -
 func _take_card_in_deck(playerDeck : Array[int]) -> int:

@@ -2,7 +2,7 @@ extends Node
 
 #these change in "create game" screen (once working, set all manual values here to zero)
 var gridSize : Vector2i = Vector2i(11, 10)
-var holePercentage : float = 0.15
+var holePercentage : float = 0.20
 
 var playerOneDeck : Deck = load("res://5_Resources/0_Premade Decks/standard deck.tres")
 var playerTwoDeck : Deck = load("res://5_Resources/0_Premade Decks/standard deck.tres")

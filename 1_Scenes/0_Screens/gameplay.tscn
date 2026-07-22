@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://c8f6ac56rbwm6" path="res://2_Scripts/2_Independent/tile.gd" id="9_ywih6"]
 [ext_resource type="PackedScene" uid="uid://dy6cv7lxboor" path="res://1_Scenes/1_Objects/tray tile.tscn" id="10_c4l6l"]
 [ext_resource type="Script" uid="uid://csyvx3nmr53ar" path="res://2_Scripts/2_Independent/map generator manager.gd" id="12_ahkic"]
+[ext_resource type="Script" uid="uid://c6qycsgiakc3x" path="res://2_Scripts/2_Independent/other hand manager.gd" id="12_neqfg"]
 [ext_resource type="Script" uid="uid://bbbs28evdehsu" path="res://2_Scripts/3_Dependent/view deck card.gd" id="14_6eb78"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2syus"]
@@ -69,7 +70,7 @@ load_path = "res://.godot/imported/scoreboard texture-Sheet.png-c2da88975b390af5
 atlas = SubResource("CompressedTexture2D_0hcow")
 region = Rect2(29, 0, 29, 18)
 
-[sub_resource type="BitMap" id="BitMap_fb3j3"]
+[sub_resource type="BitMap" id="BitMap_neqfg"]
 data = {
 "data": PackedByteArray("/v//////////////////////////////9//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+//////////////////////////////8HAAAAAAAAAPj//////////wEAAAAAAAAAAAAAAAAAAID//////////x8AAAAAAAAAAAAAAAAAAAD4//////////8BAAAAAAAAAAAAAAAAAACA//////////8fAAAAAAAAAAAAAAAAAAAA+P//////////AQAAAAAAAAAAAAAAAAAAgP//////////HwAAAAAAAAAAAAAAAAAAAPj//////////wEAAAAAAAAAAAAAAAAAAID//////////x8AAAAAAAAAAAAAAAAAAAD4//////////8BAAAAAAAAAAAAAAAAAACA//////////8fAAAAAAAAAAAAAAAAAAAA+P//////////AQAAAAAAAAAAAAAAAAAAgP//////////HwAAAAAAAAAAAAAAAAAAAPj//////////wEAAAAAAAAAAAAAAAAAAID//////////x8AAAAAAAAAAAAAAAAAAAD4//////////8BAAAAAAAAAAAAAAAAAACA//////////8fAAAAAAAAAAAAAAAAAAAA+P//////////AQAAAAAAAAAAAAAAAAAAAP//////////DwAAAAAAAAAA"),
 "size": Vector2i(196, 101)
@@ -100,6 +101,12 @@ VScrollBar/styles/grabber = SubResource("StyleBoxFlat_32h7f")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_32h7f")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_32h7f")
 VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_68y56")
+
+[sub_resource type="BitMap" id="BitMap_j1jqe"]
+data = {
+"data": PackedByteArray("/v////8PAOD//////wMA/P////9/AID//////w8A8P//////AQD+/////z8AwP//////BwD4//////8AAP/////////v//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9///////8fAOD//////wMA/P////9/AID//////w8A8P//////AQD+/////z8AwP//////BwDw/////38AAA=="),
+"size": Vector2i(61, 32)
+}
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pb2ch"]
 
@@ -414,7 +421,7 @@ offset_left = -61.0
 offset_top = -81.0
 offset_right = -39.0
 offset_bottom = -57.0
-texture_click_mask = SubResource("BitMap_fb3j3")
+texture_click_mask = SubResource("BitMap_neqfg")
 
 [node name="Panel Parent" type="Control" parent="UI/Deck Viewer" unique_id=206967186]
 layout_mode = 2
@@ -623,19 +630,24 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="Other Hand" type="MarginContainer" parent="UI" unique_id=378239469 node_paths=PackedStringArray("hoverZone")]
-offset_left = 279.0
+[node name="Other Hand" type="MarginContainer" parent="UI" unique_id=378239469 node_paths=PackedStringArray("trayManager", "backgroundModulatesToSwap", "cards", "hoverZone", "textButtons", "texts")]
+offset_left = 232.0
 offset_top = 140.0
-offset_right = 301.0
+offset_right = 254.00006
 offset_bottom = 164.0
 mouse_filter = 2
-script = ExtResource("8_rkkk6")
+script = ExtResource("12_neqfg")
+trayManager = NodePath("../Bottom/Tray")
+backgroundModulatesToSwap = [NodePath("NinePatchRect"), NodePath("Panel Parent/Border Cover (pixel)/NinePatchRect"), NodePath("Panel Parent/Panel/NinePatchRect"), NodePath("Panel Parent/Border Cover/NinePatchRect")]
+cards = [NodePath("Panel Parent/Panel/HBoxContainer/VBoxContainer/view deck Card2"), NodePath("Panel Parent/Panel/HBoxContainer/VBoxContainer/view deck Card3"), NodePath("Panel Parent/Panel/HBoxContainer/VBoxContainer2/view deck Card2"), NodePath("Panel Parent/Panel/HBoxContainer/VBoxContainer2/view deck Card3")]
 hoverZone = NodePath("Hover Detection Holder/TextureButton")
-bitMapPath = "res://0_Art/Hover Menu Detection Bitmap.png"
-maxDistanceToMove = 64
+textButtons = [NodePath("Panel Parent/Panel/HBoxContainer/VBoxContainer/view deck Card2/Button Holder/Button"), NodePath("Panel Parent/Panel/HBoxContainer/VBoxContainer/view deck Card3/Button Holder/Button"), NodePath("Panel Parent/Panel/HBoxContainer/VBoxContainer2/view deck Card2/Button Holder/Button"), NodePath("Panel Parent/Panel/HBoxContainer/VBoxContainer2/view deck Card3/Button Holder/Button")]
+texts = [NodePath("Panel Parent/Panel/HBoxContainer/VBoxContainer/view deck Card2/RichTextLabel"), NodePath("Panel Parent/Panel/HBoxContainer/VBoxContainer/view deck Card3/RichTextLabel"), NodePath("Panel Parent/Panel/HBoxContainer/VBoxContainer2/view deck Card2/RichTextLabel"), NodePath("Panel Parent/Panel/HBoxContainer/VBoxContainer2/view deck Card3/RichTextLabel")]
+bitMapPath = "res://0_Art/other hand bitmap.png"
+maxDistanceToMove = -47
 
 [node name="NinePatchRect" type="NinePatchRect" parent="UI/Other Hand" unique_id=1376787684]
-self_modulate = Color(1, 0, 1, 1)
+self_modulate = Color(1, 0, 0, 1)
 material = SubResource("ShaderMaterial_sqkm3")
 layout_mode = 2
 texture = ExtResource("2_1t528")
@@ -667,8 +679,11 @@ mouse_filter = 2
 
 [node name="TextureButton" type="TextureButton" parent="UI/Other Hand/Hover Detection Holder" unique_id=892400186]
 layout_mode = 0
-offset_right = 22.0
-offset_bottom = 24.0
+offset_left = -43.0
+offset_top = -4.0
+offset_right = 18.0
+offset_bottom = 28.0
+texture_click_mask = SubResource("BitMap_j1jqe")
 
 [node name="Panel Parent" type="Control" parent="UI/Other Hand" unique_id=2080352675]
 layout_mode = 2
@@ -683,7 +698,7 @@ offset_bottom = 32.0
 mouse_filter = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="UI/Other Hand/Panel Parent/Panel" unique_id=890152260]
-self_modulate = Color(1, 0, 1, 1)
+self_modulate = Color(1, 0, 0, 1)
 material = SubResource("ShaderMaterial_sqkm3")
 layout_mode = 2
 texture = ExtResource("2_1t528")
@@ -860,7 +875,7 @@ offset_bottom = 25.0
 mouse_filter = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="UI/Other Hand/Panel Parent/Border Cover (pixel)" unique_id=1092139681]
-self_modulate = Color(1, 0, 1, 1)
+self_modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 texture = ExtResource("2_1t528")
 patch_margin_left = 5
@@ -876,7 +891,7 @@ offset_bottom = 24.0
 mouse_filter = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="UI/Other Hand/Panel Parent/Border Cover" unique_id=399197046]
-self_modulate = Color(1, 0, 1, 1)
+self_modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 texture = ExtResource("2_1t528")
 patch_margin_left = 5
@@ -895,7 +910,7 @@ grow_vertical = 0
 mouse_filter = 2
 alignment = 1
 
-[node name="Tray" type="MarginContainer" parent="UI/Bottom" unique_id=796654713 node_paths=PackedStringArray("tileMap", "mapTiles", "trayTiles")]
+[node name="Tray" type="MarginContainer" parent="UI/Bottom" unique_id=796654713 node_paths=PackedStringArray("tileMap", "otherHand", "mapTiles", "trayTiles")]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 mouse_filter = 0
@@ -903,6 +918,7 @@ theme_override_constants/margin_top = -4
 theme_override_constants/margin_bottom = 4
 script = ExtResource("9_fn5ot")
 tileMap = NodePath("../../Map Manager")
+otherHand = NodePath("../../Other Hand")
 mapTiles = [NodePath("Tiles/Map Tile"), NodePath("Tiles/Map Tile2"), NodePath("Tiles/Map Tile3"), NodePath("Tiles/Map Tile4")]
 trayTiles = [NodePath("Tiles/Map Tile/Tray Tile"), NodePath("Tiles/Map Tile2/Tray Tile"), NodePath("Tiles/Map Tile3/Tray Tile"), NodePath("Tiles/Map Tile4/Tray Tile")]
 
@@ -1229,6 +1245,39 @@ patch_margin_left = 5
 patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
+
+[node name="Out of Frame Borders" type="Control" parent="UI" unique_id=60834569]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="UI/Out of Frame Borders" unique_id=136731546]
+anchors_preset = 0
+offset_left = -444.0
+offset_top = -53.0
+offset_bottom = 232.0
+
+[node name="Control2" type="Control" parent="UI/Out of Frame Borders" unique_id=1239852281]
+anchors_preset = 0
+offset_left = 320.0
+offset_top = -53.0
+offset_right = 764.0
+offset_bottom = 232.0
+
+[node name="Control3" type="Control" parent="UI/Out of Frame Borders" unique_id=1616854963]
+anchors_preset = 0
+offset_left = -56.0
+offset_top = -285.0
+offset_right = 388.0
+
+[node name="Control4" type="Control" parent="UI/Out of Frame Borders" unique_id=516118274]
+anchors_preset = 0
+offset_left = -51.0
+offset_top = 180.0
+offset_right = 393.0
+offset_bottom = 465.0
 
 [node name="Color Swap" type="CanvasLayer" parent="." unique_id=1170140382]
 
