@@ -26,6 +26,10 @@ func _set_connections():
 
 func _process(delta: float) -> void:
 	var isMouseInside : bool = _is_mouse_over_hover_bitmap()
+	var isCursorDown : bool = Input.is_action_pressed("left click")
+	
+	if isCursorDown == true && isMouseInside == true:
+		return
 	
 	if isMouseInside == true && isMenuOpen == false && _is_mouse_over_other() == false:
 		isMenuOpen = true

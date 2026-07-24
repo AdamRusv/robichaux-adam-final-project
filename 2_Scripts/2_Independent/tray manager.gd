@@ -80,6 +80,7 @@ func _create_tile(playerCardIndex : int, selectedCardValue : int):
 	trayTiles[playerCardIndex].currentTile = newTileInTray
 	newTileInTray._setup_tile(selectedCardValue)
 	trayTiles[playerCardIndex].add_child(newTileInTray)
+	newTileInTray.set_meta("trayparent", trayTiles[playerCardIndex])
 	newTileInTray.position = Vector2.ZERO
 
 func _clear_hand():

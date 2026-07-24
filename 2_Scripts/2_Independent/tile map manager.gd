@@ -54,12 +54,13 @@ func _snap_dragging_tile_to_hovered(draggingTile : TrayTile):
 	var hoveredTilePos : Vector2i = _get_hovered_tile_pos()
 	if _is_pos_valid(hoveredTilePos) == true:
 		draggingTile.pauseDrag = true
+		currentTile.reparent(tileMap)
 		var tileMapLocalPos : Vector2 = tileMap.map_to_local(hoveredTilePos)
-		var globalPos : Vector2 = tileMap.to_global(tileMapLocalPos)
-		currentTile.global_position = round(globalPos) ##round since the tile gets offset by .75 or .25 at times (?)
+		currentTile.position = tileMapLocalPos
 		currentTile.position += Vector2(-19, -19)
 	else:
 		draggingTile.pauseDrag = false
+		currentTile.reparent(GameManager.screen.uiParent)
 
 #-------------------------------------------------
 func _get_hovered_tile_pos() -> Vector2i:

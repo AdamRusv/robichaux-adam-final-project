@@ -12,7 +12,7 @@ func _ready() -> void:
 func _set_connections():
 	button.mouse_entered.connect(_hover)
 	button.mouse_exited.connect(_exit)
-	button.button_down.connect(_click)
+	button.button_down.connect(_click_down)
 	button.button_up.connect(_release)
 
 func _process(delta: float) -> void:
@@ -30,12 +30,13 @@ func _hover():
 func _exit():
 	pass
 
-func _click():
+func _click_down():
 	if currentTile == null:
 		return
 	
 	mouseOffset = get_global_mouse_position() - currentTile.global_position
 	GameManager._assign_current_tile(currentTile, self)
+	currentTile.reparent(GameManager.screen.uiParent)
 	isDragging = true
 
 func _release():
@@ -43,6 +44,7 @@ func _release():
 		return
 	
 	isDragging = false
+	currentTile.reparent(currentTile.get_meta("trayparent"))
 	releasedTile.emit()
 	GameManager._clear_current_tile()
 
@@ -52,7 +54,6 @@ var pauseDrag : bool
 func _drag_tile():
 	if currentTile == null || pauseDrag == true:
 		return
-	
 	var mousePos : Vector2 = get_global_mouse_position()
 	
 	currentTile.global_position = floor(mousePos - mouseOffset)

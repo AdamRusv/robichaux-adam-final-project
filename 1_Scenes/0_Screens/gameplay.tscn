@@ -146,7 +146,7 @@ script = ExtResource("1_fb3j3")
 unique_name_in_owner = true
 
 [node name="Cursor" type="Control" parent="UI" unique_id=1150532939 node_paths=PackedStringArray("imageNode")]
-z_index = 1
+z_index = 4096
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -181,7 +181,7 @@ script = ExtResource("5_rkkk6")
 boardMouseDetection = NodePath("../Board Move Manager")
 scoreBoardManager = NodePath("../Scoreboard")
 mapGenerator = NodePath("../../SubViewportContainer/Board Viewport/Map")
-trayManager = NodePath("../Bottom/Tray")
+trayManager = NodePath("../Tray")
 tileMap = NodePath("../../SubViewportContainer/Board Viewport/Map/TileMapLayer")
 
 [node name="Scoreboard" type="HBoxContainer" parent="UI" unique_id=954399020 node_paths=PackedStringArray("playerOneText", "playerTwoText")]
@@ -354,7 +354,7 @@ offset_bottom = 20.000042
 grow_horizontal = 2
 mouse_filter = 2
 script = ExtResource("9_g7yw3")
-trayManager = NodePath("../Bottom/Tray")
+trayManager = NodePath("../Tray")
 blueDeckParent = NodePath("Panel Parent/Panel/MarginContainer/VBoxContainer/Blue")
 redDeckParent = NodePath("Panel Parent/Panel/MarginContainer/VBoxContainer/Red")
 blueScrollContainer = NodePath("Panel Parent/Panel/MarginContainer/VBoxContainer/Blue/ScrollContainer")
@@ -637,7 +637,7 @@ offset_right = 254.00006
 offset_bottom = 164.0
 mouse_filter = 2
 script = ExtResource("12_neqfg")
-trayManager = NodePath("../Bottom/Tray")
+trayManager = NodePath("../Tray")
 backgroundModulatesToSwap = [NodePath("NinePatchRect"), NodePath("Panel Parent/Border Cover (pixel)/NinePatchRect"), NodePath("Panel Parent/Panel/NinePatchRect"), NodePath("Panel Parent/Border Cover/NinePatchRect")]
 cards = [NodePath("Panel Parent/Panel/HBoxContainer/VBoxContainer/view deck Card2"), NodePath("Panel Parent/Panel/HBoxContainer/VBoxContainer/view deck Card3"), NodePath("Panel Parent/Panel/HBoxContainer/VBoxContainer2/view deck Card2"), NodePath("Panel Parent/Panel/HBoxContainer/VBoxContainer2/view deck Card3")]
 hoverZone = NodePath("Hover Detection Holder/TextureButton")
@@ -899,30 +899,22 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="Bottom" type="HBoxContainer" parent="UI" unique_id=384163672]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -48.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-alignment = 1
-
-[node name="Tray" type="MarginContainer" parent="UI/Bottom" unique_id=796654713 node_paths=PackedStringArray("tileMap", "otherHand", "mapTiles", "trayTiles")]
+[node name="Tray" type="MarginContainer" parent="UI" unique_id=796654713 node_paths=PackedStringArray("tileMap", "otherHand", "mapTiles", "trayTiles")]
 custom_minimum_size = Vector2(0, 48)
-layout_mode = 2
+offset_left = 82.0
+offset_top = 132.0
+offset_right = 238.0
+offset_bottom = 180.0
 mouse_filter = 0
 theme_override_constants/margin_top = -4
 theme_override_constants/margin_bottom = 4
 script = ExtResource("9_fn5ot")
-tileMap = NodePath("../../Map Manager")
-otherHand = NodePath("../../Other Hand")
+tileMap = NodePath("../Map Manager")
+otherHand = NodePath("../Other Hand")
 mapTiles = [NodePath("Tiles/Map Tile"), NodePath("Tiles/Map Tile2"), NodePath("Tiles/Map Tile3"), NodePath("Tiles/Map Tile4")]
 trayTiles = [NodePath("Tiles/Map Tile/Tray Tile"), NodePath("Tiles/Map Tile2/Tray Tile"), NodePath("Tiles/Map Tile3/Tray Tile"), NodePath("Tiles/Map Tile4/Tray Tile")]
 
-[node name="NinePatchRect" type="NinePatchRect" parent="UI/Bottom/Tray" unique_id=459038837]
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Tray" unique_id=459038837]
 self_modulate = Color(1, 0, 1, 1)
 material = SubResource("ShaderMaterial_sqkm3")
 layout_mode = 2
@@ -933,24 +925,24 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="Tiles" type="HBoxContainer" parent="UI/Bottom/Tray" unique_id=835640723]
+[node name="Tiles" type="HBoxContainer" parent="UI/Tray" unique_id=835640723]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = -2
 alignment = 1
 
-[node name="VSeparator2" type="VSeparator" parent="UI/Bottom/Tray/Tiles" unique_id=1946764335]
+[node name="VSeparator2" type="VSeparator" parent="UI/Tray/Tiles" unique_id=1946764335]
 layout_mode = 2
 theme_override_constants/separation = 7
 theme_override_styles/separator = SubResource("StyleBoxEmpty_pb2ch")
 
-[node name="Map Tile" type="Control" parent="UI/Bottom/Tray/Tiles" unique_id=816981165]
+[node name="Map Tile" type="Control" parent="UI/Tray/Tiles" unique_id=816981165]
 custom_minimum_size = Vector2(38, 38)
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("9_ywih6")
 
-[node name="TextureRect" type="TextureRect" parent="UI/Bottom/Tray/Tiles/Map Tile" unique_id=891075600]
+[node name="TextureRect" type="TextureRect" parent="UI/Tray/Tiles/Map Tile" unique_id=891075600]
 self_modulate = Color(1, 1, 1, 0.003921569)
 material = SubResource("ShaderMaterial_baij6")
 layout_mode = 0
@@ -961,18 +953,18 @@ mouse_filter = 2
 texture = ExtResource("6_pb2ch")
 stretch_mode = 2
 
-[node name="Tray Tile" parent="UI/Bottom/Tray/Tiles/Map Tile" unique_id=1838578514 instance=ExtResource("10_c4l6l")]
+[node name="Tray Tile" parent="UI/Tray/Tiles/Map Tile" unique_id=1838578514 instance=ExtResource("10_c4l6l")]
 layout_mode = 0
 offset_right = 38.0
 offset_bottom = 38.0
 
-[node name="Map Tile2" type="Control" parent="UI/Bottom/Tray/Tiles" unique_id=79851753]
+[node name="Map Tile2" type="Control" parent="UI/Tray/Tiles" unique_id=79851753]
 custom_minimum_size = Vector2(38, 38)
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("9_ywih6")
 
-[node name="TextureRect" type="TextureRect" parent="UI/Bottom/Tray/Tiles/Map Tile2" unique_id=882460971]
+[node name="TextureRect" type="TextureRect" parent="UI/Tray/Tiles/Map Tile2" unique_id=882460971]
 self_modulate = Color(1, 1, 1, 0.003921569)
 material = SubResource("ShaderMaterial_baij6")
 layout_mode = 0
@@ -983,18 +975,18 @@ mouse_filter = 2
 texture = ExtResource("6_pb2ch")
 stretch_mode = 2
 
-[node name="Tray Tile" parent="UI/Bottom/Tray/Tiles/Map Tile2" unique_id=1462886687 instance=ExtResource("10_c4l6l")]
+[node name="Tray Tile" parent="UI/Tray/Tiles/Map Tile2" unique_id=1462886687 instance=ExtResource("10_c4l6l")]
 layout_mode = 0
 offset_right = 38.0
 offset_bottom = 38.0
 
-[node name="Map Tile3" type="Control" parent="UI/Bottom/Tray/Tiles" unique_id=1359061410]
+[node name="Map Tile3" type="Control" parent="UI/Tray/Tiles" unique_id=1359061410]
 custom_minimum_size = Vector2(38, 38)
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("9_ywih6")
 
-[node name="TextureRect" type="TextureRect" parent="UI/Bottom/Tray/Tiles/Map Tile3" unique_id=1431780568]
+[node name="TextureRect" type="TextureRect" parent="UI/Tray/Tiles/Map Tile3" unique_id=1431780568]
 self_modulate = Color(1, 1, 1, 0.003921569)
 material = SubResource("ShaderMaterial_baij6")
 layout_mode = 0
@@ -1005,18 +997,18 @@ mouse_filter = 2
 texture = ExtResource("6_pb2ch")
 stretch_mode = 2
 
-[node name="Tray Tile" parent="UI/Bottom/Tray/Tiles/Map Tile3" unique_id=423032606 instance=ExtResource("10_c4l6l")]
+[node name="Tray Tile" parent="UI/Tray/Tiles/Map Tile3" unique_id=423032606 instance=ExtResource("10_c4l6l")]
 layout_mode = 0
 offset_right = 38.0
 offset_bottom = 38.0
 
-[node name="Map Tile4" type="Control" parent="UI/Bottom/Tray/Tiles" unique_id=3191288]
+[node name="Map Tile4" type="Control" parent="UI/Tray/Tiles" unique_id=3191288]
 custom_minimum_size = Vector2(38, 38)
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("9_ywih6")
 
-[node name="TextureRect" type="TextureRect" parent="UI/Bottom/Tray/Tiles/Map Tile4" unique_id=832038368]
+[node name="TextureRect" type="TextureRect" parent="UI/Tray/Tiles/Map Tile4" unique_id=832038368]
 self_modulate = Color(1, 1, 1, 0.003921569)
 material = SubResource("ShaderMaterial_baij6")
 layout_mode = 0
@@ -1027,12 +1019,12 @@ mouse_filter = 2
 texture = ExtResource("6_pb2ch")
 stretch_mode = 2
 
-[node name="Tray Tile" parent="UI/Bottom/Tray/Tiles/Map Tile4" unique_id=329582283 instance=ExtResource("10_c4l6l")]
+[node name="Tray Tile" parent="UI/Tray/Tiles/Map Tile4" unique_id=329582283 instance=ExtResource("10_c4l6l")]
 layout_mode = 0
 offset_right = 38.0
 offset_bottom = 38.0
 
-[node name="VSeparator" type="VSeparator" parent="UI/Bottom/Tray/Tiles" unique_id=1839755525]
+[node name="VSeparator" type="VSeparator" parent="UI/Tray/Tiles" unique_id=1839755525]
 layout_mode = 2
 theme_override_constants/separation = 7
 theme_override_styles/separator = SubResource("StyleBoxEmpty_pb2ch")

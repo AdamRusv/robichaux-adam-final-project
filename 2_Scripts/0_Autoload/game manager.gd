@@ -12,7 +12,7 @@ var customMapPath : String = "" #NOTE: map editor? (smaller visualization of map
 #-----
 
 #these are fleeting local varaible used to connect scripts together
-var currentToolTip : Control = null
+var screen : Screen = null
 
 ##clicked and dragged tile
 var currentTile : Tile = null
