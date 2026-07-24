@@ -547,7 +547,7 @@ layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_neqfg")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/Blue" unique_id=1719456248]
-custom_minimum_size = Vector2(0, 49.85)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -575,7 +575,7 @@ layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_neqfg")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/Deck Viewer/Panel Parent/Panel/MarginContainer/VBoxContainer/Red" unique_id=967347468]
-custom_minimum_size = Vector2(0, 49.85)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
