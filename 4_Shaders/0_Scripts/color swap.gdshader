@@ -9,6 +9,7 @@ group_uniforms OriginalColors;
 // Colors to search for.
 uniform vec4 originalBackgroundColor : source_color = vec4(1.0);
 uniform vec4 originalBackground2Color : source_color = vec4(1.0);
+uniform vec4 originalBackground3Color : source_color = vec4(1.0);
 uniform vec4 originalTextColor : source_color = vec4(1.0);
 uniform vec4 originalPrimaryPlayerOneColor : source_color = vec4(1.0);
 uniform vec4 originalBasePlayerOneColor : source_color = vec4(1.0);
@@ -28,6 +29,7 @@ group_uniforms ReplacementColors;
 // Replacement colors.
 uniform vec4 backgroundColor : source_color = vec4(1.0);
 uniform vec4 background2Color : source_color = vec4(1.0);
+uniform vec4 background3Color : source_color = vec4(1.0);
 uniform vec4 textColor : source_color = vec4(1.0);
 uniform vec4 primaryPlayerOneColor : source_color = vec4(1.0);
 uniform vec4 primaryBasePlayerOneColor : source_color = vec4(1.0);
@@ -53,35 +55,37 @@ vec4 get_original_color(int index) {
 		case 1:
 			return originalBackground2Color;
 		case 2:
+			return originalBackground3Color;
+		case 3:
 			return originalTextColor;
 			
-		case 3:
-			return originalPrimaryPlayerOneColor;
 		case 4:
-			return originalBasePlayerOneColor;
+			return originalPrimaryPlayerOneColor;
 		case 5:
-			return originalDarkPlayerOneColor;
+			return originalBasePlayerOneColor;
 		case 6:
-			return originalDarkerPlayerOneColor;
+			return originalDarkPlayerOneColor;
 		case 7:
+			return originalDarkerPlayerOneColor;
+		case 8:
 			return originalShinePlayerOneColor;
 			
-		case 8:
-			return originalPrimaryPlayerTwoColor;
 		case 9:
-			return originalBasePlayerTwoColor;
+			return originalPrimaryPlayerTwoColor;
 		case 10:
-			return originalDarkPlayerTwoColor;
+			return originalBasePlayerTwoColor;
 		case 11:
-			return originalDarkerPlayerTwoColor;
+			return originalDarkPlayerTwoColor;
 		case 12:
+			return originalDarkerPlayerTwoColor;
+		case 13:
 			return originalShinePlayerTwoColor;
 			
-		case 13:
-			return originalSecondaryPlayerColor;
 		case 14:
-			return originalUIOne;
+			return originalSecondaryPlayerColor;
 		case 15:
+			return originalUIOne;
+		case 16:
 			return originalUITwo;
 	}
 
@@ -95,35 +99,37 @@ vec4 get_replacement_color(int index) {
 		case 1:
 			return background2Color;
 		case 2:
+			return background3Color;
+		case 3:
 			return textColor;
 			
-		case 3:
-			return primaryPlayerOneColor;
 		case 4:
-			return primaryBasePlayerOneColor;
+			return primaryPlayerOneColor;
 		case 5:
-			return primaryDarkPlayerOneColor;
+			return primaryBasePlayerOneColor;
 		case 6:
-			return primaryDarkerPlayerOneColor;
+			return primaryDarkPlayerOneColor;
 		case 7:
+			return primaryDarkerPlayerOneColor;
+		case 8:
 			return primaryShinePlayerOneColor;
 			
-		case 8:
-			return primaryPlayerTwoColor;
 		case 9:
-			return primaryBasePlayerTwoColor;
+			return primaryPlayerTwoColor;
 		case 10:
-			return primaryDarkPlayerTwoColor;
+			return primaryBasePlayerTwoColor;
 		case 11:
-			return primaryDarkerPlayerTwoColor;
+			return primaryDarkPlayerTwoColor;
 		case 12:
+			return primaryDarkerPlayerTwoColor;
+		case 13:
 			return primaryShinePlayerTwoColor;
 			
-		case 13:
-			return secondaryPlayerColor;
 		case 14:
-			return uiOne;
+			return secondaryPlayerColor;
 		case 15:
+			return uiOne;
+		case 16:
 			return uiTwo;
 	}
 

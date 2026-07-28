@@ -2,8 +2,46 @@
 
 [ext_resource type="Shader" uid="uid://dhw5u2cbng7lr" path="res://4_Shaders/0_Scripts/general pp.gdshader" id="1_ncivp"]
 [ext_resource type="Material" uid="uid://beamboy1ru8kr" path="res://4_Shaders/1_Materials/swap color.tres" id="1_tbbhu"]
+[ext_resource type="Script" uid="uid://dykfsmobkej5m" path="res://2_Scripts/2_Independent/cursor.gd" id="1_xg0xq"]
+[ext_resource type="Shader" uid="uid://b587mqqt48v4a" path="res://4_Shaders/0_Scripts/pixel border.gdshader" id="2_h56nj"]
 [ext_resource type="Shader" uid="uid://dpgmim6nexyy1" path="res://4_Shaders/0_Scripts/crt.gdshader" id="2_uy6oh"]
 [ext_resource type="Shader" uid="uid://conx1phadmjpy" path="res://4_Shaders/0_Scripts/tv warp.gdshader" id="3_i53fj"]
+[ext_resource type="Texture2D" uid="uid://cqvddfi21macg" path="res://0_Art/cursor-Sheet.png" id="3_x0nc1"]
+[ext_resource type="Shader" uid="uid://c312aei2gfqc0" path="res://4_Shaders/0_Scripts/drop shadow.gdshader" id="5_3unbd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sfkw3"]
+shader = ExtResource("2_h56nj")
+shader_parameter/borderEnabled = true
+shader_parameter/borderColor = Color(0, 0, 0, 1)
+shader_parameter/borderWidthPixels = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1r6ij"]
+atlas = ExtResource("3_x0nc1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii050"]
+atlas = ExtResource("3_x0nc1")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_njpg2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1r6ij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii050")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1r6ij"]
+shader = ExtResource("5_3unbd")
+shader_parameter/targetColor = Color(0.92156863, 0.9254902, 0.8627451, 1)
+shader_parameter/shadowColor = Color(0, 0, 0, 0.27450982)
+shader_parameter/colorTolerance = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uy6oh"]
 shader = ExtResource("1_ncivp")
@@ -51,11 +89,38 @@ grow_vertical = 2
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1357903037]
 position = Vector2(160, 90)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1553220869]
+
+[node name="Cursor" type="Control" parent="CanvasLayer" unique_id=1275867839 node_paths=PackedStringArray("imageNode")]
+z_index = 4096
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("1_xg0xq")
+imageNode = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Cursor" unique_id=218366020]
+material = SubResource("ShaderMaterial_sfkw3")
+position = Vector2(7, 7)
+sprite_frames = SubResource("SpriteFrames_njpg2")
+
 [node name="Color Swap" type="CanvasLayer" parent="." unique_id=1945922195]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Color Swap" unique_id=786414441]
 material = ExtResource("1_tbbhu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="drop shadow" type="CanvasLayer" parent="." unique_id=1541219938]
+
+[node name="ColorRect" type="ColorRect" parent="drop shadow" unique_id=672685299]
+material = SubResource("ShaderMaterial_1r6ij")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

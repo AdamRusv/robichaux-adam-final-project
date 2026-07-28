@@ -1,18 +1,22 @@
 [gd_scene format=3 uid="uid://bgqrvtpns3fw7"]
 
-[ext_resource type="Script" uid="uid://2j2ulgcmidlg" path="res://2_Scripts/2_Independent/background manager.gd" id="1_eeqmp"]
+[ext_resource type="Shader" uid="uid://b587mqqt48v4a" path="res://4_Shaders/0_Scripts/pixel border.gdshader" id="1_1mjae"]
 [ext_resource type="Shader" uid="uid://buo1sqerqnglk" path="res://4_Shaders/0_Scripts/animated dot grid.gdshader" id="1_fw3qn"]
 [ext_resource type="Shader" uid="uid://cdyn6emoprss4" path="res://4_Shaders/0_Scripts/animated noise.gdshader" id="2_1mjae"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_eeqmp"]
-noise_type = 0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4d8r4"]
+shader = ExtResource("1_1mjae")
+shader_parameter/borderEnabled = true
+shader_parameter/borderColor = Color(0, 0, 0, 1)
+shader_parameter/borderWidthPixels = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1mjae"]
 shader = ExtResource("2_1mjae")
 shader_parameter/move_speed = 2.0
 shader_parameter/shape_size = 1.2
-shader_parameter/colour_1 = Color(0.39215687, 1, 1, 1)
-shader_parameter/colour_2 = Color(0, 1, 1, 1)
+shader_parameter/color_1 = Color(0.39215687, 1, 1, 1)
+shader_parameter/color_2 = Color(0, 1, 1, 1)
+shader_parameter/color_3 = Color(0.78431374, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fw3qn"]
 shader = ExtResource("1_fw3qn")
@@ -25,25 +29,31 @@ shader_parameter/positionRandomness = 0.85
 shader_parameter/moveDirection = Vector2(1, -1)
 shader_parameter/moveSpeed = 10.000005224999995
 
-[node name="Background" type="Control" unique_id=2085872941]
-layout_mode = 3
+[node name="Background" type="SubViewportContainer" unique_id=1265055466]
+material = SubResource("ShaderMaterial_4d8r4")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_eeqmp")
-noise = SubResource("FastNoiseLite_eeqmp")
+mouse_filter = 2
+stretch = true
 
-[node name="Noise" type="ColorRect" parent="." unique_id=1783762662]
+[node name="Background Viewport" type="SubViewport" parent="." unique_id=1449330621]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(320, 180)
+render_target_update_mode = 4
+
+[node name="Noise" type="ColorRect" parent="Background Viewport" unique_id=1783762662]
 material = SubResource("ShaderMaterial_1mjae")
-layout_mode = 0
 offset_right = 320.0
 offset_bottom = 180.0
 
-[node name="Stars" type="ColorRect" parent="." unique_id=1937278201]
+[node name="Stars" type="ColorRect" parent="Background Viewport" unique_id=1937278201]
 material = SubResource("ShaderMaterial_fw3qn")
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

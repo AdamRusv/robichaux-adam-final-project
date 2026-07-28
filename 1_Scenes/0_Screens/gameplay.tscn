@@ -4,11 +4,8 @@
 [ext_resource type="Script" uid="uid://chpwtvy50fe3r" path="res://2_Scripts/2_Independent/screen manager.gd" id="1_fb3j3"]
 [ext_resource type="Texture2D" uid="uid://cj7uatshnc4ta" path="res://0_Art/square.png" id="2_1t528"]
 [ext_resource type="Material" uid="uid://beamboy1ru8kr" path="res://4_Shaders/1_Materials/swap color.tres" id="4_baij6"]
-[ext_resource type="Script" uid="uid://dykfsmobkej5m" path="res://2_Scripts/2_Independent/cursor.gd" id="5_2syus"]
-[ext_resource type="PackedScene" uid="uid://bgqrvtpns3fw7" path="res://1_Scenes/0_Screens/background.tscn" id="5_pb2ch"]
 [ext_resource type="Script" uid="uid://dhkfy5rmhhnmq" path="res://2_Scripts/2_Independent/tile map manager.gd" id="5_rkkk6"]
 [ext_resource type="Script" uid="uid://bj3l2in83g32c" path="res://2_Scripts/2_Independent/scoreboard manager.gd" id="6_1cjw6"]
-[ext_resource type="Texture2D" uid="uid://cqvddfi21macg" path="res://0_Art/cursor-Sheet.png" id="6_baij6"]
 [ext_resource type="Texture2D" uid="uid://s2w8gtfldsxw" path="res://0_Art/tile.png" id="6_pb2ch"]
 [ext_resource type="Theme" uid="uid://bo13vq025j5e1" path="res://6_Other/main text font theme.tres" id="7_ahkic"]
 [ext_resource type="Script" uid="uid://d36ttweofcoy1" path="res://2_Scripts/2_Independent/board move manager.gd" id="7_rkkk6"]
@@ -22,34 +19,6 @@
 [ext_resource type="Script" uid="uid://csyvx3nmr53ar" path="res://2_Scripts/2_Independent/map generator manager.gd" id="12_ahkic"]
 [ext_resource type="Script" uid="uid://c6qycsgiakc3x" path="res://2_Scripts/2_Independent/other hand manager.gd" id="12_neqfg"]
 [ext_resource type="Script" uid="uid://bbbs28evdehsu" path="res://2_Scripts/3_Dependent/view deck card.gd" id="14_6eb78"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2syus"]
-shader = ExtResource("1_3udmd")
-shader_parameter/borderEnabled = true
-shader_parameter/borderColor = Color(0, 0, 0, 1)
-shader_parameter/borderWidthPixels = 1.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1r6ij"]
-atlas = ExtResource("6_baij6")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ii050"]
-atlas = ExtResource("6_baij6")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_baij6"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1r6ij")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ii050")
-}],
-"loop": 1,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ahkic"]
 
@@ -70,7 +39,7 @@ load_path = "res://.godot/imported/scoreboard texture-Sheet.png-c2da88975b390af5
 atlas = SubResource("CompressedTexture2D_0hcow")
 region = Rect2(29, 0, 29, 18)
 
-[sub_resource type="BitMap" id="BitMap_neqfg"]
+[sub_resource type="BitMap" id="BitMap_6eb78"]
 data = {
 "data": PackedByteArray("/v//////////////////////////////9//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+//////////////////////////////8HAAAAAAAAAPj//////////wEAAAAAAAAAAAAAAAAAAID//////////x8AAAAAAAAAAAAAAAAAAAD4//////////8BAAAAAAAAAAAAAAAAAACA//////////8fAAAAAAAAAAAAAAAAAAAA+P//////////AQAAAAAAAAAAAAAAAAAAgP//////////HwAAAAAAAAAAAAAAAAAAAPj//////////wEAAAAAAAAAAAAAAAAAAID//////////x8AAAAAAAAAAAAAAAAAAAD4//////////8BAAAAAAAAAAAAAAAAAACA//////////8fAAAAAAAAAAAAAAAAAAAA+P//////////AQAAAAAAAAAAAAAAAAAAgP//////////HwAAAAAAAAAAAAAAAAAAAPj//////////wEAAAAAAAAAAAAAAAAAAID//////////x8AAAAAAAAAAAAAAAAAAAD4//////////8BAAAAAAAAAAAAAAAAAACA//////////8fAAAAAAAAAAAAAAAAAAAA+P//////////AQAAAAAAAAAAAAAAAAAAAP//////////DwAAAAAAAAAA"),
 "size": Vector2i(196, 101)
@@ -122,7 +91,7 @@ shader_parameter/borderEnabled = true
 shader_parameter/borderColor = Color(0, 0, 0, 1)
 shader_parameter/borderWidthPixels = 1.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ahkic"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_neqfg"]
 texture = ExtResource("6_pb2ch")
 texture_region_size = Vector2i(38, 38)
 0:0/0 = 0
@@ -131,7 +100,7 @@ texture_region_size = Vector2i(38, 38)
 [sub_resource type="TileSet" id="TileSet_ahkic"]
 tile_shape = 3
 tile_size = Vector2i(28, 28)
-sources/0 = SubResource("TileSetAtlasSource_ahkic")
+sources/0 = SubResource("TileSetAtlasSource_neqfg")
 
 [node name="Gameplay" type="Control" unique_id=1494847808]
 layout_mode = 3
@@ -144,21 +113,6 @@ script = ExtResource("1_fb3j3")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=96229226]
 unique_name_in_owner = true
-
-[node name="Cursor" type="Control" parent="UI" unique_id=1150532939 node_paths=PackedStringArray("imageNode")]
-z_index = 4096
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-script = ExtResource("5_2syus")
-imageNode = NodePath("AnimatedSprite2D")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="UI/Cursor" unique_id=218686513]
-material = SubResource("ShaderMaterial_2syus")
-position = Vector2(7, 7)
-sprite_frames = SubResource("SpriteFrames_baij6")
 
 [node name="Board Move Manager" type="Button" parent="UI" unique_id=1653113624 node_paths=PackedStringArray("board", "tileMapBoard")]
 anchors_preset = 15
@@ -421,7 +375,7 @@ offset_left = -61.0
 offset_top = -81.0
 offset_right = -39.0
 offset_bottom = -57.0
-texture_click_mask = SubResource("BitMap_neqfg")
+texture_click_mask = SubResource("BitMap_6eb78")
 
 [node name="Panel Parent" type="Control" parent="UI/Deck Viewer" unique_id=206967186]
 layout_mode = 2
@@ -1272,6 +1226,7 @@ offset_right = 393.0
 offset_bottom = 465.0
 
 [node name="Color Swap" type="CanvasLayer" parent="." unique_id=1170140382]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Color Swap" unique_id=969559455]
 material = ExtResource("4_baij6")
@@ -1292,16 +1247,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 stretch = true
-
-[node name="Background Viewport" type="SubViewport" parent="SubViewportContainer" unique_id=1653398459]
-disable_3d = true
-transparent_bg = true
-handle_input_locally = false
-canvas_item_default_texture_filter = 0
-size = Vector2i(320, 180)
-render_target_update_mode = 4
-
-[node name="Background" parent="SubViewportContainer/Background Viewport" unique_id=2085872941 instance=ExtResource("5_pb2ch")]
 
 [node name="Board Viewport" type="SubViewport" parent="SubViewportContainer" unique_id=840172666]
 disable_3d = true

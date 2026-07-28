@@ -4,9 +4,10 @@
 
 [resource]
 shader = ExtResource("1_71o88")
-shader_parameter/colorCount = 16
+shader_parameter/colorCount = 17
 shader_parameter/originalBackgroundColor = Color(0, 1, 1, 1)
 shader_parameter/originalBackground2Color = Color(0.39215687, 1, 1, 1)
+shader_parameter/originalBackground3Color = Color(0.78431374, 1, 1, 1)
 shader_parameter/originalTextColor = Color(0, 0, 0, 1)
 shader_parameter/originalPrimaryPlayerOneColor = Color(0, 0, 1, 1)
 shader_parameter/originalBasePlayerOneColor = Color(0, 0, 0.8039216, 1)
@@ -23,6 +24,7 @@ shader_parameter/originalUIOne = Color(1, 1, 0, 1)
 shader_parameter/originalUITwo = Color(1, 0, 1, 1)
 shader_parameter/backgroundColor = Color(0.13725491, 0.13333334, 0.15686275, 1)
 shader_parameter/background2Color = Color(0.1254902, 0.12156863, 0.14509805, 1)
+shader_parameter/background3Color = Color(0.14901961, 0.14509805, 0.16862746, 1)
 shader_parameter/textColor = Color(0.92156863, 0.9254902, 0.8627451, 1)
 shader_parameter/primaryPlayerOneColor = Color(0.298836, 0.69497347, 0.78763425, 1)
 shader_parameter/primaryBasePlayerOneColor = Color(0.38016477, 0.756654, 0.81559104, 1)

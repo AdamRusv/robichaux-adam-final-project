@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="RobichauxAdam_FinalProject"
-run/main_scene="uid://vxarjjbctsa4"
+run/main_scene="uid://d3vxmo0wmua0f"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Proximity"
 config/features=PackedStringArray("4.7", "Mobile")
@@ -21,8 +21,10 @@ config/icon="res://0_Art/icon.svg"
 
 Settings="*uid://5hv8ri514r8s"
 Keybinds="*uid://di6iyetqfed4w"
-Overlay="*uid://dr7wxf0bqidpr"
+TweenManager="*uid://b1iu4e1oxr4ai"
 GameManager="*uid://bg4p4yra4o8cl"
+Background="*uid://bgqrvtpns3fw7"
+Overlay="*uid://dr7wxf0bqidpr"
 
 [debug]
 

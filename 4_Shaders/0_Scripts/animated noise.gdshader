@@ -3,8 +3,9 @@ shader_type canvas_item;
 uniform highp float move_speed = 7.0;
 uniform highp float shape_size = 2.5;
 
-uniform highp vec4 colour_1 : source_color = vec4(0.871, 0.267, 0.231, 1.0);
-uniform highp vec4 colour_2 : source_color = vec4(0.0, 0.42, 0.706, 1.0);
+uniform highp vec4 color_1 : source_color = vec4(0, 0, 0, 1.0);
+uniform highp vec4 color_2 : source_color = vec4(0, 0, 0, 1.0);
+uniform highp vec4 color_3 : source_color = vec4(0, 0, 0, 1.0);
 
 
 vec4 effect(vec2 screen_size, vec2 screen_coords) {
@@ -12,6 +13,7 @@ vec4 effect(vec2 screen_size, vec2 screen_coords) {
 		screen_coords
 		- 0.5 * screen_size
 	) / length(screen_size);
+
 	uv *= 12.0;
 
 	highp float movement = TIME * move_speed;
@@ -60,13 +62,15 @@ vec4 effect(vec2 screen_size, vec2 screen_coords) {
 		+ vertical_shapes
 		+ diagonal_shapes * 0.45;
 
-	highp float colour_mask = step(0.25, shape_value);
+	// Divide the pattern into three solid-color regions.
+	highp float middle_mask = step(-0.35, shape_value);
+	highp float upper_mask = step(0.65, shape_value);
 
-	return mix(
-		colour_2,
-		colour_1,
-		colour_mask
-	);
+	highp vec4 final_color = color_3;
+	final_color = mix(final_color, color_2, middle_mask);
+	final_color = mix(final_color, color_1, upper_mask);
+
+	return final_color;
 }
 
 

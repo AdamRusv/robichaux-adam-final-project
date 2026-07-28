@@ -1,0 +1,234 @@
+[gd_scene format=3 uid="uid://d3vxmo0wmua0f"]
+
+[ext_resource type="Shader" uid="uid://b587mqqt48v4a" path="res://4_Shaders/0_Scripts/pixel border.gdshader" id="1_fee3u"]
+[ext_resource type="Script" uid="uid://dcduq2231lpmg" path="res://2_Scripts/2_Independent/title screen manager.gd" id="1_gglkp"]
+[ext_resource type="Theme" uid="uid://bo13vq025j5e1" path="res://6_Other/main text font theme.tres" id="2_fee3u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pvfuo"]
+shader = ExtResource("1_fee3u")
+shader_parameter/borderEnabled = true
+shader_parameter/borderColor = Color(0.9321713, 0.9357971, 0.87854654, 1)
+shader_parameter/borderWidthPixels = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pvfuo"]
+load_path = "res://.godot/imported/title letters-Sheet.png-0767dda9e9e00af550aec5c3d3da3bcc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fee3u"]
+atlas = SubResource("CompressedTexture2D_pvfuo")
+region = Rect2(0, 0, 24, 27)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gglkp"]
+load_path = "res://.godot/imported/title letters-Sheet.png-0767dda9e9e00af550aec5c3d3da3bcc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3nym"]
+atlas = SubResource("CompressedTexture2D_gglkp")
+region = Rect2(24, 0, 24, 27)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ajpio"]
+load_path = "res://.godot/imported/title letters-Sheet.png-0767dda9e9e00af550aec5c3d3da3bcc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqkm3"]
+atlas = SubResource("CompressedTexture2D_ajpio")
+region = Rect2(48, 0, 24, 27)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1ux1m"]
+load_path = "res://.godot/imported/title letters-Sheet.png-0767dda9e9e00af550aec5c3d3da3bcc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_occgk"]
+atlas = SubResource("CompressedTexture2D_1ux1m")
+region = Rect2(72, 0, 24, 27)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0maxh"]
+load_path = "res://.godot/imported/title letters-Sheet.png-0767dda9e9e00af550aec5c3d3da3bcc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owxlb"]
+atlas = SubResource("CompressedTexture2D_0maxh")
+region = Rect2(96, 0, 24, 27)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o4h8j"]
+load_path = "res://.godot/imported/title letters-Sheet.png-0767dda9e9e00af550aec5c3d3da3bcc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v31x1"]
+atlas = SubResource("CompressedTexture2D_o4h8j")
+region = Rect2(120, 0, 24, 27)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k75ky"]
+load_path = "res://.godot/imported/title letters-Sheet.png-0767dda9e9e00af550aec5c3d3da3bcc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d16fe"]
+atlas = SubResource("CompressedTexture2D_k75ky")
+region = Rect2(144, 0, 24, 27)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_twmvg"]
+load_path = "res://.godot/imported/title letters-Sheet.png-0767dda9e9e00af550aec5c3d3da3bcc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5njl"]
+atlas = SubResource("CompressedTexture2D_twmvg")
+region = Rect2(168, 0, 24, 27)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8d6uc"]
+load_path = "res://.godot/imported/title letters-Sheet.png-0767dda9e9e00af550aec5c3d3da3bcc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1abe"]
+atlas = SubResource("CompressedTexture2D_8d6uc")
+region = Rect2(192, 0, 24, 27)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o275c"]
+load_path = "res://.godot/imported/title letters-Sheet.png-0767dda9e9e00af550aec5c3d3da3bcc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8l7js"]
+atlas = SubResource("CompressedTexture2D_o275c")
+region = Rect2(216, 0, 24, 27)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q8guw"]
+load_path = "res://.godot/imported/title letters-Sheet.png-0767dda9e9e00af550aec5c3d3da3bcc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2322"]
+atlas = SubResource("CompressedTexture2D_q8guw")
+region = Rect2(240, 0, 24, 27)
+
+[node name="Title" type="Control" unique_id=1631135910 node_paths=PackedStringArray("lettersParent", "letters", "clickAnywhereText")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gglkp")
+lettersParent = NodePath("Letters")
+letters = [NodePath("Letters/left marker"), NodePath("Letters/P"), NodePath("Letters/R"), NodePath("Letters/O"), NodePath("Letters/X"), NodePath("Letters/I"), NodePath("Letters/M"), NodePath("Letters/I (2)"), NodePath("Letters/T"), NodePath("Letters/Y"), NodePath("Letters/right marker")]
+clickAnywhereText = NodePath("RichTextLabel")
+maxOffset = Vector2(1, 1)
+
+[node name="Letters" type="Control" parent="." unique_id=1834609919]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -38.0
+offset_right = 108.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="left marker" type="TextureRect" parent="Letters" unique_id=1862342409]
+material = SubResource("ShaderMaterial_pvfuo")
+layout_mode = 0
+offset_left = -1.0
+offset_right = 23.0
+offset_bottom = 27.0
+texture = SubResource("AtlasTexture_fee3u")
+stretch_mode = 2
+
+[node name="P" type="TextureRect" parent="Letters" unique_id=337035287]
+material = SubResource("ShaderMaterial_pvfuo")
+layout_mode = 0
+offset_left = 20.0
+offset_right = 44.0
+offset_bottom = 27.0
+texture = SubResource("AtlasTexture_q3nym")
+stretch_mode = 2
+
+[node name="R" type="TextureRect" parent="Letters" unique_id=1531074046]
+material = SubResource("ShaderMaterial_pvfuo")
+layout_mode = 0
+offset_left = 40.0
+offset_right = 64.0
+offset_bottom = 27.0
+texture = SubResource("AtlasTexture_sqkm3")
+stretch_mode = 2
+
+[node name="O" type="TextureRect" parent="Letters" unique_id=1837390479]
+material = SubResource("ShaderMaterial_pvfuo")
+layout_mode = 0
+offset_left = 60.0
+offset_right = 84.0
+offset_bottom = 27.0
+texture = SubResource("AtlasTexture_occgk")
+stretch_mode = 2
+
+[node name="X" type="TextureRect" parent="Letters" unique_id=935874901]
+material = SubResource("ShaderMaterial_pvfuo")
+layout_mode = 0
+offset_left = 80.0
+offset_right = 104.0
+offset_bottom = 27.0
+texture = SubResource("AtlasTexture_owxlb")
+stretch_mode = 2
+
+[node name="I" type="TextureRect" parent="Letters" unique_id=507535209]
+material = SubResource("ShaderMaterial_pvfuo")
+layout_mode = 0
+offset_left = 96.0
+offset_right = 120.0
+offset_bottom = 27.0
+texture = SubResource("AtlasTexture_v31x1")
+stretch_mode = 2
+
+[node name="M" type="TextureRect" parent="Letters" unique_id=590891007]
+material = SubResource("ShaderMaterial_pvfuo")
+layout_mode = 0
+offset_left = 116.0
+offset_right = 140.0
+offset_bottom = 27.0
+texture = SubResource("AtlasTexture_d16fe")
+stretch_mode = 2
+
+[node name="I (2)" type="TextureRect" parent="Letters" unique_id=818441316]
+material = SubResource("ShaderMaterial_pvfuo")
+layout_mode = 0
+offset_left = 136.0
+offset_right = 160.0
+offset_bottom = 27.0
+texture = SubResource("AtlasTexture_i5njl")
+stretch_mode = 2
+
+[node name="T" type="TextureRect" parent="Letters" unique_id=785350614]
+material = SubResource("ShaderMaterial_pvfuo")
+layout_mode = 0
+offset_left = 153.0
+offset_right = 177.0
+offset_bottom = 27.0
+texture = SubResource("AtlasTexture_v1abe")
+stretch_mode = 2
+
+[node name="Y" type="TextureRect" parent="Letters" unique_id=622542223]
+material = SubResource("ShaderMaterial_pvfuo")
+layout_mode = 0
+offset_left = 172.0
+offset_right = 196.0
+offset_bottom = 27.0
+texture = SubResource("AtlasTexture_8l7js")
+stretch_mode = 2
+
+[node name="right marker" type="TextureRect" parent="Letters" unique_id=1036141125]
+material = SubResource("ShaderMaterial_pvfuo")
+layout_mode = 0
+offset_left = 191.0
+offset_right = 215.0
+offset_bottom = 27.0
+texture = SubResource("AtlasTexture_k2322")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=212340034]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 0
+offset_left = 114.0
+offset_top = 118.0
+offset_right = 205.0
+offset_bottom = 134.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("2_fee3u")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "click anywhere"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
