@@ -1,0 +1,190 @@
+[gd_scene format=3 uid="uid://tlrfam50a4ls"]
+
+[ext_resource type="Shader" uid="uid://b587mqqt48v4a" path="res://4_Shaders/0_Scripts/pixel border.gdshader" id="1_0vobv"]
+[ext_resource type="Texture2D" uid="uid://cj7uatshnc4ta" path="res://0_Art/square.png" id="2_pjjm5"]
+[ext_resource type="Theme" uid="uid://bo13vq025j5e1" path="res://6_Other/main text font theme.tres" id="3_pjjm5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tewlh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dkl8o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tewlh"]
+shader = ExtResource("1_0vobv")
+shader_parameter/borderEnabled = true
+shader_parameter/borderColor = Color(0, 0, 0, 1)
+shader_parameter/borderWidthPixels = 1.0
+
+[node name="Game Selection" type="Control" unique_id=623322757]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=229093552]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer" unique_id=1209302073]
+layout_mode = 2
+theme_override_constants/separation = 6
+theme_override_styles/separator = SubResource("StyleBoxEmpty_tewlh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=2079624257]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/VBoxContainer" unique_id=188926810]
+layout_mode = 2
+theme_override_constants/separation = 4
+theme_override_styles/separator = SubResource("StyleBoxEmpty_dkl8o")
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer/VBoxContainer" unique_id=803557871]
+custom_minimum_size = Vector2(94, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/VBoxContainer/MarginContainer3" unique_id=1370524162]
+self_modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer" unique_id=1327782003]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/VBoxContainer/MarginContainer" unique_id=1055907985]
+self_modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Options" type="MarginContainer" parent="HBoxContainer/VBoxContainer/MarginContainer" unique_id=1739220586]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/MarginContainer/Options" unique_id=43088368]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Options"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="Control" parent="HBoxContainer/VBoxContainer/MarginContainer/Options" unique_id=498664004]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer/MarginContainer/Options/Button Holder" unique_id=516184688]
+layout_mode = 0
+offset_left = 7.0
+offset_top = -2.0
+offset_right = 53.0
+offset_bottom = 17.0
+focus_mode = 0
+flat = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/VBoxContainer" unique_id=316266561]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/VBoxContainer/MarginContainer2" unique_id=837912551]
+self_modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Options" type="MarginContainer" parent="HBoxContainer/VBoxContainer/MarginContainer2" unique_id=1598139213]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/MarginContainer2/Options" unique_id=404074239]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Quit"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="Control" parent="HBoxContainer/VBoxContainer/MarginContainer2/Options" unique_id=1987244964]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer/MarginContainer2/Options/Button Holder" unique_id=1025321213]
+layout_mode = 0
+offset_left = 7.0
+offset_top = -2.0
+offset_right = 53.0
+offset_bottom = 17.0
+focus_mode = 0
+flat = true
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/VBoxContainer" unique_id=407283260]
+layout_mode = 2
+theme_override_constants/separation = 4
+theme_override_styles/separator = SubResource("StyleBoxEmpty_dkl8o")
+
+[node name="VSeparator3" type="VSeparator" parent="HBoxContainer" unique_id=1043647215]
+layout_mode = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxEmpty_tewlh")
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer" unique_id=1045316809]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/MarginContainer3" unique_id=1965790050]
+self_modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="VSeparator2" type="VSeparator" parent="HBoxContainer" unique_id=616268720]
+layout_mode = 2
+theme_override_constants/separation = 6
+theme_override_styles/separator = SubResource("StyleBoxEmpty_tewlh")

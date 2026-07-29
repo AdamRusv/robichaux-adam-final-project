@@ -87,7 +87,7 @@ load_path = "res://.godot/imported/title letters-Sheet.png-0767dda9e9e00af550aec
 atlas = SubResource("CompressedTexture2D_q8guw")
 region = Rect2(240, 0, 24, 27)
 
-[node name="Title" type="Control" unique_id=1631135910 node_paths=PackedStringArray("lettersParent", "letters", "clickAnywhereText")]
+[node name="Title" type="Control" unique_id=1631135910 node_paths=PackedStringArray("lettersParent", "letters", "clickAnywhereText", "screenButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -98,6 +98,7 @@ script = ExtResource("1_gglkp")
 lettersParent = NodePath("Letters")
 letters = [NodePath("Letters/left marker"), NodePath("Letters/P"), NodePath("Letters/R"), NodePath("Letters/O"), NodePath("Letters/X"), NodePath("Letters/I"), NodePath("Letters/M"), NodePath("Letters/I (2)"), NodePath("Letters/T"), NodePath("Letters/Y"), NodePath("Letters/right marker")]
 clickAnywhereText = NodePath("RichTextLabel")
+screenButton = NodePath("Button")
 maxOffset = Vector2(1, 1)
 
 [node name="Letters" type="Control" parent="." unique_id=1834609919]
@@ -232,3 +233,13 @@ scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=1534085652]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+flat = true

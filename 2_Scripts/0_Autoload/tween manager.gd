@@ -10,7 +10,7 @@ enum ScreenSide{
 ##moves control to starting postition from the given screenSide
 func _enter_from(sideToEnterFrom : ScreenSide, nodeToMove : Control, speed : float = 300, delay : float = 0) -> Tween:
 	var endPos : Vector2 = nodeToMove.position
-	nodeToMove.position = _get_starting_pos(sideToEnterFrom, nodeToMove)
+	nodeToMove.position = _get_outside_screen_pos(sideToEnterFrom, nodeToMove)
 	
 	var newTween : Tween = create_tween()
 	
@@ -24,6 +24,22 @@ func _enter_from(sideToEnterFrom : ScreenSide, nodeToMove : Control, speed : flo
 	
 	return newTween
 
+func _exit_to(sideToExitTo : ScreenSide, nodeToMove : Control, speed : float = 300, delay : float = 0) -> Tween:
+	var endPos : Vector2 = _get_outside_screen_pos(sideToExitTo, nodeToMove)
+	
+	var newTween : Tween = create_tween()
+	
+	if delay > 0:
+		newTween.tween_interval(delay)
+	
+	var distance : float = nodeToMove.position.distance_to(endPos)
+	var duration : float = distance / speed
+	
+	newTween.tween_property(nodeToMove, "position", endPos, duration).set_custom_interpolator(_tween_curve)
+	
+	return newTween
+
+#-
 func _scale_in(nodeToFade : Control, duration : float = 1, delay : float = 0) -> Tween:
 	nodeToFade.pivot_offset = nodeToFade.size / 2
 	nodeToFade.scale = Vector2.ZERO
@@ -38,7 +54,7 @@ func _scale_in(nodeToFade : Control, duration : float = 1, delay : float = 0) ->
 	return newTween
 
 #------------------------------
-func _get_starting_pos(sideToEnterFrom : ScreenSide, nodeToMove : Control) -> Vector2:
+func _get_outside_screen_pos(sideToEnterFrom : ScreenSide, nodeToMove : Control) -> Vector2:
 	var startingPos : Vector2
 	
 	match sideToEnterFrom:
