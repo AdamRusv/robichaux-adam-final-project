@@ -42,9 +42,23 @@ func _click():
 		return
 	
 	clicked = true
+	var flickerTime : float = 0.15
 	clickAnywhereText.visible = true
-	
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(flickerTime).timeout
+	clickAnywhereText.visible = false
+	await get_tree().create_timer(flickerTime).timeout
+	clickAnywhereText.visible = true
+	await get_tree().create_timer(flickerTime).timeout
+	clickAnywhereText.visible = false
+	await get_tree().create_timer(flickerTime).timeout
+	clickAnywhereText.visible = true
+	await get_tree().create_timer(flickerTime).timeout
+	clickAnywhereText.visible = false
+	await get_tree().create_timer(flickerTime).timeout
+	clickAnywhereText.visible = true
+	await get_tree().create_timer(flickerTime).timeout
+	clickAnywhereText.visible = false
+	await get_tree().create_timer(flickerTime).timeout
 	clickAnywhereText.visible = true
 	
 	var endPosTop : Vector2 = TweenManager._get_outside_screen_pos(TweenManager.ScreenSide.top, lettersParent)
@@ -56,6 +70,11 @@ func _click():
 	
 	newTween.tween_property(lettersParent, "position", endPosTop, 1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	newTween.tween_property(clickAnywhereText, "position", endPosBottom, 1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	
+	await newTween.finished
+	get_tree().change_scene_to_packed(gameSelectionScreen)
+var gameSelectionScreen : PackedScene = preload("res://1_Scenes/0_Screens/game selection.tscn")
+
 
 #--------------------------------------------------------
 func _oscillate(nodeToOscillate : Control):

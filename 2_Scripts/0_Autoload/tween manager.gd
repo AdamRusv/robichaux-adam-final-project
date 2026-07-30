@@ -23,6 +23,25 @@ func _enter_from(sideToEnterFrom : ScreenSide, nodeToMove : Control, speed : flo
 	newTween.tween_property(nodeToMove, "position", endPos, duration).set_custom_interpolator(_tween_curve)
 	
 	return newTween
+func _offset_enter_from(sideToEnterFrom : ScreenSide, nodeToMove : Control, speed : float = 300, delay : float = 0, customCurve : bool = true) -> Tween:
+	nodeToMove.offset_transform_enabled = true
+	var endPos : Vector2 = nodeToMove.position
+	nodeToMove.offset_transform_position = _get_outside_screen_pos(sideToEnterFrom, nodeToMove)
+	
+	var newTween : Tween = create_tween()
+	
+	if delay > 0:
+		newTween.tween_interval(delay)
+	
+	var distance : float = nodeToMove.offset_transform_position.distance_to(endPos)
+	var duration : float = distance / speed
+	
+	if customCurve == true:
+		newTween.tween_property(nodeToMove, "offset_transform_position", Vector2.ZERO, duration).set_custom_interpolator(_tween_curve)
+	else:
+		newTween.tween_property(nodeToMove, "offset_transform_position", Vector2.ZERO, duration).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+	
+	return newTween
 
 func _exit_to(sideToExitTo : ScreenSide, nodeToMove : Control, speed : float = 300, delay : float = 0) -> Tween:
 	var endPos : Vector2 = _get_outside_screen_pos(sideToExitTo, nodeToMove)
@@ -36,6 +55,21 @@ func _exit_to(sideToExitTo : ScreenSide, nodeToMove : Control, speed : float = 3
 	var duration : float = distance / speed
 	
 	newTween.tween_property(nodeToMove, "position", endPos, duration).set_custom_interpolator(_tween_curve)
+	
+	return newTween
+func _offset_exit_to(sideToExitTo : ScreenSide, nodeToMove : Control, speed : float = 300, delay : float = 0) -> Tween:
+	nodeToMove.offset_transform_enabled = true
+	var endPos : Vector2 = _get_outside_screen_pos(sideToExitTo, nodeToMove)
+	
+	var newTween : Tween = create_tween()
+	
+	if delay > 0:
+		newTween.tween_interval(delay)
+	
+	var distance : float = nodeToMove.position.distance_to(endPos)
+	var duration : float = distance / speed
+	
+	newTween.tween_property(nodeToMove, "offset_transform_position", endPos, duration).set_custom_interpolator(_tween_curve)
 	
 	return newTween
 

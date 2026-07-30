@@ -21,6 +21,7 @@ config/icon="res://0_Art/icon.svg"
 
 Settings="*uid://5hv8ri514r8s"
 Keybinds="*uid://di6iyetqfed4w"
+SceneRouter="*uid://cqvty17xseul3"
 TweenManager="*uid://b1iu4e1oxr4ai"
 GameManager="*uid://bg4p4yra4o8cl"
 Background="*uid://bgqrvtpns3fw7"
