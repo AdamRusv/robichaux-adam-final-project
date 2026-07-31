@@ -72,6 +72,7 @@ func _click():
 	newTween.tween_property(clickAnywhereText, "position", endPosBottom, 1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	
 	await newTween.finished
+	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_packed(gameSelectionScreen)
 var gameSelectionScreen : PackedScene = preload("res://1_Scenes/0_Screens/game selection.tscn")
 

@@ -18,8 +18,30 @@ shader_parameter/borderWidthPixels = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mxt74"]
 atlas = ExtResource("4_kfm0n")
+region = Rect2(0, 0, 16, 16)
 
-[node name="Game Selection" type="Control" unique_id=623322757 node_paths=PackedStringArray("leftPanelParent")]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kfm0n"]
+load_path = "res://.godot/imported/gamemode icons-Sheet.png-cf72ec0750bc2d0b83f65c9f410d1cee.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncoyp"]
+atlas = SubResource("CompressedTexture2D_kfm0n")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ncoyp"]
+load_path = "res://.godot/imported/gamemode icons-Sheet.png-cf72ec0750bc2d0b83f65c9f410d1cee.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdwtf"]
+atlas = SubResource("CompressedTexture2D_ncoyp")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hhyvw"]
+load_path = "res://.godot/imported/gamemode icons-Sheet.png-cf72ec0750bc2d0b83f65c9f410d1cee.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cya4l"]
+atlas = SubResource("CompressedTexture2D_hhyvw")
+region = Rect2(32, 0, 16, 16)
+
+[node name="Game Selection" type="Control" unique_id=623322757 node_paths=PackedStringArray("introPanelParents", "optionButtons", "optionMenuParent")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,7 +49,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_g1cih")
-leftPanelParent = NodePath("HBoxContainer/left panel")
+introPanelParents = [NodePath("HBoxContainer/left panel/gamemodes holder"), NodePath("HBoxContainer/left panel/options"), NodePath("HBoxContainer/right panel"), NodePath("HBoxContainer/left panel/quit")]
+optionButtons = [NodePath("HBoxContainer/left panel/gamemodes holder/VBoxContainer/vs cpu/Button Holder/Button"), NodePath("HBoxContainer/left panel/gamemodes holder/VBoxContainer/local pvp/Button Holder/Button"), NodePath("HBoxContainer/left panel/gamemodes holder/VBoxContainer/online pvp/Button Holder/Button")]
+optionMenuParent = [NodePath("HBoxContainer/right panel")]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=229093552]
 layout_mode = 1
@@ -40,7 +64,6 @@ theme_override_constants/separation = 0
 alignment = 1
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer" unique_id=1209302073]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxEmpty_tewlh")
@@ -55,12 +78,12 @@ layout_mode = 2
 theme_override_constants/separation = 4
 theme_override_styles/separator = SubResource("StyleBoxEmpty_dkl8o")
 
-[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer/left panel" unique_id=803557871]
+[node name="gamemodes holder" type="MarginContainer" parent="HBoxContainer/left panel" unique_id=803557871]
 custom_minimum_size = Vector2(94, 0)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/left panel/MarginContainer3" unique_id=1370524162]
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/left panel/gamemodes holder" unique_id=1370524162]
 self_modulate = Color(1, 0, 1, 1)
 material = SubResource("ShaderMaterial_tewlh")
 layout_mode = 2
@@ -70,28 +93,51 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/left panel/MarginContainer3" unique_id=2091516092]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/left panel/gamemodes holder" unique_id=2091516092]
 layout_mode = 2
+theme_override_constants/separation = 1
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/left panel/MarginContainer3/VBoxContainer" unique_id=1799457383]
+[node name="vs cpu" type="MarginContainer" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer" unique_id=797462526]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/vs cpu" unique_id=734006301]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/vs cpu" unique_id=952882468]
+layout_mode = 2
+theme_override_constants/margin_left = -1
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/vs cpu/MarginContainer" unique_id=1095865199]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/vs cpu/MarginContainer/HBoxContainer" unique_id=1799457383]
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 offset_transform_enabled = true
 offset_transform_scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_mxt74")
-stretch_mode = 2
+stretch_mode = 3
 
-[node name="Options" type="MarginContainer" parent="HBoxContainer/left panel/MarginContainer3/VBoxContainer" unique_id=1327783097]
+[node name="text holder" type="MarginContainer" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/vs cpu/MarginContainer/HBoxContainer" unique_id=1327783097]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 6
-theme_override_constants/margin_bottom = 6
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/left panel/MarginContainer3/VBoxContainer/Options" unique_id=1879280150]
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/vs cpu/MarginContainer/HBoxContainer/text holder" unique_id=1879280150]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -106,10 +152,181 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/left panel" unique_id=1327782003]
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/vs cpu/MarginContainer/HBoxContainer" unique_id=413401192]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_ncoyp")
+stretch_mode = 3
+
+[node name="Button Holder" type="Control" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/vs cpu" unique_id=2073478000]
 layout_mode = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/left panel/MarginContainer" unique_id=1055907985]
+[node name="Button" type="Button" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/vs cpu/Button Holder" unique_id=1832199589]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 70.0
+offset_bottom = 29.0
+focus_mode = 0
+flat = true
+
+[node name="local pvp" type="MarginContainer" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer" unique_id=357684956]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/local pvp" unique_id=1460866981]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/local pvp" unique_id=1246660456]
+layout_mode = 2
+theme_override_constants/margin_left = -1
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/local pvp/MarginContainer" unique_id=744427475]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/local pvp/MarginContainer/HBoxContainer" unique_id=1123637987]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_mxt74")
+stretch_mode = 3
+
+[node name="text holder" type="MarginContainer" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/local pvp/MarginContainer/HBoxContainer" unique_id=1082393719]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/local pvp/MarginContainer/HBoxContainer/text holder" unique_id=1737140199]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "vs"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/local pvp/MarginContainer/HBoxContainer" unique_id=1270215650]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_mdwtf")
+stretch_mode = 3
+
+[node name="Button Holder" type="Control" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/local pvp" unique_id=147343699]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/local pvp/Button Holder" unique_id=1027093844]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 70.0
+offset_bottom = 29.0
+focus_mode = 0
+flat = true
+
+[node name="online pvp" type="MarginContainer" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer" unique_id=743168222]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/online pvp" unique_id=1218890159]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/online pvp" unique_id=1834432368]
+layout_mode = 2
+theme_override_constants/margin_left = -1
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/online pvp/MarginContainer" unique_id=2010816774]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/online pvp/MarginContainer/HBoxContainer" unique_id=209524253]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_mxt74")
+stretch_mode = 3
+
+[node name="text holder" type="MarginContainer" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/online pvp/MarginContainer/HBoxContainer" unique_id=169103359]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/online pvp/MarginContainer/HBoxContainer/text holder" unique_id=562267328]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "vs"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/online pvp/MarginContainer/HBoxContainer" unique_id=1541518220]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_cya4l")
+stretch_mode = 3
+
+[node name="Button Holder" type="Control" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/online pvp" unique_id=1953002509]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/online pvp/Button Holder" unique_id=94475471]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 70.0
+offset_bottom = 29.0
+focus_mode = 0
+flat = true
+
+[node name="options" type="MarginContainer" parent="HBoxContainer/left panel" unique_id=1327782003]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/left panel/options" unique_id=1055907985]
 self_modulate = Color(1, 0, 1, 1)
 material = SubResource("ShaderMaterial_tewlh")
 layout_mode = 2
@@ -119,7 +336,7 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="Options" type="MarginContainer" parent="HBoxContainer/left panel/MarginContainer" unique_id=1739220586]
+[node name="Options" type="MarginContainer" parent="HBoxContainer/left panel/options" unique_id=1739220586]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 8
@@ -127,7 +344,7 @@ theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 6
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/left panel/MarginContainer/Options" unique_id=43088368]
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/left panel/options/Options" unique_id=43088368]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -142,22 +359,22 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button Holder" type="Control" parent="HBoxContainer/left panel/MarginContainer/Options" unique_id=498664004]
+[node name="Button Holder" type="Control" parent="HBoxContainer/left panel/options/Options" unique_id=498664004]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="HBoxContainer/left panel/MarginContainer/Options/Button Holder" unique_id=516184688]
+[node name="Button" type="Button" parent="HBoxContainer/left panel/options/Options/Button Holder" unique_id=516184688]
 layout_mode = 0
-offset_left = 7.0
+offset_left = -4.0
 offset_top = -2.0
-offset_right = 53.0
-offset_bottom = 17.0
+offset_right = 82.0
+offset_bottom = 18.0
 focus_mode = 0
 flat = true
 
-[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/left panel" unique_id=316266561]
+[node name="quit" type="MarginContainer" parent="HBoxContainer/left panel" unique_id=316266561]
 layout_mode = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/left panel/MarginContainer2" unique_id=837912551]
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/left panel/quit" unique_id=837912551]
 self_modulate = Color(1, 0, 1, 1)
 material = SubResource("ShaderMaterial_tewlh")
 layout_mode = 2
@@ -167,7 +384,7 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="Options" type="MarginContainer" parent="HBoxContainer/left panel/MarginContainer2" unique_id=1598139213]
+[node name="Options" type="MarginContainer" parent="HBoxContainer/left panel/quit" unique_id=1598139213]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 8
@@ -175,7 +392,7 @@ theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/left panel/MarginContainer2/Options" unique_id=404074239]
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/left panel/quit/Options" unique_id=404074239]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -190,15 +407,15 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button Holder" type="Control" parent="HBoxContainer/left panel/MarginContainer2/Options" unique_id=1987244964]
+[node name="Button Holder" type="Control" parent="HBoxContainer/left panel/quit/Options" unique_id=1987244964]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="HBoxContainer/left panel/MarginContainer2/Options/Button Holder" unique_id=1025321213]
+[node name="Button" type="Button" parent="HBoxContainer/left panel/quit/Options/Button Holder" unique_id=1025321213]
 layout_mode = 0
-offset_left = 7.0
+offset_left = -4.0
 offset_top = -2.0
-offset_right = 53.0
-offset_bottom = 17.0
+offset_right = 82.0
+offset_bottom = 18.0
 focus_mode = 0
 flat = true
 
@@ -208,15 +425,14 @@ theme_override_constants/separation = 4
 theme_override_styles/separator = SubResource("StyleBoxEmpty_dkl8o")
 
 [node name="VSeparator3" type="VSeparator" parent="HBoxContainer" unique_id=1043647215]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 0
 theme_override_styles/separator = SubResource("StyleBoxEmpty_tewlh")
 
 [node name="right panel" type="MarginContainer" parent="HBoxContainer" unique_id=1045316809]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+offset_transform_enabled = true
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_bottom = 4
 
@@ -231,7 +447,6 @@ patch_margin_right = 5
 patch_margin_bottom = 5
 
 [node name="VSeparator2" type="VSeparator" parent="HBoxContainer" unique_id=616268720]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxEmpty_tewlh")
