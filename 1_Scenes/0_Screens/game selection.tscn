@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dmi8vx7jq1yky" path="res://2_Scripts/2_Independent/game selection screen manager.gd" id="1_g1cih"]
 [ext_resource type="Texture2D" uid="uid://cj7uatshnc4ta" path="res://0_Art/square.png" id="2_pjjm5"]
 [ext_resource type="Theme" uid="uid://bo13vq025j5e1" path="res://6_Other/main text font theme.tres" id="3_pjjm5"]
-[ext_resource type="Texture2D" uid="uid://nosnfk3xwo05" path="res://0_Art/gamemode icons-Sheet.png" id="4_kfm0n"]
+[ext_resource type="Texture2D" uid="uid://b5hlgyh3hj2wn" path="res://0_Art/arrow.png" id="5_kfm0n"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tewlh"]
 
@@ -16,32 +16,9 @@ shader_parameter/borderEnabled = true
 shader_parameter/borderColor = Color(0, 0, 0, 1)
 shader_parameter/borderWidthPixels = 1.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mxt74"]
-atlas = ExtResource("4_kfm0n")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mxt74"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kfm0n"]
-load_path = "res://.godot/imported/gamemode icons-Sheet.png-cf72ec0750bc2d0b83f65c9f410d1cee.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ncoyp"]
-atlas = SubResource("CompressedTexture2D_kfm0n")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ncoyp"]
-load_path = "res://.godot/imported/gamemode icons-Sheet.png-cf72ec0750bc2d0b83f65c9f410d1cee.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mdwtf"]
-atlas = SubResource("CompressedTexture2D_ncoyp")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hhyvw"]
-load_path = "res://.godot/imported/gamemode icons-Sheet.png-cf72ec0750bc2d0b83f65c9f410d1cee.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cya4l"]
-atlas = SubResource("CompressedTexture2D_hhyvw")
-region = Rect2(32, 0, 16, 16)
-
-[node name="Game Selection" type="Control" unique_id=623322757 node_paths=PackedStringArray("introPanelParents", "optionButtons", "optionMenuParent")]
+[node name="Game Selection" type="Control" unique_id=623322757 node_paths=PackedStringArray("introPanelParents", "optionButtons", "optionButtonBackgrounds", "optionTexts", "firstPanel", "soloPanelParent", "campaignButton", "campaignText", "customCPUButton", "customCPUText", "customCPUPanelParent", "cpuButton", "cpuText", "mapCPUButton", "mapCPUText", "deckCPUButton", "deckCPUText", "playCPUButton", "playCPUText", "returnCustomCPUButton", "returnCustomCPUArrow", "localPanelParent", "mapLocalButton", "mapLocalText", "decksLocalButton", "decksLocalText", "playLocalButton", "playLocalText", "onlinePanelParent", "steamLinkButton", "steamLinkText")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,7 +28,35 @@ grow_vertical = 2
 script = ExtResource("1_g1cih")
 introPanelParents = [NodePath("HBoxContainer/left panel/gamemodes holder"), NodePath("HBoxContainer/left panel/options"), NodePath("HBoxContainer/right panel"), NodePath("HBoxContainer/left panel/quit")]
 optionButtons = [NodePath("HBoxContainer/left panel/gamemodes holder/VBoxContainer/vs cpu/Button Holder/Button"), NodePath("HBoxContainer/left panel/gamemodes holder/VBoxContainer/local pvp/Button Holder/Button"), NodePath("HBoxContainer/left panel/gamemodes holder/VBoxContainer/online pvp/Button Holder/Button")]
-optionMenuParent = [NodePath("HBoxContainer/right panel")]
+optionButtonBackgrounds = [NodePath("HBoxContainer/left panel/gamemodes holder/VBoxContainer/vs cpu/NinePatchRect"), NodePath("HBoxContainer/left panel/gamemodes holder/VBoxContainer/local pvp/NinePatchRect"), NodePath("HBoxContainer/left panel/gamemodes holder/VBoxContainer/online pvp/NinePatchRect")]
+optionTexts = [NodePath("HBoxContainer/left panel/gamemodes holder/VBoxContainer/vs cpu/MarginContainer/HBoxContainer/text holder/RichTextLabel"), NodePath("HBoxContainer/left panel/gamemodes holder/VBoxContainer/local pvp/MarginContainer/HBoxContainer/text holder/RichTextLabel"), NodePath("HBoxContainer/left panel/gamemodes holder/VBoxContainer/online pvp/MarginContainer/HBoxContainer/text holder/RichTextLabel")]
+firstPanel = NodePath("HBoxContainer/right panel")
+soloPanelParent = NodePath("Solo Panel (Select Mode)")
+campaignButton = NodePath("Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/campaign/Button Holder/Button")
+campaignText = NodePath("Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/campaign/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+customCPUButton = NodePath("Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/custom vs cpu/Button Holder/Button")
+customCPUText = NodePath("Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/custom vs cpu/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+customCPUPanelParent = NodePath("Solo Panel (Custom vs CPU)")
+cpuButton = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Difficulty and color/difficulty/Button Holder/Button")
+cpuText = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Difficulty and color/difficulty/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+mapCPUButton = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Map/map/Button Holder/Button")
+mapCPUText = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Map/map/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+deckCPUButton = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Decks/decks/Button Holder/Button")
+deckCPUText = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Decks/decks/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+playCPUButton = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Play/Button Holder/Button")
+playCPUText = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Play/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+returnCustomCPUButton = NodePath("Solo Panel (Custom vs CPU)/return/Button Holder/Button")
+returnCustomCPUArrow = NodePath("Solo Panel (Custom vs CPU)/return/MarginContainer/HBoxContainer/text holder/TextureRect")
+localPanelParent = NodePath("Local Panel (Custom)")
+mapLocalButton = NodePath("Local Panel (Custom)/modes/VBoxContainer/Map/map/Button Holder/Button")
+mapLocalText = NodePath("Local Panel (Custom)/modes/VBoxContainer/Map/map/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+decksLocalButton = NodePath("Local Panel (Custom)/modes/VBoxContainer/Decks/decks/Button Holder/Button")
+decksLocalText = NodePath("Local Panel (Custom)/modes/VBoxContainer/Decks/decks/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+playLocalButton = NodePath("Local Panel (Custom)/modes/VBoxContainer/Play/Button Holder/Button")
+playLocalText = NodePath("Local Panel (Custom)/modes/VBoxContainer/Play/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+onlinePanelParent = NodePath("Online Panel (Steam Link)")
+steamLinkButton = NodePath("Online Panel (Steam Link)/modes/VBoxContainer/campaign/Button Holder/Button")
+steamLinkText = NodePath("Online Panel (Steam Link)/modes/VBoxContainer/campaign/MarginContainer/HBoxContainer/text holder/RichTextLabel")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=229093552]
 layout_mode = 1
@@ -124,15 +129,6 @@ layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/vs cpu/MarginContainer/HBoxContainer" unique_id=1799457383]
-self_modulate = Color(0, 0, 0, 1)
-layout_mode = 2
-size_flags_horizontal = 4
-offset_transform_enabled = true
-offset_transform_scale = Vector2(2, 2)
-texture = SubResource("AtlasTexture_mxt74")
-stretch_mode = 3
-
 [node name="text holder" type="MarginContainer" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/vs cpu/MarginContainer/HBoxContainer" unique_id=1327783097]
 layout_mode = 2
 mouse_filter = 2
@@ -145,21 +141,12 @@ size_flags_vertical = 4
 mouse_filter = 2
 theme = ExtResource("3_pjjm5")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-text = "vs"
+text = "Solo"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/vs cpu/MarginContainer/HBoxContainer" unique_id=413401192]
-self_modulate = Color(0, 0, 0, 1)
-layout_mode = 2
-size_flags_horizontal = 4
-offset_transform_enabled = true
-offset_transform_scale = Vector2(2, 2)
-texture = SubResource("AtlasTexture_ncoyp")
-stretch_mode = 3
 
 [node name="Button Holder" type="Control" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/vs cpu" unique_id=2073478000]
 layout_mode = 2
@@ -199,15 +186,6 @@ layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/local pvp/MarginContainer/HBoxContainer" unique_id=1123637987]
-self_modulate = Color(0, 0, 0, 1)
-layout_mode = 2
-size_flags_horizontal = 4
-offset_transform_enabled = true
-offset_transform_scale = Vector2(2, 2)
-texture = SubResource("AtlasTexture_mxt74")
-stretch_mode = 3
-
 [node name="text holder" type="MarginContainer" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/local pvp/MarginContainer/HBoxContainer" unique_id=1082393719]
 layout_mode = 2
 mouse_filter = 2
@@ -220,21 +198,12 @@ size_flags_vertical = 4
 mouse_filter = 2
 theme = ExtResource("3_pjjm5")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-text = "vs"
+text = "Local"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/local pvp/MarginContainer/HBoxContainer" unique_id=1270215650]
-self_modulate = Color(0, 0, 0, 1)
-layout_mode = 2
-size_flags_horizontal = 4
-offset_transform_enabled = true
-offset_transform_scale = Vector2(2, 2)
-texture = SubResource("AtlasTexture_mdwtf")
-stretch_mode = 3
 
 [node name="Button Holder" type="Control" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/local pvp" unique_id=147343699]
 layout_mode = 2
@@ -274,15 +243,6 @@ layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/online pvp/MarginContainer/HBoxContainer" unique_id=209524253]
-self_modulate = Color(0, 0, 0, 1)
-layout_mode = 2
-size_flags_horizontal = 4
-offset_transform_enabled = true
-offset_transform_scale = Vector2(2, 2)
-texture = SubResource("AtlasTexture_mxt74")
-stretch_mode = 3
-
 [node name="text holder" type="MarginContainer" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/online pvp/MarginContainer/HBoxContainer" unique_id=169103359]
 layout_mode = 2
 mouse_filter = 2
@@ -295,21 +255,12 @@ size_flags_vertical = 4
 mouse_filter = 2
 theme = ExtResource("3_pjjm5")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-text = "vs"
+text = "Online"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/online pvp/MarginContainer/HBoxContainer" unique_id=1541518220]
-self_modulate = Color(0, 0, 0, 1)
-layout_mode = 2
-size_flags_horizontal = 4
-offset_transform_enabled = true
-offset_transform_scale = Vector2(2, 2)
-texture = SubResource("AtlasTexture_cya4l")
-stretch_mode = 3
 
 [node name="Button Holder" type="Control" parent="HBoxContainer/left panel/gamemodes holder/VBoxContainer/online pvp" unique_id=1953002509]
 layout_mode = 2
@@ -432,7 +383,6 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_tewlh")
 [node name="right panel" type="MarginContainer" parent="HBoxContainer" unique_id=1045316809]
 layout_mode = 2
 size_flags_horizontal = 3
-offset_transform_enabled = true
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_bottom = 4
 
@@ -446,7 +396,997 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
+[node name="Options" type="MarginContainer" parent="HBoxContainer/right panel" unique_id=1090066252]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/right panel/Options" unique_id=289841895]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Choose a gamemode!
+
+<----"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="VSeparator2" type="VSeparator" parent="HBoxContainer" unique_id=616268720]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxEmpty_tewlh")
+
+[node name="Solo Panel (Select Mode)" type="MarginContainer" parent="." unique_id=1706358107]
+visible = false
+layout_mode = 0
+offset_left = 100.0
+offset_right = 314.0
+offset_bottom = 180.0
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_visual_only = false
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Solo Panel (Select Mode)" unique_id=787226113]
+self_modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="modes" type="MarginContainer" parent="Solo Panel (Select Mode)" unique_id=1609030774]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Solo Panel (Select Mode)/modes" unique_id=998446541]
+layout_mode = 2
+theme_override_constants/separation = 17
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Solo Panel (Select Mode)/modes/VBoxContainer" unique_id=1339482656]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Choose mode:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Solo Panel (Select Mode)/modes/VBoxContainer" unique_id=40367549]
+layout_mode = 2
+
+[node name="campaign" type="MarginContainer" parent="Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer" unique_id=2135259671]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/campaign" unique_id=1160791592]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/campaign" unique_id=2093051390]
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/campaign/MarginContainer" unique_id=1132502812]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/campaign/MarginContainer/HBoxContainer" unique_id=1897618600]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/campaign/MarginContainer/HBoxContainer/text holder" unique_id=1954974134]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Campaign"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="Control" parent="Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/campaign" unique_id=1224182536]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/campaign/Button Holder" unique_id=6952421]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 71.0
+offset_bottom = 29.0
+focus_mode = 0
+flat = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer" unique_id=1910887616]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "or"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="custom vs cpu" type="MarginContainer" parent="Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer" unique_id=1799580958]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/custom vs cpu" unique_id=1314424755]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/custom vs cpu" unique_id=1123365538]
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/custom vs cpu/MarginContainer" unique_id=1989877081]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/custom vs cpu/MarginContainer/HBoxContainer" unique_id=112118190]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/custom vs cpu/MarginContainer/HBoxContainer/text holder" unique_id=538396030]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Custom vs Cpu"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="Control" parent="Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/custom vs cpu" unique_id=38549943]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/custom vs cpu/Button Holder" unique_id=1972678632]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 103.0
+offset_bottom = 29.0
+focus_mode = 0
+flat = true
+
+[node name="Solo Panel (Custom vs CPU)" type="MarginContainer" parent="." unique_id=23328340]
+visible = false
+layout_mode = 0
+offset_left = 100.0
+offset_right = 314.0
+offset_bottom = 180.0
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_visual_only = false
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Solo Panel (Custom vs CPU)" unique_id=863335340]
+self_modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="modes" type="MarginContainer" parent="Solo Panel (Custom vs CPU)" unique_id=1188417266]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Solo Panel (Custom vs CPU)/modes" unique_id=1866416933]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer" unique_id=829832520]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_mxt74")
+
+[node name="Difficulty and color" type="HBoxContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer" unique_id=726348337]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Difficulty and color" unique_id=1657975617]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "CPU"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="difficulty" type="MarginContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Difficulty and color" unique_id=1689969954]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Difficulty and color/difficulty" unique_id=1081595231]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Difficulty and color/difficulty" unique_id=700752532]
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Difficulty and color/difficulty/MarginContainer" unique_id=1962773599]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Difficulty and color/difficulty/MarginContainer/HBoxContainer" unique_id=869009330]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Difficulty and color/difficulty/MarginContainer/HBoxContainer/text holder" unique_id=1580272639]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Easy / Blue"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="MarginContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Difficulty and color/difficulty" unique_id=792564192]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Difficulty and color/difficulty/Button Holder" unique_id=1323078821]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="Map" type="HBoxContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer" unique_id=1374461164]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Map" unique_id=1451483600]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Map"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="map" type="MarginContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Map" unique_id=1123112202]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Map/map" unique_id=1716194418]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Map/map" unique_id=1562735937]
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Map/map/MarginContainer" unique_id=1710877535]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Map/map/MarginContainer/HBoxContainer" unique_id=443938136]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Map/map/MarginContainer/HBoxContainer/text holder" unique_id=1642109191]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "10 x 10 / 20% / false"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="MarginContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Map/map" unique_id=127454921]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Map/map/Button Holder" unique_id=1999624939]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="Decks" type="HBoxContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer" unique_id=106161143]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Decks" unique_id=88250032]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Decks"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="decks" type="MarginContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Decks" unique_id=1680060335]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Decks/decks" unique_id=1275059303]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Decks/decks" unique_id=976251156]
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Decks/decks/MarginContainer" unique_id=1870138153]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Decks/decks/MarginContainer/HBoxContainer" unique_id=1357909405]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Decks/decks/MarginContainer/HBoxContainer/text holder" unique_id=2005072395]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Standard / Standard"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="MarginContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Decks/decks" unique_id=1630642493]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Decks/decks/Button Holder" unique_id=1016286091]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="HSeparator" type="HSeparator" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer" unique_id=576861696]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_mxt74")
+
+[node name="Play" type="MarginContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer" unique_id=572242837]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Play" unique_id=227139980]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Play" unique_id=1011443910]
+custom_minimum_size = Vector2(135, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Play/MarginContainer" unique_id=1164727945]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Play/MarginContainer/HBoxContainer" unique_id=723487053]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Play/MarginContainer/HBoxContainer/text holder" unique_id=849679980]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Play!"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="MarginContainer" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Play" unique_id=964095819]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer/Play/Button Holder" unique_id=1524118954]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="HSeparator3" type="HSeparator" parent="Solo Panel (Custom vs CPU)/modes/VBoxContainer" unique_id=1679076734]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_mxt74")
+
+[node name="return" type="MarginContainer" parent="Solo Panel (Custom vs CPU)" unique_id=653533684]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Solo Panel (Custom vs CPU)/return" unique_id=1741286619]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Solo Panel (Custom vs CPU)/return" unique_id=463781566]
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Solo Panel (Custom vs CPU)/return/MarginContainer" unique_id=1036875010]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="Solo Panel (Custom vs CPU)/return/MarginContainer/HBoxContainer" unique_id=973822557]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = -4
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_right = -5
+theme_override_constants/margin_bottom = -4
+
+[node name="TextureRect" type="TextureRect" parent="Solo Panel (Custom vs CPU)/return/MarginContainer/HBoxContainer/text holder" unique_id=658161353]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_rotation = -1.5707964
+texture = ExtResource("5_kfm0n")
+stretch_mode = 3
+
+[node name="Button Holder" type="MarginContainer" parent="Solo Panel (Custom vs CPU)/return" unique_id=249431947]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="Solo Panel (Custom vs CPU)/return/Button Holder" unique_id=2119523174]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="Local Panel (Custom)" type="MarginContainer" parent="." unique_id=790460850]
+visible = false
+layout_mode = 0
+offset_left = 100.0
+offset_right = 314.0
+offset_bottom = 180.0
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_visual_only = false
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Local Panel (Custom)" unique_id=1493977180]
+self_modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="modes" type="MarginContainer" parent="Local Panel (Custom)" unique_id=959665571]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Local Panel (Custom)/modes" unique_id=1713337663]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Local Panel (Custom)/modes/VBoxContainer" unique_id=1693193058]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.6
+theme_override_styles/separator = SubResource("StyleBoxEmpty_mxt74")
+
+[node name="Map" type="HBoxContainer" parent="Local Panel (Custom)/modes/VBoxContainer" unique_id=1930686759]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Local Panel (Custom)/modes/VBoxContainer/Map" unique_id=1732385678]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Map"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="map" type="MarginContainer" parent="Local Panel (Custom)/modes/VBoxContainer/Map" unique_id=1359508430]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Local Panel (Custom)/modes/VBoxContainer/Map/map" unique_id=1068924357]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Local Panel (Custom)/modes/VBoxContainer/Map/map" unique_id=659535274]
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Local Panel (Custom)/modes/VBoxContainer/Map/map/MarginContainer" unique_id=970153092]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="Local Panel (Custom)/modes/VBoxContainer/Map/map/MarginContainer/HBoxContainer" unique_id=825284849]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Local Panel (Custom)/modes/VBoxContainer/Map/map/MarginContainer/HBoxContainer/text holder" unique_id=2057759414]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "10 x 10 / 20% / false"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="MarginContainer" parent="Local Panel (Custom)/modes/VBoxContainer/Map/map" unique_id=974702362]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="Local Panel (Custom)/modes/VBoxContainer/Map/map/Button Holder" unique_id=43069962]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="Decks" type="HBoxContainer" parent="Local Panel (Custom)/modes/VBoxContainer" unique_id=1367003800]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Local Panel (Custom)/modes/VBoxContainer/Decks" unique_id=618098715]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Decks"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="decks" type="MarginContainer" parent="Local Panel (Custom)/modes/VBoxContainer/Decks" unique_id=2006277552]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Local Panel (Custom)/modes/VBoxContainer/Decks/decks" unique_id=670180951]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Local Panel (Custom)/modes/VBoxContainer/Decks/decks" unique_id=2080732893]
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Local Panel (Custom)/modes/VBoxContainer/Decks/decks/MarginContainer" unique_id=112777618]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="Local Panel (Custom)/modes/VBoxContainer/Decks/decks/MarginContainer/HBoxContainer" unique_id=1324878778]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Local Panel (Custom)/modes/VBoxContainer/Decks/decks/MarginContainer/HBoxContainer/text holder" unique_id=2031781286]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Standard / Standard"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="MarginContainer" parent="Local Panel (Custom)/modes/VBoxContainer/Decks/decks" unique_id=1879251103]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="Local Panel (Custom)/modes/VBoxContainer/Decks/decks/Button Holder" unique_id=30010003]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="HSeparator" type="HSeparator" parent="Local Panel (Custom)/modes/VBoxContainer" unique_id=1424500124]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_mxt74")
+
+[node name="Play" type="MarginContainer" parent="Local Panel (Custom)/modes/VBoxContainer" unique_id=1030347894]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Local Panel (Custom)/modes/VBoxContainer/Play" unique_id=987775883]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Local Panel (Custom)/modes/VBoxContainer/Play" unique_id=180355613]
+custom_minimum_size = Vector2(135, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Local Panel (Custom)/modes/VBoxContainer/Play/MarginContainer" unique_id=1807284016]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="Local Panel (Custom)/modes/VBoxContainer/Play/MarginContainer/HBoxContainer" unique_id=1029022018]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Local Panel (Custom)/modes/VBoxContainer/Play/MarginContainer/HBoxContainer/text holder" unique_id=1645356097]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Play!"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="MarginContainer" parent="Local Panel (Custom)/modes/VBoxContainer/Play" unique_id=2126327855]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="Local Panel (Custom)/modes/VBoxContainer/Play/Button Holder" unique_id=788904393]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="HSeparator3" type="HSeparator" parent="Local Panel (Custom)/modes/VBoxContainer" unique_id=118134191]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_mxt74")
+
+[node name="Online Panel (Steam Link)" type="MarginContainer" parent="." unique_id=128366271]
+visible = false
+layout_mode = 0
+offset_left = 100.0
+offset_right = 314.0
+offset_bottom = 180.0
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_visual_only = false
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Online Panel (Steam Link)" unique_id=1784548229]
+self_modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="modes" type="MarginContainer" parent="Online Panel (Steam Link)" unique_id=1686891791]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Online Panel (Steam Link)/modes" unique_id=2080613028]
+layout_mode = 2
+theme_override_constants/separation = 17
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Online Panel (Steam Link)/modes/VBoxContainer" unique_id=446624895]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Only available 
+in Steam Version!"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="campaign" type="MarginContainer" parent="Online Panel (Steam Link)/modes/VBoxContainer" unique_id=1686907765]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Online Panel (Steam Link)/modes/VBoxContainer/campaign" unique_id=1955064067]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Online Panel (Steam Link)/modes/VBoxContainer/campaign" unique_id=1290728269]
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Online Panel (Steam Link)/modes/VBoxContainer/campaign/MarginContainer" unique_id=1846836602]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="Online Panel (Steam Link)/modes/VBoxContainer/campaign/MarginContainer/HBoxContainer" unique_id=685141538]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Online Panel (Steam Link)/modes/VBoxContainer/campaign/MarginContainer/HBoxContainer/text holder" unique_id=1081896348]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Copy Link!"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="Control" parent="Online Panel (Steam Link)/modes/VBoxContainer/campaign" unique_id=219102663]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Online Panel (Steam Link)/modes/VBoxContainer/campaign/Button Holder" unique_id=1810877345]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 74.0
+offset_bottom = 29.0
+focus_mode = 0
+flat = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=746827683]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=336670328]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.54901963)

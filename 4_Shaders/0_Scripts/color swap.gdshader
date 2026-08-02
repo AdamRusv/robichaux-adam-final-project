@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_nearest;
 
 // How many color pairs should be checked.
 uniform int colorCount : hint_range(0, 20, 1) = 1;

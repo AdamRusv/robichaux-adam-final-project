@@ -42,6 +42,7 @@ func _click():
 		return
 	
 	clicked = true
+	blinkTween.kill()
 	var flickerTime : float = 0.15
 	clickAnywhereText.visible = true
 	await get_tree().create_timer(flickerTime).timeout
@@ -96,9 +97,12 @@ func _oscillate(nodeToOscillate : Control):
 			currentTotalMovement -= 1
 			nodeToOscillate.position.y = initalPositionY + currentTotalMovement
 			await get_tree().create_timer(0.6).timeout
+var blinkTween : Tween
 func _blink(nodeToBlink : Control):
-	while clicked == false:
-		await get_tree().create_timer(0.7).timeout
-		nodeToBlink.visible = false
-		await get_tree().create_timer(0.7).timeout
-		nodeToBlink.visible = true
+	blinkTween = create_tween().set_loops()
+	blinkTween.tween_interval(0.7)
+	blinkTween.tween_callback(_set_blink.bind(nodeToBlink, false))
+	blinkTween.tween_interval(0.7)
+	blinkTween.tween_callback(_set_blink.bind(nodeToBlink, true))
+func _set_blink(nodeToBlink : Control, state : bool):
+	nodeToBlink.visible = state

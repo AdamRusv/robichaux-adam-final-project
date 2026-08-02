@@ -65,9 +65,9 @@ shader_parameter/gain = Vector3(1.04, 1.02, 1.05)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i53fj"]
 shader = ExtResource("2_uy6oh")
-shader_parameter/pixelsPerLine = 5.00000019
+shader_parameter/pixelsPerLine = 6.0000002375
 shader_parameter/lineStrength = 0.25
-shader_parameter/lineSharpness = 2.5
+shader_parameter/lineSharpness = 6.000000281740119
 shader_parameter/scrollSpeedPxPerSec = 0.0
 shader_parameter/affectBrightnessOnly = true
 
@@ -76,7 +76,7 @@ shader = ExtResource("3_i53fj")
 shader_parameter/warpStrength = 0.0550000026125
 shader_parameter/warpAnisoX = 0.10000000149012
 shader_parameter/warpAnisoY = 0.50000002049012
-shader_parameter/edgeFade = 0.030000001425
+shader_parameter/edgeFade = 0.010000000475
 
 [node name="Overlay" type="Control" unique_id=282746050]
 layout_mode = 3
@@ -152,7 +152,6 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="TV Warp" type="CanvasLayer" parent="." unique_id=114267018]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="TV Warp" unique_id=1069748715]
 material = SubResource("ShaderMaterial_tbbhu")
