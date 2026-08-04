@@ -1,4 +1,41 @@
-[gd_resource type="ShaderMaterial" format=3 uid="uid://beamboy1ru8kr"]
+[gd_scene format=3 uid="uid://bdql11ntxng1t"]
+
+[ext_resource type="Script" uid="uid://c5oabd81ebdfx" path="res://2_Scripts/2_Independent/popup menu manager.gd" id="1_1t8jv"]
+[ext_resource type="Script" uid="uid://dykfsmobkej5m" path="res://2_Scripts/2_Independent/cursor.gd" id="1_ab0v2"]
+[ext_resource type="Shader" uid="uid://b587mqqt48v4a" path="res://4_Shaders/0_Scripts/pixel border.gdshader" id="2_1t8jv"]
+[ext_resource type="Texture2D" uid="uid://cqvddfi21macg" path="res://0_Art/cursor-Sheet.png" id="3_wa6lx"]
+[ext_resource type="Shader" uid="uid://c312aei2gfqc0" path="res://4_Shaders/0_Scripts/drop shadow.gdshader" id="4_ntgw5"]
+[ext_resource type="Shader" uid="uid://dhw5u2cbng7lr" path="res://4_Shaders/0_Scripts/general pp.gdshader" id="5_6e454"]
+[ext_resource type="Shader" uid="uid://dpgmim6nexyy1" path="res://4_Shaders/0_Scripts/crt.gdshader" id="6_weulc"]
+[ext_resource type="Shader" uid="uid://conx1phadmjpy" path="res://4_Shaders/0_Scripts/tv warp.gdshader" id="7_yyptb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tnemt"]
+shader = ExtResource("2_1t8jv")
+shader_parameter/borderEnabled = true
+shader_parameter/borderColor = Color(0, 0.19607843, 0, 1)
+shader_parameter/borderWidthPixels = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1r6ij"]
+atlas = ExtResource("3_wa6lx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii050"]
+atlas = ExtResource("3_wa6lx")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_njpg2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1r6ij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii050")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Shader" id="Shader_3340x"]
 code = "shader_type canvas_item;
@@ -143,6 +180,11 @@ void fragment() {
 	vec4 screenColor = texture(SCREEN_TEXTURE, SCREEN_UV);
 	vec4 finalColor = screenColor;
 
+	if (finalColor == vec4(0, 0, 0, 1)){
+		COLOR = vec4(0);
+	}
+	else{
+
 	for (int i = 0; i < 17; i++) {
 		if (i >= colorCount) {
 			break;
@@ -165,15 +207,15 @@ void fragment() {
 	}
 
 	COLOR = finalColor;
-}"
+}}"
 
-[resource]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_24rav"]
 shader = SubResource("Shader_3340x")
 shader_parameter/colorCount = 17
 shader_parameter/originalBackgroundColor = Color(0, 1, 1, 1)
 shader_parameter/originalBackground2Color = Color(0.39215687, 1, 1, 1)
 shader_parameter/originalBackground3Color = Color(0.78431374, 1, 1, 1)
-shader_parameter/originalTextColor = Color(0, 0, 0, 1)
+shader_parameter/originalTextColor = Color(0, 0.19607843, 0, 1)
 shader_parameter/originalPrimaryPlayerOneColor = Color(0, 0, 1, 1)
 shader_parameter/originalBasePlayerOneColor = Color(0, 0, 0.8039216, 1)
 shader_parameter/originalDarkPlayerOneColor = Color(0, 0, 0.60784316, 1)
@@ -205,3 +247,155 @@ shader_parameter/secondaryPlayerColor = Color(0.8901961, 0.7529412, 0.32941177, 
 shader_parameter/uiOne = Color(0.33333334, 0.627451, 0.34509805, 1)
 shader_parameter/uiTwo = Color(0.11764706, 0.45490196, 0.3254902, 1)
 shader_parameter/tolerance = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1r6ij"]
+shader = ExtResource("4_ntgw5")
+shader_parameter/targetColor = Color(0.92156863, 0.9254902, 0.8627451, 1)
+shader_parameter/shadowColor = Color(0, 0, 0, 0.27450982)
+shader_parameter/colorTolerance = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbbhu"]
+shader = ExtResource("7_yyptb")
+shader_parameter/warpStrength = 0.0550000026125
+shader_parameter/warpAnisoX = 0.10000000149012
+shader_parameter/warpAnisoY = 0.50000002049012
+shader_parameter/edgeFade = 0.010000000475
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uy6oh"]
+shader = ExtResource("5_6e454")
+shader_parameter/enableVignette = true
+shader_parameter/enableBloom = true
+shader_parameter/enableGrain = false
+shader_parameter/enableChromAb = false
+shader_parameter/enableColorGrade = true
+shader_parameter/vignetteRadius = 0.650000030875
+shader_parameter/vignetteSoftness = 0.6000000285
+shader_parameter/vignetteStrength = 0.550000026125
+shader_parameter/bloomStrength = 0.2
+shader_parameter/bloomMipLevel = 3.5
+shader_parameter/grainAmount = 0.035
+shader_parameter/grainSpeed = 1.5
+shader_parameter/grainScale = 1.75
+shader_parameter/abAmount = 0.65
+shader_parameter/lift = Vector3(0.02, 0.01, 0.03)
+shader_parameter/gamma = Vector3(1, 1, 1)
+shader_parameter/gain = Vector3(1.04, 1.02, 1.05)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i53fj"]
+shader = ExtResource("6_weulc")
+shader_parameter/pixelsPerLine = 6.0000002375
+shader_parameter/lineStrength = 0.25
+shader_parameter/lineSharpness = 6.000000281740119
+shader_parameter/scrollSpeedPxPerSec = 0.0
+shader_parameter/affectBrightnessOnly = true
+
+[node name="Popup Menu" type="Window" unique_id=2030675433 node_paths=PackedStringArray("darkBackground")]
+disable_3d = true
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+oversampling_override = 1.0
+size = Vector2i(320, 180)
+borderless = true
+transparent = true
+content_scale_size = Vector2i(320, 180)
+content_scale_mode = 1
+content_scale_aspect = 1
+content_scale_stretch = 1
+script = ExtResource("1_1t8jv")
+darkBackground = NodePath("CanvasLayer")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1335425618]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1807058444]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.54901963)
+
+[node name="Overlay" type="Control" parent="." unique_id=1486997103]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Camera2D" type="Camera2D" parent="Overlay" unique_id=259187111]
+position = Vector2(160, 90)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Overlay" unique_id=221858004]
+
+[node name="Cursor" type="Control" parent="Overlay/CanvasLayer" unique_id=1844022354 node_paths=PackedStringArray("imageNode")]
+z_index = 4096
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("1_ab0v2")
+imageNode = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Overlay/CanvasLayer/Cursor" unique_id=1965023855]
+material = SubResource("ShaderMaterial_tnemt")
+position = Vector2(7, 7)
+sprite_frames = SubResource("SpriteFrames_njpg2")
+
+[node name="Color Swap" type="CanvasLayer" parent="Overlay" unique_id=254792519]
+
+[node name="ColorRect" type="ColorRect" parent="Overlay/Color Swap" unique_id=1317041920]
+material = SubResource("ShaderMaterial_24rav")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="drop shadow" type="CanvasLayer" parent="Overlay" unique_id=1162812256]
+
+[node name="ColorRect" type="ColorRect" parent="Overlay/drop shadow" unique_id=41113539]
+material = SubResource("ShaderMaterial_1r6ij")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TV Warp" type="CanvasLayer" parent="Overlay" unique_id=1004237867]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Overlay/TV Warp" unique_id=1958814072]
+material = SubResource("ShaderMaterial_tbbhu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PPF" type="CanvasLayer" parent="Overlay" unique_id=1600544915]
+
+[node name="ColorRect" type="ColorRect" parent="Overlay/PPF" unique_id=1972807867]
+material = SubResource("ShaderMaterial_uy6oh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CRT" type="CanvasLayer" parent="Overlay" unique_id=1743615532]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Overlay/CRT" unique_id=1135743387]
+material = SubResource("ShaderMaterial_i53fj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

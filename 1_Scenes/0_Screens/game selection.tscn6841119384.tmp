@@ -26,7 +26,7 @@ shader_parameter/borderWidthPixels = 1.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ncoyp"]
 
-[node name="Game Selection" type="Control" unique_id=623322757 node_paths=PackedStringArray("introPanelParents", "optionButtons", "optionButtonBackgrounds", "optionTexts", "firstPanel", "soloPanelParent", "campaignButton", "campaignText", "customCPUButton", "customCPUText", "customCPUPanelParent", "cpuButton", "cpuText", "mapCPUButton", "mapCPUText", "deckCPUButton", "deckCPUText", "playCPUButton", "playCPUText", "returnCustomCPUButton", "returnCustomCPUArrow", "cpuDifficultyPopupMenuParent", "cpuDifficultyPopupDifficultyButton", "cpuDifficultyPopupDifficultyText", "cpuDifficultyPopupColorButton", "cpuDifficultyPopupColorText", "cpuDifficultyPopupApplyButton", "cpuDifficultyPopupApplyText", "cpuDifficultyPopupReturnButton", "cpuDifficultyPopupReturnTexture", "localPanelParent", "mapLocalButton", "mapLocalText", "decksLocalButton", "decksLocalText", "playLocalButton", "playLocalText", "onlinePanelParent", "steamLinkButton", "steamLinkText")]
+[node name="Game Selection" type="Control" unique_id=623322757 node_paths=PackedStringArray("introPanelParents", "optionButtons", "optionButtonBackgrounds", "optionTexts", "firstPanel", "soloPanelParent", "campaignButton", "campaignText", "customCPUButton", "customCPUText", "customCPUPanelParent", "cpuButton", "cpuText", "cpuDifficultyPopupMenuParent", "mapCPUButton", "mapCPUText", "deckCPUButton", "deckCPUText", "playCPUButton", "playCPUText", "returnCustomCPUButton", "returnCustomCPUArrow", "localPanelParent", "mapLocalButton", "mapLocalText", "decksLocalButton", "decksLocalText", "playLocalButton", "playLocalText", "onlinePanelParent", "steamLinkButton", "steamLinkText")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,6 +47,7 @@ customCPUText = NodePath("Solo Panel (Select Mode)/modes/VBoxContainer/HBoxConta
 customCPUPanelParent = NodePath("Solo Panel (Custom vs CPU)")
 cpuButton = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Difficulty and color/difficulty/Button Holder/Button")
 cpuText = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Difficulty and color/difficulty/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+cpuDifficultyPopupMenuParent = NodePath("Popup Menus/cpu difficulty and color")
 mapCPUButton = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Map/map/Button Holder/Button")
 mapCPUText = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Map/map/MarginContainer/HBoxContainer/text holder/RichTextLabel")
 deckCPUButton = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Decks/decks/Button Holder/Button")
@@ -55,15 +56,6 @@ playCPUButton = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Play/Bu
 playCPUText = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Play/MarginContainer/HBoxContainer/text holder/RichTextLabel")
 returnCustomCPUButton = NodePath("Solo Panel (Custom vs CPU)/return/Button Holder/Button")
 returnCustomCPUArrow = NodePath("Solo Panel (Custom vs CPU)/return/MarginContainer/HBoxContainer/text holder/TextureRect")
-cpuDifficultyPopupMenuParent = NodePath("Popup Menus/cpu difficulty and color")
-cpuDifficultyPopupDifficultyButton = NodePath("Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Difficulty/map/Button Holder/Button")
-cpuDifficultyPopupDifficultyText = NodePath("Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Difficulty/map/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-cpuDifficultyPopupColorButton = NodePath("Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Color/decks/Button Holder/Button")
-cpuDifficultyPopupColorText = NodePath("Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Color/decks/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-cpuDifficultyPopupApplyButton = NodePath("Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Apply/Button Holder/Button")
-cpuDifficultyPopupApplyText = NodePath("Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Apply/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-cpuDifficultyPopupReturnButton = NodePath("Popup Menus/cpu difficulty and color/return/Button Holder/Button")
-cpuDifficultyPopupReturnTexture = NodePath("Popup Menus/cpu difficulty and color/return/MarginContainer/HBoxContainer/text holder/TextureRect")
 localPanelParent = NodePath("Local Panel (Custom)")
 mapLocalButton = NodePath("Local Panel (Custom)/modes/VBoxContainer/Map/map/Button Holder/Button")
 mapLocalText = NodePath("Local Panel (Custom)/modes/VBoxContainer/Map/map/MarginContainer/HBoxContainer/text holder/RichTextLabel")
@@ -1416,10 +1408,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -75.5
-offset_top = -71.5
-offset_right = 75.5
-offset_bottom = 71.5
+offset_left = -87.74
+offset_top = -79.355
+offset_right = 87.74
+offset_bottom = 79.355
 grow_horizontal = 2
 grow_vertical = 2
 offset_transform_enabled = true
@@ -1447,7 +1439,7 @@ theme_override_constants/margin_bottom = 6
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes" unique_id=1695500681]
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 2
 alignment = 1
 
 [node name="HSeparator2" type="HSeparator" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer" unique_id=1747453808]
@@ -1455,12 +1447,12 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/separator = SubResource("StyleBoxEmpty_ncoyp")
 
-[node name="Header" type="HBoxContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer" unique_id=436757795]
+[node name="Difficulty and color" type="HBoxContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer" unique_id=436757795]
 layout_mode = 2
 theme_override_constants/separation = 2
 alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Header" unique_id=1436791030]
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Difficulty and color" unique_id=1436791030]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1469,23 +1461,18 @@ mouse_filter = 2
 theme = ExtResource("3_pjjm5")
 theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
 theme_override_font_sizes/normal_font_size = 12
-text = "- Edit CPU -"
+text = "Edit CPU's Difficulty and Color"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator4" type="HSeparator" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer" unique_id=1748584098]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/separator = SubResource("StyleBoxEmpty_ncoyp")
-
-[node name="Difficulty" type="HBoxContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer" unique_id=1881098979]
+[node name="Map" type="HBoxContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer" unique_id=1881098979]
 layout_mode = 2
 alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Difficulty" unique_id=1073240616]
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Map" unique_id=1073240616]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1501,12 +1488,12 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="map" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Difficulty" unique_id=836879478]
+[node name="map" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Map" unique_id=836879478]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Difficulty/map" unique_id=305444828]
+[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Map/map" unique_id=305444828]
 self_modulate = Color(1, 1, 0, 1)
 material = SubResource("ShaderMaterial_kfm0n")
 layout_mode = 2
@@ -1516,23 +1503,23 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Difficulty/map" unique_id=1570926136]
+[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Map/map" unique_id=1570926136]
 layout_mode = 2
-theme_override_constants/margin_left = 7
-theme_override_constants/margin_top = 7
-theme_override_constants/margin_right = 7
-theme_override_constants/margin_bottom = 7
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Difficulty/map/MarginContainer" unique_id=1867935983]
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Map/map/MarginContainer" unique_id=1867935983]
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="text holder" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Difficulty/map/MarginContainer/HBoxContainer" unique_id=519749164]
+[node name="text holder" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Map/map/MarginContainer/HBoxContainer" unique_id=519749164]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Difficulty/map/MarginContainer/HBoxContainer/text holder" unique_id=35214560]
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Map/map/MarginContainer/HBoxContainer/text holder" unique_id=35214560]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1548,23 +1535,23 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button Holder" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Difficulty/map" unique_id=676213386]
+[node name="Button Holder" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Map/map" unique_id=676213386]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Button" type="Button" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Difficulty/map/Button Holder" unique_id=305130089]
+[node name="Button" type="Button" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Map/map/Button Holder" unique_id=305130089]
 layout_mode = 2
 focus_mode = 0
 flat = true
 
-[node name="Color" type="HBoxContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer" unique_id=2012816843]
+[node name="Decks" type="HBoxContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer" unique_id=2012816843]
 layout_mode = 2
 alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Color" unique_id=34920253]
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Decks" unique_id=34920253]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1580,12 +1567,12 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="decks" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Color" unique_id=21938927]
+[node name="decks" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Decks" unique_id=21938927]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Color/decks" unique_id=1987613790]
+[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Decks/decks" unique_id=1987613790]
 self_modulate = Color(1, 1, 0, 1)
 material = SubResource("ShaderMaterial_kfm0n")
 layout_mode = 2
@@ -1595,23 +1582,23 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Color/decks" unique_id=1202168805]
+[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Decks/decks" unique_id=1202168805]
 layout_mode = 2
-theme_override_constants/margin_left = 7
-theme_override_constants/margin_top = 7
-theme_override_constants/margin_right = 7
-theme_override_constants/margin_bottom = 6
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Color/decks/MarginContainer" unique_id=1653010354]
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Decks/decks/MarginContainer" unique_id=1653010354]
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="text holder" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Color/decks/MarginContainer/HBoxContainer" unique_id=859656355]
+[node name="text holder" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Decks/decks/MarginContainer/HBoxContainer" unique_id=859656355]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Color/decks/MarginContainer/HBoxContainer/text holder" unique_id=1461267878]
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Decks/decks/MarginContainer/HBoxContainer/text holder" unique_id=1461267878]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1627,14 +1614,14 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button Holder" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Color/decks" unique_id=1844568291]
+[node name="Button Holder" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Decks/decks" unique_id=1844568291]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Button" type="Button" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Color/decks/Button Holder" unique_id=2107450615]
+[node name="Button" type="Button" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Decks/decks/Button Holder" unique_id=2107450615]
 layout_mode = 2
 focus_mode = 0
 flat = true
@@ -1644,12 +1631,12 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/separator = SubResource("StyleBoxEmpty_ncoyp")
 
-[node name="Apply" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer" unique_id=539246656]
+[node name="Play" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer" unique_id=539246656]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Apply" unique_id=954625381]
+[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Play" unique_id=954625381]
 self_modulate = Color(1, 1, 0, 1)
 material = SubResource("ShaderMaterial_kfm0n")
 layout_mode = 2
@@ -1659,22 +1646,24 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Apply" unique_id=190600876]
+[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Play" unique_id=190600876]
 custom_minimum_size = Vector2(135, 0)
 layout_mode = 2
-theme_override_constants/margin_top = 7
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Apply/MarginContainer" unique_id=1973842452]
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Play/MarginContainer" unique_id=1973842452]
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="text holder" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Apply/MarginContainer/HBoxContainer" unique_id=685280277]
+[node name="text holder" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Play/MarginContainer/HBoxContainer" unique_id=685280277]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Apply/MarginContainer/HBoxContainer/text holder" unique_id=1230089041]
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Play/MarginContainer/HBoxContainer/text holder" unique_id=1230089041]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1690,14 +1679,14 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button Holder" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Apply" unique_id=1155896912]
+[node name="Button Holder" type="MarginContainer" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Play" unique_id=1155896912]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Button" type="Button" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Apply/Button Holder" unique_id=469091124]
+[node name="Button" type="Button" parent="Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Play/Button Holder" unique_id=469091124]
 layout_mode = 2
 focus_mode = 0
 flat = true
@@ -1709,8 +1698,17 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_ncoyp")
 
 [node name="return" type="MarginContainer" parent="Popup Menus/cpu difficulty and color" unique_id=2043503690]
 layout_mode = 1
-offset_right = 28.0
-offset_bottom = 26.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -90.0
+offset_right = -132.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/margin_left = 2

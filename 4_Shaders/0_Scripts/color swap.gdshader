@@ -139,8 +139,9 @@ vec4 get_replacement_color(int index) {
 void fragment() {
 	vec4 screenColor = texture(SCREEN_TEXTURE, SCREEN_UV);
 	vec4 finalColor = screenColor;
+	bool wasSwapped = false;
 
-	for (int i = 0; i < colorCount; i++) {
+	for (int i = 0; i < 17; i++) {
 		if (i >= colorCount) {
 			break;
 		}
@@ -153,11 +154,18 @@ void fragment() {
 		);
 
 		if (colorDifference <= tolerance) {
-			finalColor.rgb = get_replacement_color(i).rgb;
+			vec4 replacementColor = get_replacement_color(i);
+
+			finalColor.rgb = replacementColor.rgb;
+			finalColor.a = screenColor.a * replacementColor.a;
+			wasSwapped = true;
 			break;
 		}
 	}
 
-	finalColor.a = screenColor.a;
+	if (!wasSwapped) {
+		finalColor = vec4(0.0);
+	}
+
 	COLOR = finalColor;
 }

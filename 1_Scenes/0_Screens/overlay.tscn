@@ -152,6 +152,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="TV Warp" type="CanvasLayer" parent="." unique_id=114267018]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="TV Warp" unique_id=1069748715]
 material = SubResource("ShaderMaterial_tbbhu")

@@ -23,10 +23,10 @@ func _enter_from(sideToEnterFrom : ScreenSide, nodeToMove : Control, speed : flo
 	newTween.tween_property(nodeToMove, "position", endPos, duration).set_custom_interpolator(_tween_curve)
 	
 	return newTween
-func _offset_enter_from(sideToEnterFrom : ScreenSide, nodeToMove : Control, speed : float = 300, delay : float = 0, customCurve : bool = true) -> Tween:
+func _offset_enter_from(sideToEnterFrom : ScreenSide, nodeToMove : Control, speed : float = 300, delay : float = 0, transition : Tween.TransitionType = Tween.TRANS_QUART) -> Tween:
 	nodeToMove.offset_transform_enabled = true
 	var endPos : Vector2 = nodeToMove.position
-	nodeToMove.offset_transform_position = _get_outside_screen_pos(sideToEnterFrom, nodeToMove)
+	nodeToMove.offset_transform_position = _offset_get_outside_screen_pos(sideToEnterFrom)
 	
 	var newTween : Tween = create_tween()
 	
@@ -36,10 +36,7 @@ func _offset_enter_from(sideToEnterFrom : ScreenSide, nodeToMove : Control, spee
 	var distance : float = nodeToMove.offset_transform_position.distance_to(endPos)
 	var duration : float = distance / speed
 	
-	if customCurve == true:
-		newTween.tween_property(nodeToMove, "offset_transform_position", Vector2.ZERO, duration).set_custom_interpolator(_tween_curve)
-	else:
-		newTween.tween_property(nodeToMove, "offset_transform_position", Vector2.ZERO, duration).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+	newTween.tween_property(nodeToMove, "offset_transform_position", Vector2.ZERO, duration).set_trans(transition).set_ease(Tween.EASE_OUT)
 	
 	return newTween
 
@@ -59,8 +56,7 @@ func _exit_to(sideToExitTo : ScreenSide, nodeToMove : Control, speed : float = 3
 	return newTween
 func _offset_exit_to(sideToExitTo : ScreenSide, nodeToMove : Control, speed : float = 300, delay : float = 0) -> Tween:
 	nodeToMove.offset_transform_enabled = true
-	var endPos : Vector2 = _get_outside_screen_pos(sideToExitTo, nodeToMove)
-	endPos = Vector2(0, endPos.y)
+	var endPos : Vector2 = _offset_get_outside_screen_pos(sideToExitTo)
 	
 	var newTween : Tween = create_tween()
 	
@@ -101,6 +97,21 @@ func _get_outside_screen_pos(sideToEnterFrom : ScreenSide, nodeToMove : Control)
 			startingPos = Vector2(nodeToMove.position.x, 360)
 		ScreenSide.left:
 			startingPos = Vector2(-320, nodeToMove.position.y)
+	
+	return startingPos
+
+func _offset_get_outside_screen_pos(sideToEnterFrom : ScreenSide) -> Vector2:
+	var startingPos : Vector2
+	
+	match sideToEnterFrom:
+		ScreenSide.top:
+			startingPos = Vector2(0, -180)
+		ScreenSide.right:
+			startingPos = Vector2(640, 0)
+		ScreenSide.bottom:
+			startingPos = Vector2(0, 360)
+		ScreenSide.left:
+			startingPos = Vector2(-320, 0)
 	
 	return startingPos
 

@@ -53,7 +53,12 @@ void fragment() {
 	// Base sample
 	vec2 uv = SCREEN_UV;
 	vec4 src = texture(SCREEN_TEXTURE, uv);
-
+	
+	if (src == vec4(0, 0, 0, 1)){
+		COLOR = vec4(0);
+	}
+	else{
+	
 	// === Chromatic aberration (subtle) ===
 	vec3 col = src.rgb;
 	if (enableChromAb && abAmount > 0.0) {
@@ -137,4 +142,4 @@ void fragment() {
 
 	// Output (preserve original alpha)
 	COLOR = vec4(col, src.a);
-}
+}}

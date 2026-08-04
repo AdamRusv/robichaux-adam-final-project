@@ -14,6 +14,11 @@ void fragment() {
 		SCREEN_UV,
 		0.0
 	);
+	
+	if (currentColor == vec4(0, 0, 0, 1)){
+		COLOR = vec4(0);
+	}
+	else{
 
 	vec2 gamePixelSize = vec2(
 		1.0 / GAME_RESOLUTION.x,
@@ -60,4 +65,4 @@ void fragment() {
 	);
 
 	COLOR = finalColor;
-}
+}}

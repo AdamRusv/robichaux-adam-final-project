@@ -25,6 +25,16 @@ extends Control
 @export var playCPUText : RichTextLabel
 @export var returnCustomCPUButton : Button
 @export var returnCustomCPUArrow : TextureRect
+#-
+@export var cpuDifficultyPopupMenuParent : Control
+@export var cpuDifficultyPopupDifficultyButton : Button
+@export var cpuDifficultyPopupDifficultyText : RichTextLabel
+@export var cpuDifficultyPopupColorButton : Button
+@export var cpuDifficultyPopupColorText : RichTextLabel
+@export var cpuDifficultyPopupApplyButton : Button
+@export var cpuDifficultyPopupApplyText : RichTextLabel
+@export var cpuDifficultyPopupReturnButton : Button
+@export var cpuDifficultyPopupReturnTexture : TextureRect
 @export_group("Local")
 @export var localPanelParent : Control
 @export var mapLocalButton : Button
@@ -50,7 +60,7 @@ func _intro_panels():
 	var delay : float = 0
 	var delayIncrement : float = 0.07
 	for panel in introPanelParents:
-		var panelTween : Tween = TweenManager._offset_enter_from(TweenManager.ScreenSide.bottom, panel, 700, delay, false)
+		var panelTween : Tween = TweenManager._offset_enter_from(TweenManager.ScreenSide.bottom, panel, 700, delay)
 		delay += delayIncrement
 func _set_connections():
 	for i in range(0, optionButtons.size()):
@@ -61,7 +71,6 @@ func _set_connections():
 	_customCPU_set_connections()
 	_local_set_connections()
 	_online_set_connections()
-
 
 #-------Gamemode Button Selection-------
 func _hover_gamemode(i : int):
@@ -98,10 +107,23 @@ func _local_set_connections():
 	_setup_button_hover_connections(playLocalButton, playLocalText)
 
 #-------Custom CPU-------
+var currentCPUGameSettings : CPUGameSettings = CPUGameSettings.new()
 func _customCPU_set_connections():
+	#difficulty / color
 	_setup_button_hover_connections(cpuButton, cpuText)
+	cpuButton.pressed.connect(_open_popup_menu.bind(cpuDifficultyPopupMenuParent))
+	_popup_setup_button_hover_connections(cpuDifficultyPopupDifficultyButton, cpuDifficultyPopupDifficultyText)
+	_popup_setup_button_hover_connections(cpuDifficultyPopupColorButton, cpuDifficultyPopupColorText)
+	_popup_setup_button_hover_connections(cpuDifficultyPopupApplyButton, cpuDifficultyPopupApplyText)
+	_texture_popup_setup_button_hover_connections(cpuDifficultyPopupReturnButton, cpuDifficultyPopupReturnTexture)
+	
+	#map
 	_setup_button_hover_connections(mapCPUButton, mapCPUText)
+	
+	#deck
 	_setup_button_hover_connections(deckCPUButton, deckCPUText)
+	
+	#play
 	_setup_button_hover_connections(playCPUButton, playCPUText)
 	
 	_texture_setup_button_hover_connections(returnCustomCPUButton, returnCustomCPUArrow)
@@ -128,6 +150,21 @@ func _texture_set_color_of_texture_hovered(newTexture : TextureRect):
 func _texture_set_color_of_texture_exited(newTexture : TextureRect):
 	newTexture.self_modulate = Color(0, 0, 0)
 
+func _popup_setup_button_hover_connections(newButton : Button, newText : RichTextLabel):
+	newButton.mouse_entered.connect(_popup_set_color_of_text_hovered.bind(newText))
+	newButton.mouse_exited.connect(_popup_set_color_of_text_exited.bind(newText))
+func _popup_set_color_of_text_hovered(newText : RichTextLabel):
+	newText.add_theme_color_override("default_color", Color(0, 1, 1))
+func _popup_set_color_of_text_exited(newText : RichTextLabel):
+	newText.add_theme_color_override("default_color", Color(0.0, 0.196, 0.0, 1.0))
+func _texture_popup_setup_button_hover_connections(newButton : Button, newText : TextureRect):
+	newButton.mouse_entered.connect(_texture_popup_set_color_of_texture_hovered.bind(newText))
+	newButton.mouse_exited.connect(_texture_popup_set_color_of_texture_exited.bind(newText))
+func _texture_popup_set_color_of_texture_hovered(newTexture : TextureRect):
+	newTexture.self_modulate = Color(0, 1, 1)
+func _texture_popup_set_color_of_texture_exited(newTexture : TextureRect):
+	newTexture.self_modulate = Color(0.0, 0.196, 0.0, 1.0)
+
 func _set_background_color_of_gamemode_buttons(i : int):
 	optionButtonBackgrounds[i].self_modulate = Color(1.0, 0.0, 1.0, 1.0)
 	
@@ -150,5 +187,8 @@ func _set_current_panel(newPanel : Control):
 	await TweenManager._offset_exit_to(TweenManager.ScreenSide.bottom, currentPanel, 700).finished
 	currentPanel = newPanel
 	currentPanel.visible = true
-	await TweenManager._offset_enter_from(TweenManager.ScreenSide.right, currentPanel, 700, 0, false).finished
+	await TweenManager._offset_enter_from(TweenManager.ScreenSide.right, currentPanel, 700, 0).finished
 	isPanelMoving = false
+
+func _open_popup_menu(menuParent : Control):
+	PopupMenuManager._open_popup_menu(menuParent)
