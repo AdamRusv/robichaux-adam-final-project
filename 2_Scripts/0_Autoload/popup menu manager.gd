@@ -16,4 +16,6 @@ func _close_popup_menu():
 	if currentPopupMenu == null:
 		return
 	
+	currentPopupMenu.menu.reparent(get_tree().current_scene)
+	currentPopupMenu.menu.visible = false
 	currentPopupMenu.queue_free()
