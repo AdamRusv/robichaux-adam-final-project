@@ -1,5 +1,7 @@
 extends Control
 
+class_name GameSelectionManager
+
 @export_category("References")
 @export var introPanelParents : Array[Control]
 @export var optionButtons : Array[Button]
@@ -17,6 +19,7 @@ extends Control
 @export var customCPUPanelParent : Control
 @export var cpuButton : Button
 @export var cpuText : RichTextLabel
+@export var cpuDifficultyPopupMenuParent : CustomCPUDifficultyAndColor
 @export var mapCPUButton : Button
 @export var mapCPUText : RichTextLabel
 @export var deckCPUButton : Button
@@ -25,16 +28,6 @@ extends Control
 @export var playCPUText : RichTextLabel
 @export var returnCustomCPUButton : Button
 @export var returnCustomCPUArrow : TextureRect
-#-
-@export var cpuDifficultyPopupMenuParent : Control
-@export var cpuDifficultyPopupDifficultyButton : Button
-@export var cpuDifficultyPopupDifficultyText : RichTextLabel
-@export var cpuDifficultyPopupColorButton : Button
-@export var cpuDifficultyPopupColorText : RichTextLabel
-@export var cpuDifficultyPopupApplyButton : Button
-@export var cpuDifficultyPopupApplyText : RichTextLabel
-@export var cpuDifficultyPopupReturnButton : Button
-@export var cpuDifficultyPopupReturnTexture : TextureRect
 @export_group("Local")
 @export var localPanelParent : Control
 @export var mapLocalButton : Button
@@ -114,15 +107,7 @@ func _customCPU_set_connections():
 	#difficulty / color
 	_setup_button_hover_connections(cpuButton, cpuText)
 	cpuButton.pressed.connect(_open_popup_menu.bind(cpuDifficultyPopupMenuParent))
-	cpuButton.pressed.connect(_open_cpu_difficulty)
-	_popup_setup_button_hover_connections(cpuDifficultyPopupDifficultyButton, cpuDifficultyPopupDifficultyText)
-	cpuDifficultyPopupDifficultyButton.pressed.connect(_change_cpu_difficulty)
-	_popup_setup_button_hover_connections(cpuDifficultyPopupColorButton, cpuDifficultyPopupColorText)
-	cpuDifficultyPopupColorButton.pressed.connect(_change_cpu_color)
-	_popup_setup_button_hover_connections(cpuDifficultyPopupApplyButton, cpuDifficultyPopupApplyText)
-	cpuDifficultyPopupApplyButton.pressed.connect(_apply_cpu_difficulty)
-	_texture_popup_setup_button_hover_connections(cpuDifficultyPopupReturnButton, cpuDifficultyPopupReturnTexture)
-	cpuDifficultyPopupReturnButton.pressed.connect(_close_popup_menu)
+	cpuButton.pressed.connect(cpuDifficultyPopupMenuParent._open_cpu_difficulty)
 	
 	#map
 	_setup_button_hover_connections(mapCPUButton, mapCPUText)
@@ -135,55 +120,6 @@ func _customCPU_set_connections():
 	
 	_texture_setup_button_hover_connections(returnCustomCPUButton, returnCustomCPUArrow)
 	returnCustomCPUButton.pressed.connect(_set_current_panel.bind(soloPanelParent))
-
-func _change_cpu_difficulty():
-	match temporaryCPUSettings.difficulty:
-		CPUGameSettings.Difficulty.easy:
-			cpuDifficultyPopupDifficultyText.text = "Medium"
-			temporaryCPUSettings.difficulty = CPUGameSettings.Difficulty.medium
-		CPUGameSettings.Difficulty.medium:
-			cpuDifficultyPopupDifficultyText.text = "Hard"
-			temporaryCPUSettings.difficulty = CPUGameSettings.Difficulty.hard
-		CPUGameSettings.Difficulty.hard:
-			cpuDifficultyPopupDifficultyText.text = "Easy"
-			temporaryCPUSettings.difficulty = CPUGameSettings.Difficulty.easy
-func _change_cpu_color():
-	match temporaryCPUSettings.cpuColor:
-		CPUGameSettings.CPUColor.blue:
-			cpuDifficultyPopupColorText.text = "Red"
-			temporaryCPUSettings.cpuColor = CPUGameSettings.CPUColor.red
-		CPUGameSettings.CPUColor.red:
-			cpuDifficultyPopupColorText.text = "Random"
-			temporaryCPUSettings.cpuColor = CPUGameSettings.CPUColor.random
-		CPUGameSettings.CPUColor.random:
-			cpuDifficultyPopupColorText.text = "Blue"
-			temporaryCPUSettings.cpuColor = CPUGameSettings.CPUColor.blue
-
-func _apply_cpu_difficulty():
-	currentCPUGameSettings.difficulty = temporaryCPUSettings.difficulty
-	currentCPUGameSettings.cpuColor = temporaryCPUSettings.cpuColor
-	
-	var difficultyText : String = ""
-	match currentCPUGameSettings.difficulty:
-		CPUGameSettings.Difficulty.easy:
-			difficultyText = "Easy"
-		CPUGameSettings.Difficulty.medium:
-			difficultyText = "Medium"
-		CPUGameSettings.Difficulty.hard:
-			difficultyText = "Hard"
-	
-	var colorText : String = ""
-	match currentCPUGameSettings.cpuColor:
-		CPUGameSettings.CPUColor.blue:
-			colorText = "Blue"
-		CPUGameSettings.CPUColor.red:
-			colorText = "Red"
-		CPUGameSettings.CPUColor.random:
-			colorText = "Random"
-	
-	cpuText.text = difficultyText + " / " + colorText
-	
-	_close_popup_menu()
 
 #-------Online-------
 func _online_set_connections():
@@ -205,21 +141,6 @@ func _texture_set_color_of_texture_hovered(newTexture : TextureRect):
 	newTexture.self_modulate = Color(0, 1, 1)
 func _texture_set_color_of_texture_exited(newTexture : TextureRect):
 	newTexture.self_modulate = Color(0, 0, 0)
-
-func _popup_setup_button_hover_connections(newButton : Button, newText : RichTextLabel):
-	newButton.mouse_entered.connect(_popup_set_color_of_text_hovered.bind(newText))
-	newButton.mouse_exited.connect(_popup_set_color_of_text_exited.bind(newText))
-func _popup_set_color_of_text_hovered(newText : RichTextLabel):
-	newText.add_theme_color_override("default_color", Color(0, 1, 1))
-func _popup_set_color_of_text_exited(newText : RichTextLabel):
-	newText.add_theme_color_override("default_color", Color(0.0, 0.196, 0.0, 1.0))
-func _texture_popup_setup_button_hover_connections(newButton : Button, newText : TextureRect):
-	newButton.mouse_entered.connect(_texture_popup_set_color_of_texture_hovered.bind(newText))
-	newButton.mouse_exited.connect(_texture_popup_set_color_of_texture_exited.bind(newText))
-func _texture_popup_set_color_of_texture_hovered(newTexture : TextureRect):
-	newTexture.self_modulate = Color(0, 1, 1)
-func _texture_popup_set_color_of_texture_exited(newTexture : TextureRect):
-	newTexture.self_modulate = Color(0.0, 0.196, 0.0, 1.0)
 
 func _set_background_color_of_gamemode_buttons(i : int):
 	optionButtonBackgrounds[i].self_modulate = Color(1.0, 0.0, 1.0, 1.0)
@@ -248,27 +169,6 @@ func _set_current_panel(newPanel : Control):
 
 #- - - - - - - - - -
 var temporaryCPUSettings : CPUGameSettings
-func _open_cpu_difficulty():
-	temporaryCPUSettings = CPUGameSettings.new()
-	temporaryCPUSettings.difficulty = currentCPUGameSettings.difficulty
-	temporaryCPUSettings.cpuColor = currentCPUGameSettings.cpuColor
-	_update_cpu()
-func _update_cpu():
-	match currentCPUGameSettings.difficulty:
-		CPUGameSettings.Difficulty.easy:
-			cpuDifficultyPopupDifficultyText.text = "Easy"
-		CPUGameSettings.Difficulty.medium:
-			cpuDifficultyPopupDifficultyText.text = "Medium"
-		CPUGameSettings.Difficulty.hard:
-			cpuDifficultyPopupDifficultyText.text = "Hard"
-	
-	match currentCPUGameSettings.cpuColor:
-		CPUGameSettings.CPUColor.blue:
-			cpuDifficultyPopupColorText.text = "Blue"
-		CPUGameSettings.CPUColor.red:
-			cpuDifficultyPopupColorText.text = "Red"
-		CPUGameSettings.CPUColor.random:
-			cpuDifficultyPopupColorText.text = "Random"
 
 func _open_popup_menu(menuParent : Control):
 	PopupMenuManager._open_popup_menu(menuParent)
@@ -276,3 +176,7 @@ func _open_popup_menu(menuParent : Control):
 func _close_popup_menu():
 	temporaryCPUSettings = null
 	PopupMenuManager._close_popup_menu()
+
+func _apply_popup_menu():
+	temporaryCPUSettings = null
+	await PopupMenuManager._animate_close_popup_menu()

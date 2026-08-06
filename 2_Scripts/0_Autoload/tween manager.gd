@@ -54,7 +54,7 @@ func _exit_to(sideToExitTo : ScreenSide, nodeToMove : Control, speed : float = 3
 	newTween.tween_property(nodeToMove, "position", endPos, duration).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
 	
 	return newTween
-func _offset_exit_to(sideToExitTo : ScreenSide, nodeToMove : Control, speed : float = 300, delay : float = 0) -> Tween:
+func _offset_exit_to(sideToExitTo : ScreenSide, nodeToMove : Control, speed : float = 300, delay : float = 0, transition : Tween.TransitionType = Tween.TRANS_QUART) -> Tween:
 	nodeToMove.offset_transform_enabled = true
 	var endPos : Vector2 = _offset_get_outside_screen_pos(sideToExitTo)
 	
@@ -66,7 +66,7 @@ func _offset_exit_to(sideToExitTo : ScreenSide, nodeToMove : Control, speed : fl
 	var distance : float = nodeToMove.position.distance_to(endPos)
 	var duration : float = distance / speed
 
-	newTween.tween_property(nodeToMove, "offset_transform_position", endPos, duration).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
+	newTween.tween_property(nodeToMove, "offset_transform_position", endPos, duration).set_trans(transition).set_ease(Tween.EASE_IN)
 	
 	return newTween
 

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cj7uatshnc4ta" path="res://0_Art/square.png" id="2_pjjm5"]
 [ext_resource type="Theme" uid="uid://bo13vq025j5e1" path="res://6_Other/main text font theme.tres" id="3_pjjm5"]
 [ext_resource type="Texture2D" uid="uid://b5hlgyh3hj2wn" path="res://0_Art/arrow.png" id="5_kfm0n"]
+[ext_resource type="Script" uid="uid://get3cec2tr68" path="res://2_Scripts/2_Independent/Popup Menus/cpu difficulty and color.gd" id="6_ncoyp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tewlh"]
 
@@ -26,7 +27,7 @@ shader_parameter/borderWidthPixels = 1.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ncoyp"]
 
-[node name="Game Selection" type="Control" unique_id=623322757 node_paths=PackedStringArray("introPanelParents", "optionButtons", "optionButtonBackgrounds", "optionTexts", "firstPanel", "soloPanelParent", "campaignButton", "campaignText", "customCPUButton", "customCPUText", "customCPUPanelParent", "cpuButton", "cpuText", "mapCPUButton", "mapCPUText", "deckCPUButton", "deckCPUText", "playCPUButton", "playCPUText", "returnCustomCPUButton", "returnCustomCPUArrow", "cpuDifficultyPopupMenuParent", "cpuDifficultyPopupDifficultyButton", "cpuDifficultyPopupDifficultyText", "cpuDifficultyPopupColorButton", "cpuDifficultyPopupColorText", "cpuDifficultyPopupApplyButton", "cpuDifficultyPopupApplyText", "cpuDifficultyPopupReturnButton", "cpuDifficultyPopupReturnTexture", "localPanelParent", "mapLocalButton", "mapLocalText", "decksLocalButton", "decksLocalText", "playLocalButton", "playLocalText", "onlinePanelParent", "steamLinkButton", "steamLinkText")]
+[node name="Game Selection" type="Control" unique_id=623322757 node_paths=PackedStringArray("introPanelParents", "optionButtons", "optionButtonBackgrounds", "optionTexts", "firstPanel", "soloPanelParent", "campaignButton", "campaignText", "customCPUButton", "customCPUText", "customCPUPanelParent", "cpuButton", "cpuText", "cpuDifficultyPopupMenuParent", "mapCPUButton", "mapCPUText", "deckCPUButton", "deckCPUText", "playCPUButton", "playCPUText", "returnCustomCPUButton", "returnCustomCPUArrow", "localPanelParent", "mapLocalButton", "mapLocalText", "decksLocalButton", "decksLocalText", "playLocalButton", "playLocalText", "onlinePanelParent", "steamLinkButton", "steamLinkText")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,6 +48,7 @@ customCPUText = NodePath("Solo Panel (Select Mode)/modes/VBoxContainer/HBoxConta
 customCPUPanelParent = NodePath("Solo Panel (Custom vs CPU)")
 cpuButton = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Difficulty and color/difficulty/Button Holder/Button")
 cpuText = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Difficulty and color/difficulty/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+cpuDifficultyPopupMenuParent = NodePath("Popup Menus/cpu difficulty and color")
 mapCPUButton = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Map/map/Button Holder/Button")
 mapCPUText = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Map/map/MarginContainer/HBoxContainer/text holder/RichTextLabel")
 deckCPUButton = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Decks/decks/Button Holder/Button")
@@ -55,15 +57,6 @@ playCPUButton = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Play/Bu
 playCPUText = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Play/MarginContainer/HBoxContainer/text holder/RichTextLabel")
 returnCustomCPUButton = NodePath("Solo Panel (Custom vs CPU)/return/Button Holder/Button")
 returnCustomCPUArrow = NodePath("Solo Panel (Custom vs CPU)/return/MarginContainer/HBoxContainer/text holder/TextureRect")
-cpuDifficultyPopupMenuParent = NodePath("Popup Menus/cpu difficulty and color")
-cpuDifficultyPopupDifficultyButton = NodePath("Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Difficulty/map/Button Holder/Button")
-cpuDifficultyPopupDifficultyText = NodePath("Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Difficulty/map/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-cpuDifficultyPopupColorButton = NodePath("Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Color/decks/Button Holder/Button")
-cpuDifficultyPopupColorText = NodePath("Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Color/decks/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-cpuDifficultyPopupApplyButton = NodePath("Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Apply/Button Holder/Button")
-cpuDifficultyPopupApplyText = NodePath("Popup Menus/cpu difficulty and color/CPU edit/modes/VBoxContainer/Apply/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-cpuDifficultyPopupReturnButton = NodePath("Popup Menus/cpu difficulty and color/return/Button Holder/Button")
-cpuDifficultyPopupReturnTexture = NodePath("Popup Menus/cpu difficulty and color/return/MarginContainer/HBoxContainer/text holder/TextureRect")
 localPanelParent = NodePath("Local Panel (Custom)")
 mapLocalButton = NodePath("Local Panel (Custom)/modes/VBoxContainer/Map/map/Button Holder/Button")
 mapLocalText = NodePath("Local Panel (Custom)/modes/VBoxContainer/Map/map/MarginContainer/HBoxContainer/text holder/RichTextLabel")
@@ -1400,7 +1393,7 @@ flat = true
 
 [node name="Popup Menus" type="Node" parent="." unique_id=415158646]
 
-[node name="cpu difficulty and color" type="Control" parent="Popup Menus" unique_id=426254299]
+[node name="cpu difficulty and color" type="Control" parent="Popup Menus" unique_id=426254299 node_paths=PackedStringArray("gameSelectionManager", "cpuDifficultyPopupDifficultyButton", "cpuDifficultyPopupDifficultyText", "cpuDifficultyPopupColorButton", "cpuDifficultyPopupColorText", "cpuDifficultyPopupApplyButton", "cpuDifficultyPopupApplyText", "cpuDifficultyPopupReturnButton", "cpuDifficultyPopupReturnTexture")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -1408,6 +1401,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("6_ncoyp")
+gameSelectionManager = NodePath("../..")
+cpuDifficultyPopupDifficultyButton = NodePath("CPU edit/modes/VBoxContainer/Difficulty/map/Button Holder/Button")
+cpuDifficultyPopupDifficultyText = NodePath("CPU edit/modes/VBoxContainer/Difficulty/map/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+cpuDifficultyPopupColorButton = NodePath("CPU edit/modes/VBoxContainer/Color/decks/Button Holder/Button")
+cpuDifficultyPopupColorText = NodePath("CPU edit/modes/VBoxContainer/Color/decks/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+cpuDifficultyPopupApplyButton = NodePath("CPU edit/modes/VBoxContainer/Apply/Button Holder/Button")
+cpuDifficultyPopupApplyText = NodePath("CPU edit/modes/VBoxContainer/Apply/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+cpuDifficultyPopupReturnButton = NodePath("return/Button Holder/Button")
+cpuDifficultyPopupReturnTexture = NodePath("return/MarginContainer/HBoxContainer/text holder/TextureRect")
 
 [node name="CPU edit" type="MarginContainer" parent="Popup Menus/cpu difficulty and color" unique_id=660900624]
 layout_mode = 1

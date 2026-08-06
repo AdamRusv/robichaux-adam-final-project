@@ -19,3 +19,12 @@ func _close_popup_menu():
 	currentPopupMenu.menu.reparent(get_tree().current_scene)
 	currentPopupMenu.menu.visible = false
 	currentPopupMenu.queue_free()
+
+func _animate_close_popup_menu():
+	if currentPopupMenu == null:
+		return
+	
+	await currentPopupMenu._close_menu().finished
+	currentPopupMenu.menu.reparent(get_tree().current_scene)
+	currentPopupMenu.menu.visible = false
+	currentPopupMenu.queue_free()
