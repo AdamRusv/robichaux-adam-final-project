@@ -22,6 +22,7 @@ class_name GameSelectionManager
 @export var cpuDifficultyPopupMenuParent : CustomCPUDifficultyAndColor
 @export var mapCPUButton : Button
 @export var mapCPUText : RichTextLabel
+@export var cpuMapPopupMenuParent : CustomCPUMap
 @export var deckCPUButton : Button
 @export var deckCPUText : RichTextLabel
 @export var playCPUButton : Button
@@ -111,6 +112,8 @@ func _customCPU_set_connections():
 	
 	#map
 	_setup_button_hover_connections(mapCPUButton, mapCPUText)
+	mapCPUButton.pressed.connect(_open_popup_menu.bind(cpuMapPopupMenuParent))
+	mapCPUButton.pressed.connect(cpuMapPopupMenuParent._open)
 	
 	#deck
 	_setup_button_hover_connections(deckCPUButton, deckCPUText)
