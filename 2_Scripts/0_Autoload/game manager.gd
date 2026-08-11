@@ -12,7 +12,7 @@ var customMapPath : String = "" #NOTE: map editor? (smaller visualization of map
 #-----
 
 #these are fleeting local varaible used to connect scripts together
-var screen : Screen = null
+var gameplayManager : GameplayManager = null
 
 ##clicked and dragged tile
 var currentTile : Tile = null
@@ -33,3 +33,38 @@ func _assign_current_tile(newCurrentTile : Tile, newCurrentTrayTile : TrayTile):
 func _clear_current_tile():
 	currentTile = null
 	currentTrayTile = null
+
+#- - - - - - - - - - - - - - -
+var currentCpu : CPUGameSettings
+var cpuColor : TeamColor = TeamColor.none
+enum TeamColor{
+	none,
+	blue,
+	red
+}
+
+func _apply_cpuGameSettings(newCpuGameSettings : CPUGameSettings):
+	currentCpu = newCpuGameSettings
+	
+	gridSize = currentCpu._get_map_layout()
+	holePercentage = currentCpu._get_hole_percent()
+	
+	match currentCpu.cpuColor:
+		CPUGameSettings.CPUColor.blue:
+			_assign_cpu_blue()
+		CPUGameSettings.CPUColor.red:
+			_assign_cpu_red()
+		CPUGameSettings.CPUColor.random:
+			var newRandom : int = randi_range(0, 1)
+			if newRandom == 0:
+				_assign_cpu_blue()
+			else:
+				_assign_cpu_red()
+func _assign_cpu_blue():
+	cpuColor = TeamColor.blue
+	playerOneDeck = currentCpu._get_deck(currentCpu.cpuDeck)
+	playerTwoDeck = currentCpu._get_deck(currentCpu.playerDeck)
+func _assign_cpu_red():
+	cpuColor = TeamColor.red
+	playerOneDeck = currentCpu._get_deck(currentCpu.playerDeck)
+	playerTwoDeck = currentCpu._get_deck(currentCpu.cpuDeck)

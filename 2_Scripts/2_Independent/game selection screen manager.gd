@@ -4,6 +4,7 @@ class_name GameSelectionManager
 
 @export_category("References")
 @export var introPanelParents : Array[Control]
+@export var exitPanelParents : Array[Control]
 @export var optionButtons : Array[Button]
 @export var optionButtonBackgrounds : Array[NinePatchRect]
 @export var optionTexts : Array[RichTextLabel]
@@ -25,6 +26,7 @@ class_name GameSelectionManager
 @export var cpuMapPopupMenuParent : CustomCPUMap
 @export var deckCPUButton : Button
 @export var deckCPUText : RichTextLabel
+@export var cpuDeckPopupMenuParent : CustomCPUDecks
 @export var playCPUButton : Button
 @export var playCPUText : RichTextLabel
 @export var returnCustomCPUButton : Button
@@ -117,9 +119,12 @@ func _customCPU_set_connections():
 	
 	#deck
 	_setup_button_hover_connections(deckCPUButton, deckCPUText)
+	deckCPUButton.pressed.connect(_open_popup_menu.bind(cpuDeckPopupMenuParent))
+	deckCPUButton.pressed.connect(cpuDeckPopupMenuParent._open)
 	
 	#play
 	_setup_button_hover_connections(playCPUButton, playCPUText)
+	playCPUButton.pressed.connect(_play_custom_cpu)
 	
 	_texture_setup_button_hover_connections(returnCustomCPUButton, returnCustomCPUArrow)
 	returnCustomCPUButton.pressed.connect(_set_current_panel.bind(soloPanelParent))
@@ -170,6 +175,31 @@ func _set_current_panel(newPanel : Control):
 	await TweenManager._offset_enter_from(TweenManager.ScreenSide.right, currentPanel, 700, 0).finished
 	isPanelMoving = false
 
+#-
+var gameplayScene : PackedScene = preload("res://1_Scenes/0_Screens/gameplay.tscn")
+
+##must be called before all "play" functions
+func _start_game():
+	GameManager.currentCpu = null
+
+func _play_custom_cpu():
+	_start_game()
+	GameManager._apply_cpuGameSettings(currentCPUGameSettings)
+	await _exit_panels()
+	get_tree().change_scene_to_packed(gameplayScene)
+
+func _exit_panels():
+	exitPanelParents.insert(exitPanelParents.size() - 2, currentPanel)
+	var delay : float = 0
+	var delayIncrement : float = 0.07
+	var lastTween : Tween = null
+	for i in range(0, exitPanelParents.size()):
+		var panelTween : Tween = TweenManager._offset_exit_to(TweenManager.ScreenSide.bottom, exitPanelParents[i], 700, delay)
+		delay += delayIncrement
+		if i == introPanelParents.size() - 1:
+			lastTween = panelTween
+	await lastTween.finished
+	await get_tree().create_timer(0.5).timeout
 #- - - - - - - - - -
 var temporaryCPUSettings : CPUGameSettings
 

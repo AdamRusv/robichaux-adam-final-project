@@ -60,7 +60,7 @@ func _snap_dragging_tile_to_hovered(draggingTile : TrayTile):
 		currentTile.position += Vector2(-19, -19)
 	else:
 		draggingTile.pauseDrag = false
-		currentTile.reparent(GameManager.screen.uiParent)
+		currentTile.reparent(GameManager.gameplayManager.uiParent)
 
 #-------------------------------------------------
 func _get_hovered_tile_pos() -> Vector2i:

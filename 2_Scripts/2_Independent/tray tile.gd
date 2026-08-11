@@ -36,7 +36,7 @@ func _click_down():
 	
 	mouseOffset = get_global_mouse_position() - currentTile.global_position
 	GameManager._assign_current_tile(currentTile, self)
-	currentTile.reparent(GameManager.screen.uiParent)
+	currentTile.reparent(GameManager.gameplayManager.uiParent)
 	isDragging = true
 
 func _release():

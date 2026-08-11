@@ -20,9 +20,9 @@ var displayLayout10x10 : String = "10 x 10"
 var displayLayout15x15 : String = "15 x 15"
 var displayLayoutCustom : String = "Custom"
 
-var displayHoles5 : String = "5 %"
-var displayHoles20 : String = "20 %"
-var displayHoles35 : String = "35 %"
+var displayHoles5 : String = "5%"
+var displayHoles20 : String = "20%"
+var displayHoles35 : String = "35%"
 var displayHolesNone : String = "None"
 
 var displayStrayTileTrue : String = "On"
