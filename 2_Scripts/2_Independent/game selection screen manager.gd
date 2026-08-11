@@ -35,8 +35,10 @@ class_name GameSelectionManager
 @export var localPanelParent : Control
 @export var mapLocalButton : Button
 @export var mapLocalText : RichTextLabel
+@export var localMapPopupMenuParent : LocalMap
 @export var decksLocalButton : Button
 @export var decksLocalText : RichTextLabel
+@export var localDecksPopupMenuParent : LocalDecks
 @export var playLocalButton : Button
 @export var playLocalText : RichTextLabel
 @export_group("Online")
@@ -97,10 +99,20 @@ func _solo_set_connections():
 
 
 #-------Local-------
+var currentLocalGameSettings : LocalGameSettings
 func _local_set_connections():
+	currentLocalGameSettings = LocalGameSettings.new()
+	
 	_setup_button_hover_connections(mapLocalButton, mapLocalText)
+	mapLocalButton.pressed.connect(_open_popup_menu.bind(localMapPopupMenuParent))
+	mapLocalButton.pressed.connect(localMapPopupMenuParent._open)
+	
 	_setup_button_hover_connections(decksLocalButton, decksLocalText)
+	decksLocalButton.pressed.connect(_open_popup_menu.bind(localDecksPopupMenuParent))
+	decksLocalButton.pressed.connect(localDecksPopupMenuParent._open)
+	
 	_setup_button_hover_connections(playLocalButton, playLocalText)
+	playLocalButton.pressed.connect(_play_local)
 
 #-------Custom CPU-------
 var currentCPUGameSettings : CPUGameSettings
@@ -181,10 +193,17 @@ var gameplayScene : PackedScene = preload("res://1_Scenes/0_Screens/gameplay.tsc
 ##must be called before all "play" functions
 func _start_game():
 	GameManager.currentCpu = null
+	GameManager.currentLocal = null
 
 func _play_custom_cpu():
 	_start_game()
 	GameManager._apply_cpuGameSettings(currentCPUGameSettings)
+	await _exit_panels()
+	get_tree().change_scene_to_packed(gameplayScene)
+
+func _play_local():
+	_start_game()
+	GameManager._apply_localGameSettings(currentLocalGameSettings)
 	await _exit_panels()
 	get_tree().change_scene_to_packed(gameplayScene)
 
@@ -202,6 +221,7 @@ func _exit_panels():
 	await get_tree().create_timer(0.5).timeout
 #- - - - - - - - - -
 var temporaryCPUSettings : CPUGameSettings
+var temporaryLocalSettings : LocalGameSettings
 
 func _open_popup_menu(menuParent : Control):
 	PopupMenuManager._open_popup_menu(menuParent)

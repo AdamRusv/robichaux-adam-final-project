@@ -34,7 +34,7 @@ func _clear_current_tile():
 	currentTile = null
 	currentTrayTile = null
 
-#- - - - - - - - - - - - - - -
+#- - - - - - - CPU - - - - - - - -
 var currentCpu : CPUGameSettings
 var cpuColor : TeamColor = TeamColor.none
 enum TeamColor{
@@ -68,3 +68,15 @@ func _assign_cpu_red():
 	cpuColor = TeamColor.red
 	playerOneDeck = currentCpu._get_deck(currentCpu.playerDeck)
 	playerTwoDeck = currentCpu._get_deck(currentCpu.cpuDeck)
+
+#- - - - - - - CPU - - - - - - - -
+var currentLocal : LocalGameSettings
+
+func _apply_localGameSettings(newCpuGameSettings : LocalGameSettings):
+	currentLocal = newCpuGameSettings
+	
+	gridSize = currentLocal._get_map_layout()
+	holePercentage = currentLocal._get_hole_percent()
+	
+	playerOneDeck = currentLocal._get_deck(currentLocal.blueDeck)
+	playerTwoDeck = currentLocal._get_deck(currentLocal.redDeck)
