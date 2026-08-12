@@ -7,6 +7,7 @@ class_name TrayManager
 @export var otherHand : OtherHand
 @export var mapTiles : Array[Tile]
 @export var trayTiles : Array[TrayTile]
+@export var cpuManager : CpuManager
 
 ##cards not visible, must be in numarical order
 var playerOneCurrentDeck : Array[int]
@@ -106,10 +107,18 @@ func _swap_current_player():
 		currentTurn = Player.two
 		_start_player_turn(playerTwoCurrentDeck, playerTwoCurrentHand)
 		otherHand._update_cards(playerOneCurrentHand)
+		_cpu_action()
 	else:
 		currentTurn = Player.one
 		_start_player_turn(playerOneCurrentDeck, playerOneCurrentHand)
 		otherHand._update_cards(playerTwoCurrentHand)
+		_cpu_action()
+
+func _cpu_action():
+	if GameManager.currentCpu == null:
+		return
+	
+	
 
 #- - -
 func _take_card_in_deck(playerDeck : Array[int]) -> int:

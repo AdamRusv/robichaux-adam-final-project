@@ -38,7 +38,7 @@ func _set_connections():
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
-
+	
 	super._process(delta)
 
 #-------------------------------------

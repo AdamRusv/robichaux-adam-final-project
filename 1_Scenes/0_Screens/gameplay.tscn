@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://b587mqqt48v4a" path="res://4_Shaders/0_Scripts/pixel border.gdshader" id="1_3udmd"]
 [ext_resource type="Script" uid="uid://chpwtvy50fe3r" path="res://2_Scripts/2_Independent/screen manager.gd" id="1_fb3j3"]
 [ext_resource type="Texture2D" uid="uid://cj7uatshnc4ta" path="res://0_Art/square.png" id="2_1t528"]
+[ext_resource type="Script" uid="uid://baw75jrm5ebly" path="res://1_Scenes/0_Screens/cpu manager.gd" id="2_fb3j3"]
 [ext_resource type="Material" uid="uid://beamboy1ru8kr" path="res://4_Shaders/1_Materials/swap color.tres" id="4_baij6"]
 [ext_resource type="Script" uid="uid://dhkfy5rmhhnmq" path="res://2_Scripts/2_Independent/tile map manager.gd" id="5_rkkk6"]
 [ext_resource type="Script" uid="uid://bj3l2in83g32c" path="res://2_Scripts/2_Independent/scoreboard manager.gd" id="6_1cjw6"]
@@ -121,6 +122,14 @@ optionsMenu = NodePath("UI/Menu")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=96229226]
 unique_name_in_owner = true
+
+[node name="Cpu Manager" type="Control" parent="UI" unique_id=422674500]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("2_fb3j3")
 
 [node name="Board Move Manager" type="Button" parent="UI" unique_id=1653113624 node_paths=PackedStringArray("board", "tileMapBoard")]
 anchors_preset = 15
@@ -861,7 +870,7 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="Tray" type="MarginContainer" parent="UI" unique_id=796654713 node_paths=PackedStringArray("tileMap", "otherHand", "mapTiles", "trayTiles")]
+[node name="Tray" type="MarginContainer" parent="UI" unique_id=796654713 node_paths=PackedStringArray("tileMap", "otherHand", "mapTiles", "trayTiles", "cpuManager")]
 custom_minimum_size = Vector2(0, 48)
 offset_left = 82.0
 offset_top = 132.0
@@ -875,6 +884,7 @@ tileMap = NodePath("../Map Manager")
 otherHand = NodePath("../Other Hand")
 mapTiles = [NodePath("Tiles/Map Tile"), NodePath("Tiles/Map Tile2"), NodePath("Tiles/Map Tile3"), NodePath("Tiles/Map Tile4")]
 trayTiles = [NodePath("Tiles/Map Tile/Tray Tile"), NodePath("Tiles/Map Tile2/Tray Tile"), NodePath("Tiles/Map Tile3/Tray Tile"), NodePath("Tiles/Map Tile4/Tray Tile")]
+cpuManager = NodePath("../Cpu Manager")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="UI/Tray" unique_id=459038837]
 self_modulate = Color(1, 0, 1, 1)

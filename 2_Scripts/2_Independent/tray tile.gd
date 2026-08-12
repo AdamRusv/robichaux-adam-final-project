@@ -33,6 +33,8 @@ func _exit():
 func _click_down():
 	if currentTile == null:
 		return
+	if _is_cpu() == true:
+		return
 	
 	mouseOffset = get_global_mouse_position() - currentTile.global_position
 	GameManager._assign_current_tile(currentTile, self)
@@ -41,6 +43,8 @@ func _click_down():
 
 func _release():
 	if currentTile == null:
+		return
+	if _is_cpu() == true:
 		return
 	
 	isDragging = false
@@ -54,6 +58,9 @@ var pauseDrag : bool
 func _drag_tile():
 	if currentTile == null || pauseDrag == true:
 		return
+	if _is_cpu() == true:
+		return
+	
 	var mousePos : Vector2 = get_global_mouse_position()
 	
 	currentTile.global_position = floor(mousePos - mouseOffset)
@@ -61,3 +68,18 @@ func _drag_tile():
 #- - -
 func _reset_drag():
 	currentTile.position = Vector2.ZERO
+
+#- - -
+##disables mouse interaction
+func _is_cpu() -> bool:
+	if currentTile == null || GameManager.currentCpu == null:
+		return false
+	
+	if currentTile.currentTeam == currentTile.Team.player_one &&\
+	GameManager.cpuColor == GameManager.TeamColor.blue:
+		return true
+	elif currentTile.currentTeam == currentTile.Team.player_two &&\
+	GameManager.cpuColor == GameManager.TeamColor.red:
+		return true
+	
+	return false

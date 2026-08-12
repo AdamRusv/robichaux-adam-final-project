@@ -69,7 +69,7 @@ func _assign_cpu_red():
 	playerOneDeck = currentCpu._get_deck(currentCpu.playerDeck)
 	playerTwoDeck = currentCpu._get_deck(currentCpu.cpuDeck)
 
-#- - - - - - - CPU - - - - - - - -
+#- - - - - - - Local - - - - - - - -
 var currentLocal : LocalGameSettings
 
 func _apply_localGameSettings(newCpuGameSettings : LocalGameSettings):
