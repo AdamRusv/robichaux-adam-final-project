@@ -81,6 +81,35 @@ func _apply_effect(mapManager : MapManager,
 			if currentValue > tile.currentValue:
 				tile._swap_team(scoreBoardManager)
 
+#- - -
+func _get_empty_surrounding_tiles(mapManager : MapManager, tileMap : TileMapLayer) -> Array[Tile]:
+	var emptyTiles : Array[Tile] = []
+	
+	var surroundingCells : Array[Vector2i] = tileMap.get_surrounding_cells(gridLocation)
+	for cell in surroundingCells:
+		var tile : Tile = mapManager._get_any_tile_of_cell_pos(cell)
+		if tile == null:
+			continue
+
+		if tile.currentTeam == Tile.Team.none && mapManager._is_mapTile_occupied(tile.gridLocation) == false:
+			emptyTiles.append(tile)
+	
+	return emptyTiles
+
+func _get_surrounding_ally_tiles(mapManager : MapManager, tileMap : TileMapLayer) -> Array[Tile]:
+	var allyTiles : Array[Tile] = []
+	
+	var surroundingCells : Array[Vector2i] = tileMap.get_surrounding_cells(gridLocation)
+	for cell in surroundingCells:
+		var tile : Tile = mapManager._get_tile_of_cell_pos(cell)
+		if tile == null:
+			continue
+
+		if tile.currentTeam == currentTeam:
+			allyTiles.append(tile)
+	
+	return allyTiles
+
 #-----------
 func _is_interactable() -> bool:
 	if currentValue != 0 || currentTeam == Team.hole:

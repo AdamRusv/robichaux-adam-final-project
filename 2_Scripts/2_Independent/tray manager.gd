@@ -20,7 +20,6 @@ var playerOneCurrentHand : Array[int]
 var playerTwoCurrentHand : Array[int]
 
 var currentTurn : Player = Player.one
-
 enum Player{
 	one,
 	two
@@ -118,7 +117,10 @@ func _cpu_action():
 	if GameManager.currentCpu == null:
 		return
 	
-	
+	if GameManager.cpuColor == GameManager.TeamColor.blue && currentTurn == Player.one:
+		cpuManager._place_tile()
+	elif GameManager.cpuColor == GameManager.TeamColor.red && currentTurn == Player.two:
+		cpuManager._place_tile()
 
 #- - -
 func _take_card_in_deck(playerDeck : Array[int]) -> int:

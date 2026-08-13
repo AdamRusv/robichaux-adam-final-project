@@ -27,6 +27,16 @@ func _place_tile(handIndex : int):
 	else:
 		trayManager._return_hover_to_hand(handIndex)
 
+func _place_cpu_tile(handIndex : int, tilePos : Vector2i):
+	var currentTile : Tile = trayManager._get_current_tile_of_hand_index(handIndex)
+	
+	if _is_pos_valid(tilePos) == true:
+		_add_tile_to_visual_parent(currentTile, tilePos)
+		trayManager._place_tile_from_hand(handIndex)
+	else:
+		print("Cpu Placement Error")
+		trayManager._return_hover_to_hand(handIndex)
+
 func _add_tile_to_visual_parent(currentTile : Tile, hoveredTilePos : Vector2i):
 	var newCurrentTile : Tile = trayManager._clone_tile(currentTile)
 	newCurrentTile.gridLocation = hoveredTilePos
@@ -87,3 +97,29 @@ func _get_tile_of_cell_pos(cell : Vector2i) -> Tile:
 		if tile.gridLocation == cell:
 			return tile
 	return null
+
+func _get_any_tile_of_cell_pos(cell : Vector2i) -> Tile:
+	for tile in mapGenerator._get_all_tiles():
+		if tile.gridLocation == cell:
+			return tile
+	return null
+
+func _is_mapTile_occupied(mapTilePos : Vector2i) -> bool:
+	for tile in allVisualTiles:
+		if tile.gridLocation == mapTilePos:
+			return true
+	return false
+
+func _get_all_blue_tiles() -> Array[Tile]:
+	var blueTiles : Array[Tile] = []
+	for tile in allVisualTiles:
+		if tile.currentTeam == Tile.Team.player_one:
+			blueTiles.append(tile)
+	return blueTiles
+
+func _get_all_red_tiles() -> Array[Tile]:
+	var redTiles : Array[Tile] = []
+	for tile in allVisualTiles:
+		if tile.currentTeam == Tile.Team.player_two:
+			redTiles.append(tile)
+	return redTiles
