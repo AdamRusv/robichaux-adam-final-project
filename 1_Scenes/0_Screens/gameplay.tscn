@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://csyvx3nmr53ar" path="res://2_Scripts/2_Independent/map generator manager.gd" id="12_ahkic"]
 [ext_resource type="Script" uid="uid://c6qycsgiakc3x" path="res://2_Scripts/2_Independent/other hand manager.gd" id="12_neqfg"]
 [ext_resource type="Script" uid="uid://bbbs28evdehsu" path="res://2_Scripts/3_Dependent/view deck card.gd" id="14_6eb78"]
+[ext_resource type="Script" uid="uid://b8d5jgb3vmspx" path="res://2_Scripts/2_Independent/Popup Menus/cpu victory.gd" id="21_6eb78"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ahkic"]
 
@@ -103,6 +104,14 @@ tile_shape = 3
 tile_size = Vector2i(28, 28)
 sources/0 = SubResource("TileSetAtlasSource_neqfg")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kbhv0"]
+shader = ExtResource("1_3udmd")
+shader_parameter/borderEnabled = true
+shader_parameter/borderColor = Color(0, 0.19607843, 0, 1)
+shader_parameter/borderWidthPixels = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6wd5l"]
+
 [node name="Gameplay" type="Control" unique_id=1494847808 node_paths=PackedStringArray("screenBlocker", "board", "blueScore", "redScore", "tray", "tray2", "viewDeck", "optionsMenu")]
 layout_mode = 3
 anchors_preset = 15
@@ -156,7 +165,7 @@ mapGenerator = NodePath("../../SubViewportContainer/Board Viewport/Map")
 trayManager = NodePath("../Tray")
 tileMap = NodePath("../../SubViewportContainer/Board Viewport/Map/TileMapLayer")
 
-[node name="Scoreboard" type="HBoxContainer" parent="UI" unique_id=954399020 node_paths=PackedStringArray("playerOneText", "playerTwoText")]
+[node name="Scoreboard" type="HBoxContainer" parent="UI" unique_id=954399020 node_paths=PackedStringArray("gameplayManager", "playerOneText", "playerTwoText", "cpuVictory")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 34.0
@@ -164,8 +173,10 @@ grow_horizontal = 2
 mouse_filter = 2
 alignment = 1
 script = ExtResource("6_1cjw6")
+gameplayManager = NodePath("../..")
 playerOneText = NodePath("Blue/MarginContainer2/MarginContainer/RichTextLabel")
 playerTwoText = NodePath("Red/MarginContainer2/MarginContainer/RichTextLabel")
+cpuVictory = NodePath("../../Popup Menus/Cpu Victory")
 
 [node name="VSeparator2" type="VSeparator" parent="UI/Scoreboard" unique_id=594961635]
 layout_mode = 2
@@ -871,7 +882,7 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="Tray" type="MarginContainer" parent="UI" unique_id=796654713 node_paths=PackedStringArray("tileMap", "otherHand", "mapTiles", "trayTiles", "cpuManager")]
+[node name="Tray" type="MarginContainer" parent="UI" unique_id=796654713 node_paths=PackedStringArray("tileMap", "scoreboard", "otherHand", "mapTiles", "trayTiles", "cpuManager")]
 custom_minimum_size = Vector2(0, 48)
 offset_left = 82.0
 offset_top = 132.0
@@ -882,6 +893,7 @@ theme_override_constants/margin_top = -4
 theme_override_constants/margin_bottom = 4
 script = ExtResource("9_fn5ot")
 tileMap = NodePath("../Map Manager")
+scoreboard = NodePath("../Scoreboard")
 otherHand = NodePath("../Other Hand")
 mapTiles = [NodePath("Tiles/Map Tile"), NodePath("Tiles/Map Tile2"), NodePath("Tiles/Map Tile3"), NodePath("Tiles/Map Tile4")]
 trayTiles = [NodePath("Tiles/Map Tile/Tray Tile"), NodePath("Tiles/Map Tile2/Tray Tile"), NodePath("Tiles/Map Tile3/Tray Tile"), NodePath("Tiles/Map Tile4/Tray Tile")]
@@ -1301,3 +1313,363 @@ theme_override_constants/separation = -17
 [node name="TileMapLayer" type="TileMapLayer" parent="SubViewportContainer/Board Viewport/Map" unique_id=1241190667]
 position = Vector2(5, 5)
 tile_set = SubResource("TileSet_ahkic")
+
+[node name="Popup Menus" type="Node" parent="." unique_id=46735265]
+
+[node name="Cpu Victory" type="Control" parent="Popup Menus" unique_id=1890737512 node_paths=PackedStringArray("scoreboard", "blueScoreButton", "blueScoreText", "redScoreButton", "redScoreText", "playAgainButton", "playAgainText", "returnButton", "returnText")]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("21_6eb78")
+scoreboard = NodePath("../../UI/Scoreboard")
+blueScoreButton = NodePath("CPU edit/modes/VBoxContainer/Score/Blue/Button Holder/Button")
+blueScoreText = NodePath("CPU edit/modes/VBoxContainer/Score/Blue/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+redScoreButton = NodePath("CPU edit/modes/VBoxContainer/Score/Red/Button Holder/Button")
+redScoreText = NodePath("CPU edit/modes/VBoxContainer/Score/Red/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+playAgainButton = NodePath("CPU edit/modes/VBoxContainer/Play Again/Button Holder/Button")
+playAgainText = NodePath("CPU edit/modes/VBoxContainer/Play Again/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+returnButton = NodePath("CPU edit/modes/VBoxContainer/Return2/Button Holder/Button")
+returnText = NodePath("CPU edit/modes/VBoxContainer/Return2/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+
+[node name="CPU edit" type="MarginContainer" parent="Popup Menus/Cpu Victory" unique_id=1966963195]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -72.0
+offset_right = 75.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_visual_only = false
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/Cpu Victory/CPU edit" unique_id=56676528]
+self_modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_kbhv0")
+layout_mode = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="modes" type="MarginContainer" parent="Popup Menus/Cpu Victory/CPU edit" unique_id=1728766009]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes" unique_id=1234363362]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer" unique_id=367964256]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_6wd5l")
+
+[node name="Header" type="HBoxContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer" unique_id=1174498095]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Header" unique_id=698149417]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("7_ahkic")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+text = "Victory!"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator4" type="HSeparator" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer" unique_id=1750625569]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_6wd5l")
+
+[node name="Score" type="HBoxContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer" unique_id=637780129]
+layout_mode = 2
+alignment = 1
+
+[node name="Blue" type="MarginContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Score" unique_id=1066825429]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Score/Blue" unique_id=840900362]
+self_modulate = Color(0, 0, 1, 1)
+material = SubResource("ShaderMaterial_kbhv0")
+layout_mode = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Score/Blue" unique_id=2091334793]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Score/Blue/MarginContainer" unique_id=1167817403]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Score/Blue/MarginContainer/HBoxContainer" unique_id=1550819782]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Score/Blue/MarginContainer/HBoxContainer/text holder" unique_id=225875326]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("7_ahkic")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "182"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="MarginContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Score/Blue" unique_id=520093022]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Score/Blue/Button Holder" unique_id=1054644955]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Score" unique_id=858874785]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("7_ahkic")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "vs"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Red" type="MarginContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Score" unique_id=182231702]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = -1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Score/Red" unique_id=153861368]
+self_modulate = Color(1, 0, 0, 1)
+material = SubResource("ShaderMaterial_kbhv0")
+layout_mode = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Score/Red" unique_id=334587949]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Score/Red/MarginContainer" unique_id=1503393626]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Score/Red/MarginContainer/HBoxContainer" unique_id=2094222042]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Score/Red/MarginContainer/HBoxContainer/text holder" unique_id=1752275976]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("7_ahkic")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "112"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="MarginContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Score/Red" unique_id=1030560819]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Score/Red/Button Holder" unique_id=1127820445]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="HSeparator" type="HSeparator" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer" unique_id=523361329]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_6wd5l")
+
+[node name="Play Again" type="MarginContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer" unique_id=2049961229]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Play Again" unique_id=403895287]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_kbhv0")
+layout_mode = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Play Again" unique_id=209143795]
+custom_minimum_size = Vector2(135, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Play Again/MarginContainer" unique_id=1815069234]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Play Again/MarginContainer/HBoxContainer" unique_id=577011306]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Play Again/MarginContainer/HBoxContainer/text holder" unique_id=436817533]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("7_ahkic")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Play Again"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="MarginContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Play Again" unique_id=1593779616]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Play Again/Button Holder" unique_id=761881223]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="Return2" type="MarginContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer" unique_id=893682702]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Return2" unique_id=665074560]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_kbhv0")
+layout_mode = 2
+texture = ExtResource("2_1t528")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Return2" unique_id=1141262880]
+custom_minimum_size = Vector2(135, 0)
+layout_mode = 2
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Return2/MarginContainer" unique_id=57981658]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Return2/MarginContainer/HBoxContainer" unique_id=1949718467]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Return2/MarginContainer/HBoxContainer/text holder" unique_id=140027982]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("7_ahkic")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Return to Menu"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="MarginContainer" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Return2" unique_id=751430418]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="Popup Menus/Cpu Victory/CPU edit/modes/VBoxContainer/Return2/Button Holder" unique_id=1847388345]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="Control" type="Control" parent="Popup Menus/Cpu Victory" unique_id=1882732079]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2

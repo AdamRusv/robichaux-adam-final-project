@@ -4,6 +4,7 @@ class_name TrayManager
 
 @export_category("References")
 @export var tileMap : MapManager
+@export var scoreboard : ScoreboardManager
 @export var otherHand : OtherHand
 @export var mapTiles : Array[Tile]
 @export var trayTiles : Array[TrayTile]
@@ -104,11 +105,17 @@ func _place_tile_from_hand(handIndex : int):
 func _swap_current_player():
 	if currentTurn == Player.one:
 		currentTurn = Player.two
+		if _is_game_over():
+			scoreboard._end_game()
+		
 		_start_player_turn(playerTwoCurrentDeck, playerTwoCurrentHand)
 		otherHand._update_cards(playerOneCurrentHand)
 		_cpu_action()
 	else:
 		currentTurn = Player.one
+		if _is_game_over():
+			scoreboard._end_game()
+		
 		_start_player_turn(playerOneCurrentDeck, playerOneCurrentHand)
 		otherHand._update_cards(playerTwoCurrentHand)
 		_cpu_action()
@@ -139,3 +146,24 @@ func _clone_tile(currentTile : Tile) -> Tile:
 	
 	clonedTile._setup_tile(currentTile.currentValue)
 	return clonedTile
+
+func _is_game_over() -> bool:
+	if currentTurn == Player.one:
+		var playerOneHasTile : bool = false
+		for tile in playerOneCurrentHand:
+			if tile != 0:
+				playerOneHasTile = true
+		if playerOneHasTile == true:
+			return false
+		else:
+			return true
+	elif currentTurn == Player.two:
+		var playerTwoHasTile : bool = false
+		for tile in playerTwoCurrentDeck:
+			if tile != 0:
+				playerTwoHasTile = true
+		if playerTwoHasTile == true:
+			return false
+		else:
+			return true
+	return false

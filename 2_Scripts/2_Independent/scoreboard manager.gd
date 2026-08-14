@@ -3,8 +3,11 @@ extends Control
 class_name ScoreboardManager
 
 @export_category("References")
+@export var gameplayManager : GameplayManager
 @export var playerOneText : RichTextLabel
 @export var playerTwoText : RichTextLabel
+@export_group("End Screens")
+@export var cpuVictory : CPUVictoryPopup
 
 
 func _ready() -> void:
@@ -24,3 +27,9 @@ func _change_score(player : TrayManager.Player, changeValue : int):
 		GameManager.playerTwoScore += changeValue
 	
 	_update_score()
+
+#-----------------------------------
+func _end_game():
+	gameplayManager.screenBlocker.visible = true
+	
+	PopupMenuManager._open_popup_menu(cpuVictory)
