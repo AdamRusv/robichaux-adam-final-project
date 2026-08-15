@@ -26,6 +26,12 @@ var playerTwoScore : int = 0
 func _ready() -> void:
 	randomize()
 
+func _clear_score():
+	currentTile = null
+	currentTrayTile = null
+	playerOneScore = 0
+	playerTwoScore = 0
+
 #-------------------------------------------------
 func _assign_current_tile(newCurrentTile : Tile, newCurrentTrayTile : TrayTile):
 	currentTile = newCurrentTile

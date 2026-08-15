@@ -49,4 +49,4 @@ func _animate_into_frame():
 	lastTween = TweenManager._offset_enter_from(TweenManager.ScreenSide.bottom, tray, 700, delay)
 	
 	await lastTween.finished
-	await get_tree().create_timer(0.5).timeout
+	#await get_tree().create_timer(0.5).timeout

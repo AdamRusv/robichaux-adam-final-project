@@ -7,11 +7,9 @@ class_name PopupMenuWindow
 
 var menu : Control
 
-func _ready() -> void:
-	_open_menu()
-	menu.reparent(self)
 func _set_references(newMenu : Control):
 	menu = newMenu
+	menu.reparent(self)
 
 ##menus have main as child 0 and return button as child 1
 func _open_menu():

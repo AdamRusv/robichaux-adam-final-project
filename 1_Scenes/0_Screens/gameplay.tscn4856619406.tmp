@@ -25,9 +25,6 @@
 [ext_resource type="PackedScene" uid="uid://do2ddmhanxpqr" path="res://1_Scenes/2_Particles/X rain particle.tscn" id="23_j1jqe"]
 [ext_resource type="Script" uid="uid://coi14d7wa3mc1" path="res://2_Scripts/2_Independent/Popup Menus/cpu defeat.gd" id="23_xsf05"]
 [ext_resource type="Script" uid="uid://oyvj3jqflg7l" path="res://2_Scripts/2_Independent/Popup Menus/tie.gd" id="25_32h7f"]
-[ext_resource type="Script" uid="uid://d4wftj7erv5i" path="res://2_Scripts/2_Independent/Popup Menus/color wins.gd" id="25_68y56"]
-[ext_resource type="PackedScene" uid="uid://bd7k0ca2bcrka" path="res://1_Scenes/2_Particles/blue rise particle.tscn" id="25_mqosg"]
-[ext_resource type="PackedScene" uid="uid://dsi7f6oklaiqr" path="res://1_Scenes/2_Particles/red rise particle.tscn" id="26_3d4uv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ahkic"]
 
@@ -48,7 +45,7 @@ load_path = "res://.godot/imported/scoreboard texture-Sheet.png-c2da88975b390af5
 atlas = SubResource("CompressedTexture2D_0hcow")
 region = Rect2(29, 0, 29, 18)
 
-[sub_resource type="BitMap" id="BitMap_3d4uv"]
+[sub_resource type="BitMap" id="BitMap_32h7f"]
 data = {
 "data": PackedByteArray("/v//////////////////////////////9//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+//////////////////////////////8HAAAAAAAAAPj//////////wEAAAAAAAAAAAAAAAAAAID//////////x8AAAAAAAAAAAAAAAAAAAD4//////////8BAAAAAAAAAAAAAAAAAACA//////////8fAAAAAAAAAAAAAAAAAAAA+P//////////AQAAAAAAAAAAAAAAAAAAgP//////////HwAAAAAAAAAAAAAAAAAAAPj//////////wEAAAAAAAAAAAAAAAAAAID//////////x8AAAAAAAAAAAAAAAAAAAD4//////////8BAAAAAAAAAAAAAAAAAACA//////////8fAAAAAAAAAAAAAAAAAAAA+P//////////AQAAAAAAAAAAAAAAAAAAgP//////////HwAAAAAAAAAAAAAAAAAAAPj//////////wEAAAAAAAAAAAAAAAAAAID//////////x8AAAAAAAAAAAAAAAAAAAD4//////////8BAAAAAAAAAAAAAAAAAACA//////////8fAAAAAAAAAAAAAAAAAAAA+P//////////AQAAAAAAAAAAAAAAAAAAAP//////////DwAAAAAAAAAA"),
 "size": Vector2i(196, 101)
@@ -89,12 +86,6 @@ data = {
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pb2ch"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_baij6"]
-shader = ExtResource("1_3udmd")
-shader_parameter/borderEnabled = true
-shader_parameter/borderColor = Color(0, 0, 0, 1)
-shader_parameter/borderWidthPixels = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_68y56"]
 shader = ExtResource("1_3udmd")
 shader_parameter/borderEnabled = true
 shader_parameter/borderColor = Color(0, 0, 0, 1)
@@ -184,7 +175,7 @@ mapGenerator = NodePath("../../SubViewportContainer/Board Viewport/Map")
 trayManager = NodePath("../Tray")
 tileMap = NodePath("../../SubViewportContainer/Board Viewport/Map/TileMapLayer")
 
-[node name="Scoreboard" type="HBoxContainer" parent="UI" unique_id=954399020 node_paths=PackedStringArray("gameplayManager", "playerOneText", "playerTwoText", "cpuVictory", "cpuDefeat", "tie", "blueWins", "redWins")]
+[node name="Scoreboard" type="HBoxContainer" parent="UI" unique_id=954399020 node_paths=PackedStringArray("gameplayManager", "playerOneText", "playerTwoText", "cpuVictory", "cpuDefeat", "tie")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 34.0
@@ -198,8 +189,6 @@ playerTwoText = NodePath("Red/MarginContainer2/MarginContainer/RichTextLabel")
 cpuVictory = NodePath("../../Popup Menus/Cpu Victory")
 cpuDefeat = NodePath("../../Popup Menus/Cpu Defeat")
 tie = NodePath("../../Popup Menus/Tie")
-blueWins = NodePath("../../Popup Menus/Blue Wins")
-redWins = NodePath("../../Popup Menus/Red Wins")
 
 [node name="VSeparator2" type="VSeparator" parent="UI/Scoreboard" unique_id=594961635]
 layout_mode = 2
@@ -427,7 +416,7 @@ offset_left = -61.0
 offset_top = -81.0
 offset_right = -39.0
 offset_bottom = -57.0
-texture_click_mask = SubResource("BitMap_3d4uv")
+texture_click_mask = SubResource("BitMap_32h7f")
 
 [node name="Panel Parent" type="Control" parent="UI/Deck Viewer" unique_id=206967186]
 layout_mode = 2
@@ -1287,69 +1276,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="return to end screen popup" type="MarginContainer" parent="UI" unique_id=949131155]
-visible = false
-offset_right = 28.0
-offset_bottom = 26.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 31
-
-[node name="NinePatchRect" type="NinePatchRect" parent="UI/return to end screen popup" unique_id=225584668]
-self_modulate = Color(1, 1, 0, 1)
-material = SubResource("ShaderMaterial_68y56")
-layout_mode = 2
-texture = ExtResource("2_1t528")
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/return to end screen popup" unique_id=517105011]
-layout_mode = 2
-theme_override_constants/margin_left = 9
-theme_override_constants/margin_top = 9
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/return to end screen popup/MarginContainer" unique_id=2061643778]
-layout_mode = 2
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="text holder" type="MarginContainer" parent="UI/return to end screen popup/MarginContainer/HBoxContainer" unique_id=2092968308]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/return to end screen popup/MarginContainer/HBoxContainer/text holder" unique_id=250027887]
-custom_minimum_size = Vector2(24, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-theme = ExtResource("7_ahkic")
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 12
-text = "Return"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button Holder" type="MarginContainer" parent="UI/return to end screen popup" unique_id=993572732]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Button" type="Button" parent="UI/return to end screen popup/Button Holder" unique_id=1332941013]
-layout_mode = 2
-focus_mode = 0
-flat = true
-
 [node name="Color Swap" type="CanvasLayer" parent="." unique_id=1170140382]
 visible = false
 
@@ -1402,7 +1328,7 @@ tile_set = SubResource("TileSet_ahkic")
 
 [node name="Popup Menus" type="Node" parent="." unique_id=46735265]
 
-[node name="Cpu Victory" type="Control" parent="Popup Menus" unique_id=1890737512 node_paths=PackedStringArray("scoreboard", "starExplosion", "blueScoreButton", "blueScoreText", "redScoreButton", "redScoreText", "playAgainButton", "playAgainText", "viewMapParent", "viewMapButton", "viewMapText", "returnButton", "returnText", "uiReturnParent", "uiReturnButton", "uiReturnText")]
+[node name="Cpu Victory" type="Control" parent="Popup Menus" unique_id=1890737512 node_paths=PackedStringArray("scoreboard", "starExplosion", "blueScoreButton", "blueScoreText", "redScoreButton", "redScoreText", "playAgainButton", "playAgainText", "viewMapButton", "viewMapText", "returnButton", "returnText")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -1419,14 +1345,10 @@ redScoreButton = NodePath("CPU edit/modes/VBoxContainer/Score/Red/Button Holder/
 redScoreText = NodePath("CPU edit/modes/VBoxContainer/Score/Red/MarginContainer/HBoxContainer/text holder/RichTextLabel")
 playAgainButton = NodePath("CPU edit/modes/VBoxContainer/Play Again/Button Holder/Button")
 playAgainText = NodePath("CPU edit/modes/VBoxContainer/Play Again/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-viewMapParent = NodePath("view map")
 viewMapButton = NodePath("view map/Button Holder/Button")
 viewMapText = NodePath("view map/MarginContainer/HBoxContainer/text holder/RichTextLabel")
 returnButton = NodePath("CPU edit/modes/VBoxContainer/Return2/Button Holder/Button")
 returnText = NodePath("CPU edit/modes/VBoxContainer/Return2/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-uiReturnParent = NodePath("../../UI/return to end screen popup")
-uiReturnButton = NodePath("../../UI/return to end screen popup/Button Holder/Button")
-uiReturnText = NodePath("../../UI/return to end screen popup/MarginContainer/HBoxContainer/text holder/RichTextLabel")
 
 [node name="CPU edit" type="MarginContainer" parent="Popup Menus/Cpu Victory" unique_id=1966963195]
 layout_mode = 1
@@ -1763,12 +1685,12 @@ flat = true
 
 [node name="view map" type="MarginContainer" parent="Popup Menus/Cpu Victory" unique_id=1448156778]
 layout_mode = 0
-offset_right = 62.0
-offset_bottom = 31.0
+offset_right = 28.0
+offset_bottom = 26.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 31
+theme_override_constants/margin_top = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/Cpu Victory/view map" unique_id=855340878]
 self_modulate = Color(1, 1, 0, 1)
@@ -1827,7 +1749,7 @@ flat = true
 [node name="Star Explosion Particle" parent="Popup Menus/Cpu Victory" unique_id=298310495 instance=ExtResource("22_neqfg")]
 layout_mode = 1
 
-[node name="Cpu Defeat" type="Control" parent="Popup Menus" unique_id=149346712 node_paths=PackedStringArray("scoreboard", "xRain", "blueScoreButton", "blueScoreText", "redScoreButton", "redScoreText", "playAgainButton", "playAgainText", "viewMapParent", "viewMapButton", "viewMapText", "returnButton", "returnText", "uiReturnParent", "uiReturnButton", "uiReturnText")]
+[node name="Cpu Defeat" type="Control" parent="Popup Menus" unique_id=149346712 node_paths=PackedStringArray("scoreboard", "xRain", "blueScoreButton", "blueScoreText", "redScoreButton", "redScoreText", "playAgainButton", "playAgainText", "viewMapButton", "viewMapText", "returnButton", "returnText")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -1844,14 +1766,10 @@ redScoreButton = NodePath("CPU edit/modes/VBoxContainer/Score/Red/Button Holder/
 redScoreText = NodePath("CPU edit/modes/VBoxContainer/Score/Red/MarginContainer/HBoxContainer/text holder/RichTextLabel")
 playAgainButton = NodePath("CPU edit/modes/VBoxContainer/Play Again/Button Holder/Button")
 playAgainText = NodePath("CPU edit/modes/VBoxContainer/Play Again/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-viewMapParent = NodePath("view map")
 viewMapButton = NodePath("view map/Button Holder/Button")
 viewMapText = NodePath("view map/MarginContainer/HBoxContainer/text holder/RichTextLabel")
 returnButton = NodePath("CPU edit/modes/VBoxContainer/Return2/Button Holder/Button")
 returnText = NodePath("CPU edit/modes/VBoxContainer/Return2/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-uiReturnParent = NodePath("../../UI/return to end screen popup")
-uiReturnButton = NodePath("../../UI/return to end screen popup/Button Holder/Button")
-uiReturnText = NodePath("../../UI/return to end screen popup/MarginContainer/HBoxContainer/text holder/RichTextLabel")
 
 [node name="CPU edit" type="MarginContainer" parent="Popup Menus/Cpu Defeat" unique_id=1806632323]
 layout_mode = 1
@@ -2193,7 +2111,7 @@ offset_bottom = 26.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 31
+theme_override_constants/margin_top = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/Cpu Defeat/view map" unique_id=1757010919]
 self_modulate = Color(1, 1, 0, 1)
@@ -2252,857 +2170,7 @@ flat = true
 [node name="X Rain Particle" parent="Popup Menus/Cpu Defeat" unique_id=412057085 instance=ExtResource("23_j1jqe")]
 layout_mode = 1
 
-[node name="Blue Wins" type="Control" parent="Popup Menus" unique_id=1950492215 node_paths=PackedStringArray("scoreboard", "colorParticle", "blueScoreButton", "blueScoreText", "redScoreButton", "redScoreText", "playAgainButton", "playAgainText", "viewMapParent", "viewMapButton", "viewMapText", "returnButton", "returnText", "uiReturnParent", "uiReturnButton", "uiReturnText")]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("25_68y56")
-scoreboard = NodePath("../../UI/Scoreboard")
-colorParticle = NodePath("Blue Rise Particle")
-blueScoreButton = NodePath("CPU edit/modes/VBoxContainer/Score/Blue/Button Holder/Button")
-blueScoreText = NodePath("CPU edit/modes/VBoxContainer/Score/Blue/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-redScoreButton = NodePath("CPU edit/modes/VBoxContainer/Score/Red/Button Holder/Button")
-redScoreText = NodePath("CPU edit/modes/VBoxContainer/Score/Red/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-playAgainButton = NodePath("CPU edit/modes/VBoxContainer/Play Again/Button Holder/Button")
-playAgainText = NodePath("CPU edit/modes/VBoxContainer/Play Again/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-viewMapParent = NodePath("view map")
-viewMapButton = NodePath("view map/Button Holder/Button")
-viewMapText = NodePath("view map/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-returnButton = NodePath("CPU edit/modes/VBoxContainer/Return2/Button Holder/Button")
-returnText = NodePath("CPU edit/modes/VBoxContainer/Return2/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-uiReturnParent = NodePath("../../UI/return to end screen popup")
-uiReturnButton = NodePath("../../UI/return to end screen popup/Button Holder/Button")
-uiReturnText = NodePath("../../UI/return to end screen popup/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-
-[node name="CPU edit" type="MarginContainer" parent="Popup Menus/Blue Wins" unique_id=673609727]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -76.0
-offset_top = -72.0
-offset_right = 75.0
-offset_bottom = 71.0
-grow_horizontal = 2
-grow_vertical = 2
-offset_transform_enabled = true
-offset_transform_visual_only = false
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/Blue Wins/CPU edit" unique_id=1019903002]
-self_modulate = Color(1, 0, 1, 1)
-material = SubResource("ShaderMaterial_kbhv0")
-layout_mode = 2
-texture = ExtResource("2_1t528")
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-
-[node name="modes" type="MarginContainer" parent="Popup Menus/Blue Wins/CPU edit" unique_id=1291975211]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 6
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Popup Menus/Blue Wins/CPU edit/modes" unique_id=454268841]
-layout_mode = 2
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="HSeparator2" type="HSeparator" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer" unique_id=1942266643]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/separator = SubResource("StyleBoxEmpty_6wd5l")
-
-[node name="Header" type="HBoxContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer" unique_id=1759551989]
-layout_mode = 2
-theme_override_constants/separation = 2
-alignment = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Header" unique_id=1529519360]
-custom_minimum_size = Vector2(24, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-theme = ExtResource("7_ahkic")
-theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
-text = "Blue Wins!"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HSeparator4" type="HSeparator" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer" unique_id=27254146]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/separator = SubResource("StyleBoxEmpty_6wd5l")
-
-[node name="Score" type="HBoxContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer" unique_id=1735604482]
-layout_mode = 2
-alignment = 1
-
-[node name="Blue" type="MarginContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Score" unique_id=1870962644]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Score/Blue" unique_id=115528574]
-self_modulate = Color(0, 0, 1, 1)
-material = SubResource("ShaderMaterial_kbhv0")
-layout_mode = 2
-texture = ExtResource("2_1t528")
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-
-[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Score/Blue" unique_id=2144131795]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 7
-theme_override_constants/margin_right = 7
-theme_override_constants/margin_bottom = 6
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Score/Blue/MarginContainer" unique_id=1538288030]
-layout_mode = 2
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="text holder" type="MarginContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Score/Blue/MarginContainer/HBoxContainer" unique_id=1930348876]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Score/Blue/MarginContainer/HBoxContainer/text holder" unique_id=2076384944]
-custom_minimum_size = Vector2(24, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-theme = ExtResource("7_ahkic")
-theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
-theme_override_font_sizes/normal_font_size = 12
-text = "182"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button Holder" type="MarginContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Score/Blue" unique_id=656980603]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Button" type="Button" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Score/Blue/Button Holder" unique_id=1672756927]
-layout_mode = 2
-focus_mode = 0
-flat = true
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Score" unique_id=2016547309]
-custom_minimum_size = Vector2(24, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-theme = ExtResource("7_ahkic")
-theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
-theme_override_font_sizes/normal_font_size = 12
-text = "vs"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Red" type="MarginContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Score" unique_id=1164015803]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/margin_left = -1
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Score/Red" unique_id=2037061383]
-self_modulate = Color(1, 0, 0, 1)
-material = SubResource("ShaderMaterial_kbhv0")
-layout_mode = 2
-texture = ExtResource("2_1t528")
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-
-[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Score/Red" unique_id=1192934921]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 7
-theme_override_constants/margin_right = 7
-theme_override_constants/margin_bottom = 6
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Score/Red/MarginContainer" unique_id=627611474]
-layout_mode = 2
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="text holder" type="MarginContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Score/Red/MarginContainer/HBoxContainer" unique_id=1903889238]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Score/Red/MarginContainer/HBoxContainer/text holder" unique_id=718790652]
-custom_minimum_size = Vector2(24, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-theme = ExtResource("7_ahkic")
-theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
-theme_override_font_sizes/normal_font_size = 12
-text = "112"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button Holder" type="MarginContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Score/Red" unique_id=1550626437]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Button" type="Button" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Score/Red/Button Holder" unique_id=971730422]
-layout_mode = 2
-focus_mode = 0
-flat = true
-
-[node name="HSeparator" type="HSeparator" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer" unique_id=1035512766]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/separator = SubResource("StyleBoxEmpty_6wd5l")
-
-[node name="Play Again" type="MarginContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer" unique_id=516336236]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Play Again" unique_id=1235370815]
-self_modulate = Color(1, 1, 0, 1)
-material = SubResource("ShaderMaterial_kbhv0")
-layout_mode = 2
-texture = ExtResource("2_1t528")
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-
-[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Play Again" unique_id=346906374]
-custom_minimum_size = Vector2(135, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/margin_top = 7
-theme_override_constants/margin_bottom = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Play Again/MarginContainer" unique_id=1161625846]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="text holder" type="MarginContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Play Again/MarginContainer/HBoxContainer" unique_id=2141140423]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Play Again/MarginContainer/HBoxContainer/text holder" unique_id=2034041405]
-custom_minimum_size = Vector2(24, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-theme = ExtResource("7_ahkic")
-theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
-theme_override_font_sizes/normal_font_size = 12
-text = "Play Again"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button Holder" type="MarginContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Play Again" unique_id=1071964962]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Button" type="Button" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Play Again/Button Holder" unique_id=491395578]
-layout_mode = 2
-focus_mode = 0
-flat = true
-
-[node name="Return2" type="MarginContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer" unique_id=1825951074]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Return2" unique_id=363862775]
-self_modulate = Color(1, 1, 0, 1)
-material = SubResource("ShaderMaterial_kbhv0")
-layout_mode = 2
-texture = ExtResource("2_1t528")
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-
-[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Return2" unique_id=1989520381]
-custom_minimum_size = Vector2(135, 0)
-layout_mode = 2
-theme_override_constants/margin_top = 7
-theme_override_constants/margin_bottom = 7
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Return2/MarginContainer" unique_id=1790404170]
-layout_mode = 2
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="text holder" type="MarginContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Return2/MarginContainer/HBoxContainer" unique_id=1805763888]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Return2/MarginContainer/HBoxContainer/text holder" unique_id=1948785556]
-custom_minimum_size = Vector2(24, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-theme = ExtResource("7_ahkic")
-theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
-theme_override_font_sizes/normal_font_size = 12
-text = "Return to Menu"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button Holder" type="MarginContainer" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Return2" unique_id=11873331]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Button" type="Button" parent="Popup Menus/Blue Wins/CPU edit/modes/VBoxContainer/Return2/Button Holder" unique_id=326242589]
-layout_mode = 2
-focus_mode = 0
-flat = true
-
-[node name="view map" type="MarginContainer" parent="Popup Menus/Blue Wins" unique_id=82133761]
-layout_mode = 0
-offset_right = 28.0
-offset_bottom = 26.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 31
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/Blue Wins/view map" unique_id=660752397]
-self_modulate = Color(1, 1, 0, 1)
-material = SubResource("ShaderMaterial_neqfg")
-layout_mode = 2
-texture = ExtResource("2_1t528")
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-
-[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/Blue Wins/view map" unique_id=808094206]
-layout_mode = 2
-theme_override_constants/margin_left = 9
-theme_override_constants/margin_top = 9
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/Blue Wins/view map/MarginContainer" unique_id=432763900]
-layout_mode = 2
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="text holder" type="MarginContainer" parent="Popup Menus/Blue Wins/view map/MarginContainer/HBoxContainer" unique_id=1038056416]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/Blue Wins/view map/MarginContainer/HBoxContainer/text holder" unique_id=1199321280]
-custom_minimum_size = Vector2(24, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-theme = ExtResource("7_ahkic")
-theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
-theme_override_font_sizes/normal_font_size = 12
-text = "View Map"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button Holder" type="MarginContainer" parent="Popup Menus/Blue Wins/view map" unique_id=483260842]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Button" type="Button" parent="Popup Menus/Blue Wins/view map/Button Holder" unique_id=725854011]
-layout_mode = 2
-focus_mode = 0
-flat = true
-
-[node name="Blue Rise Particle" parent="Popup Menus/Blue Wins" unique_id=546833465 instance=ExtResource("25_mqosg")]
-layout_mode = 1
-
-[node name="Red Wins" type="Control" parent="Popup Menus" unique_id=1889773345 node_paths=PackedStringArray("scoreboard", "colorParticle", "blueScoreButton", "blueScoreText", "redScoreButton", "redScoreText", "playAgainButton", "playAgainText", "viewMapParent", "viewMapButton", "viewMapText", "returnButton", "returnText", "uiReturnParent", "uiReturnButton", "uiReturnText")]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("25_68y56")
-scoreboard = NodePath("../../UI/Scoreboard")
-colorParticle = NodePath("Red Rise Particle")
-blueScoreButton = NodePath("CPU edit/modes/VBoxContainer/Score/Blue/Button Holder/Button")
-blueScoreText = NodePath("CPU edit/modes/VBoxContainer/Score/Blue/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-redScoreButton = NodePath("CPU edit/modes/VBoxContainer/Score/Red/Button Holder/Button")
-redScoreText = NodePath("CPU edit/modes/VBoxContainer/Score/Red/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-playAgainButton = NodePath("CPU edit/modes/VBoxContainer/Play Again/Button Holder/Button")
-playAgainText = NodePath("CPU edit/modes/VBoxContainer/Play Again/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-viewMapParent = NodePath("view map")
-viewMapButton = NodePath("view map/Button Holder/Button")
-viewMapText = NodePath("view map/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-returnButton = NodePath("CPU edit/modes/VBoxContainer/Return2/Button Holder/Button")
-returnText = NodePath("CPU edit/modes/VBoxContainer/Return2/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-uiReturnParent = NodePath("../../UI/return to end screen popup")
-uiReturnButton = NodePath("../../UI/return to end screen popup/Button Holder/Button")
-uiReturnText = NodePath("../../UI/return to end screen popup/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-
-[node name="CPU edit" type="MarginContainer" parent="Popup Menus/Red Wins" unique_id=459696636]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -76.0
-offset_top = -72.0
-offset_right = 75.0
-offset_bottom = 71.0
-grow_horizontal = 2
-grow_vertical = 2
-offset_transform_enabled = true
-offset_transform_visual_only = false
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/Red Wins/CPU edit" unique_id=1402538024]
-self_modulate = Color(1, 0, 1, 1)
-material = SubResource("ShaderMaterial_kbhv0")
-layout_mode = 2
-texture = ExtResource("2_1t528")
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-
-[node name="modes" type="MarginContainer" parent="Popup Menus/Red Wins/CPU edit" unique_id=2016383377]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 6
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Popup Menus/Red Wins/CPU edit/modes" unique_id=1725242891]
-layout_mode = 2
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="HSeparator2" type="HSeparator" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer" unique_id=1561275951]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/separator = SubResource("StyleBoxEmpty_6wd5l")
-
-[node name="Header" type="HBoxContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer" unique_id=633633860]
-layout_mode = 2
-theme_override_constants/separation = 2
-alignment = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Header" unique_id=1145159433]
-custom_minimum_size = Vector2(24, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-theme = ExtResource("7_ahkic")
-theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
-text = "Red Wins!"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HSeparator4" type="HSeparator" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer" unique_id=898223542]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/separator = SubResource("StyleBoxEmpty_6wd5l")
-
-[node name="Score" type="HBoxContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer" unique_id=1641527348]
-layout_mode = 2
-alignment = 1
-
-[node name="Blue" type="MarginContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Score" unique_id=369924411]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Score/Blue" unique_id=1251416815]
-self_modulate = Color(0, 0, 1, 1)
-material = SubResource("ShaderMaterial_kbhv0")
-layout_mode = 2
-texture = ExtResource("2_1t528")
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-
-[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Score/Blue" unique_id=930285712]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 7
-theme_override_constants/margin_right = 7
-theme_override_constants/margin_bottom = 6
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Score/Blue/MarginContainer" unique_id=123304418]
-layout_mode = 2
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="text holder" type="MarginContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Score/Blue/MarginContainer/HBoxContainer" unique_id=51086092]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Score/Blue/MarginContainer/HBoxContainer/text holder" unique_id=148899058]
-custom_minimum_size = Vector2(24, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-theme = ExtResource("7_ahkic")
-theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
-theme_override_font_sizes/normal_font_size = 12
-text = "182"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button Holder" type="MarginContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Score/Blue" unique_id=1418382807]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Button" type="Button" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Score/Blue/Button Holder" unique_id=1414701448]
-layout_mode = 2
-focus_mode = 0
-flat = true
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Score" unique_id=1763933987]
-custom_minimum_size = Vector2(24, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-theme = ExtResource("7_ahkic")
-theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
-theme_override_font_sizes/normal_font_size = 12
-text = "vs"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Red" type="MarginContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Score" unique_id=659084970]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/margin_left = -1
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Score/Red" unique_id=150025722]
-self_modulate = Color(1, 0, 0, 1)
-material = SubResource("ShaderMaterial_kbhv0")
-layout_mode = 2
-texture = ExtResource("2_1t528")
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-
-[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Score/Red" unique_id=2010600605]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 7
-theme_override_constants/margin_right = 7
-theme_override_constants/margin_bottom = 6
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Score/Red/MarginContainer" unique_id=327397445]
-layout_mode = 2
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="text holder" type="MarginContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Score/Red/MarginContainer/HBoxContainer" unique_id=1701441129]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Score/Red/MarginContainer/HBoxContainer/text holder" unique_id=638957660]
-custom_minimum_size = Vector2(24, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-theme = ExtResource("7_ahkic")
-theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
-theme_override_font_sizes/normal_font_size = 12
-text = "112"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button Holder" type="MarginContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Score/Red" unique_id=1620777995]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Button" type="Button" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Score/Red/Button Holder" unique_id=143990092]
-layout_mode = 2
-focus_mode = 0
-flat = true
-
-[node name="HSeparator" type="HSeparator" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer" unique_id=1467602134]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/separator = SubResource("StyleBoxEmpty_6wd5l")
-
-[node name="Play Again" type="MarginContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer" unique_id=1250377232]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Play Again" unique_id=1599071630]
-self_modulate = Color(1, 1, 0, 1)
-material = SubResource("ShaderMaterial_kbhv0")
-layout_mode = 2
-texture = ExtResource("2_1t528")
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-
-[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Play Again" unique_id=1154102546]
-custom_minimum_size = Vector2(135, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/margin_top = 7
-theme_override_constants/margin_bottom = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Play Again/MarginContainer" unique_id=840475307]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="text holder" type="MarginContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Play Again/MarginContainer/HBoxContainer" unique_id=1104409216]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Play Again/MarginContainer/HBoxContainer/text holder" unique_id=625763030]
-custom_minimum_size = Vector2(24, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-theme = ExtResource("7_ahkic")
-theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
-theme_override_font_sizes/normal_font_size = 12
-text = "Play Again"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button Holder" type="MarginContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Play Again" unique_id=2069237944]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Button" type="Button" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Play Again/Button Holder" unique_id=1781031116]
-layout_mode = 2
-focus_mode = 0
-flat = true
-
-[node name="Return2" type="MarginContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer" unique_id=1377794686]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Return2" unique_id=1439004085]
-self_modulate = Color(1, 1, 0, 1)
-material = SubResource("ShaderMaterial_kbhv0")
-layout_mode = 2
-texture = ExtResource("2_1t528")
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-
-[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Return2" unique_id=757697657]
-custom_minimum_size = Vector2(135, 0)
-layout_mode = 2
-theme_override_constants/margin_top = 7
-theme_override_constants/margin_bottom = 7
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Return2/MarginContainer" unique_id=2061115267]
-layout_mode = 2
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="text holder" type="MarginContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Return2/MarginContainer/HBoxContainer" unique_id=1441875043]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Return2/MarginContainer/HBoxContainer/text holder" unique_id=421407309]
-custom_minimum_size = Vector2(24, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-theme = ExtResource("7_ahkic")
-theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
-theme_override_font_sizes/normal_font_size = 12
-text = "Return to Menu"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button Holder" type="MarginContainer" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Return2" unique_id=914298507]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Button" type="Button" parent="Popup Menus/Red Wins/CPU edit/modes/VBoxContainer/Return2/Button Holder" unique_id=1879295404]
-layout_mode = 2
-focus_mode = 0
-flat = true
-
-[node name="view map" type="MarginContainer" parent="Popup Menus/Red Wins" unique_id=493376544]
-layout_mode = 0
-offset_right = 28.0
-offset_bottom = 26.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 31
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/Red Wins/view map" unique_id=748571610]
-self_modulate = Color(1, 1, 0, 1)
-material = SubResource("ShaderMaterial_neqfg")
-layout_mode = 2
-texture = ExtResource("2_1t528")
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-
-[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/Red Wins/view map" unique_id=1875195176]
-layout_mode = 2
-theme_override_constants/margin_left = 9
-theme_override_constants/margin_top = 9
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/Red Wins/view map/MarginContainer" unique_id=1504848748]
-layout_mode = 2
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="text holder" type="MarginContainer" parent="Popup Menus/Red Wins/view map/MarginContainer/HBoxContainer" unique_id=676821315]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/Red Wins/view map/MarginContainer/HBoxContainer/text holder" unique_id=911609978]
-custom_minimum_size = Vector2(24, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-theme = ExtResource("7_ahkic")
-theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
-theme_override_font_sizes/normal_font_size = 12
-text = "View Map"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button Holder" type="MarginContainer" parent="Popup Menus/Red Wins/view map" unique_id=72487835]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Button" type="Button" parent="Popup Menus/Red Wins/view map/Button Holder" unique_id=1645546134]
-layout_mode = 2
-focus_mode = 0
-flat = true
-
-[node name="Red Rise Particle" parent="Popup Menus/Red Wins" unique_id=1504085329 instance=ExtResource("26_3d4uv")]
-layout_mode = 1
-
-[node name="Tie" type="Control" parent="Popup Menus" unique_id=1031108988 node_paths=PackedStringArray("scoreboard", "blueScoreButton", "blueScoreText", "redScoreButton", "redScoreText", "playAgainButton", "playAgainText", "viewMapParent", "viewMapButton", "viewMapText", "returnButton", "returnText", "uiReturnParent", "uiReturnButton", "uiReturnText")]
+[node name="Tie" type="Control" parent="Popup Menus" unique_id=1031108988 node_paths=PackedStringArray("scoreboard", "blueScoreButton", "blueScoreText", "redScoreButton", "redScoreText", "playAgainButton", "playAgainText", "viewMapButton", "viewMapText", "returnButton", "returnText")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -3118,14 +2186,10 @@ redScoreButton = NodePath("CPU edit/modes/VBoxContainer/Score/Red/Button Holder/
 redScoreText = NodePath("CPU edit/modes/VBoxContainer/Score/Red/MarginContainer/HBoxContainer/text holder/RichTextLabel")
 playAgainButton = NodePath("CPU edit/modes/VBoxContainer/Play Again/Button Holder/Button")
 playAgainText = NodePath("CPU edit/modes/VBoxContainer/Play Again/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-viewMapParent = NodePath("view map")
 viewMapButton = NodePath("view map/Button Holder/Button")
 viewMapText = NodePath("view map/MarginContainer/HBoxContainer/text holder/RichTextLabel")
 returnButton = NodePath("CPU edit/modes/VBoxContainer/Return2/Button Holder/Button")
 returnText = NodePath("CPU edit/modes/VBoxContainer/Return2/MarginContainer/HBoxContainer/text holder/RichTextLabel")
-uiReturnParent = NodePath("../../UI/return to end screen popup")
-uiReturnButton = NodePath("../../UI/return to end screen popup/Button Holder/Button")
-uiReturnText = NodePath("../../UI/return to end screen popup/MarginContainer/HBoxContainer/text holder/RichTextLabel")
 
 [node name="CPU edit" type="MarginContainer" parent="Popup Menus/Tie" unique_id=1836044140]
 layout_mode = 1
@@ -3467,7 +2531,7 @@ offset_bottom = 26.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 31
+theme_override_constants/margin_top = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/Tie/view map" unique_id=680618306]
 self_modulate = Color(1, 1, 0, 1)

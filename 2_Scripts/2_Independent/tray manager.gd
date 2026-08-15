@@ -105,20 +105,20 @@ func _place_tile_from_hand(handIndex : int):
 func _swap_current_player():
 	if currentTurn == Player.one:
 		currentTurn = Player.two
-		if _is_game_over():
-			scoreboard._end_game()
 		
 		_start_player_turn(playerTwoCurrentDeck, playerTwoCurrentHand)
 		otherHand._update_cards(playerOneCurrentHand)
 		_cpu_action()
+		if _is_game_over(playerTwoCurrentHand):
+			scoreboard._end_game()
 	else:
 		currentTurn = Player.one
-		if _is_game_over():
-			scoreboard._end_game()
 		
 		_start_player_turn(playerOneCurrentDeck, playerOneCurrentHand)
 		otherHand._update_cards(playerTwoCurrentHand)
 		_cpu_action()
+		if _is_game_over(playerOneCurrentHand):
+			scoreboard._end_game()
 
 func _cpu_action():
 	if GameManager.currentCpu == null:
@@ -147,23 +147,12 @@ func _clone_tile(currentTile : Tile) -> Tile:
 	clonedTile._setup_tile(currentTile.currentValue)
 	return clonedTile
 
-func _is_game_over() -> bool:
-	if currentTurn == Player.one:
-		var playerOneHasTile : bool = false
-		for tile in playerOneCurrentHand:
-			if tile != 0:
-				playerOneHasTile = true
-		if playerOneHasTile == true:
-			return false
-		else:
-			return true
-	elif currentTurn == Player.two:
-		var playerTwoHasTile : bool = false
-		for tile in playerTwoCurrentDeck:
-			if tile != 0:
-				playerTwoHasTile = true
-		if playerTwoHasTile == true:
-			return false
-		else:
-			return true
-	return false
+func _is_game_over(playerHand : Array[int]) -> bool:
+	var playerHasTile : bool = false
+	for tile in playerHand:
+		if tile != 0:
+			playerHasTile = true
+	if playerHasTile == true:
+		return false
+	else:
+		return true

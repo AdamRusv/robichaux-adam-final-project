@@ -50,6 +50,7 @@ var isPanelMoving : bool = false
 var currentPanel : Control = null
 
 func _ready() -> void:
+	GameManager._clear_score()
 	_intro_panels()
 	_set_connections()
 	

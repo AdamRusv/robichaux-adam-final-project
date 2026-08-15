@@ -1,10 +1,10 @@
 extends EndPopup
 
-class_name CPUVictoryPopup
+class_name ColorWinsPopup
 
 @export_category("References")
 @export var scoreboard : ScoreboardManager
-@export var starExplosion : OneShotParticle
+@export var colorParticle : Control
 
 @export var blueScoreButton : Button
 @export var blueScoreText : RichTextLabel
@@ -40,9 +40,8 @@ func _set_score():
 	blueScoreText.text = str(GameManager.playerOneScore)
 	redScoreText.text = str(GameManager.playerTwoScore)
 
-func _trigger_stars():
-	starExplosion.reparent(PopupMenuManager.currentPopupMenu)
-	starExplosion._trigger_sameTiming()
+func _trigger_particle():
+	colorParticle.reparent(PopupMenuManager.currentPopupMenu)
 
 #
 func _set_up():

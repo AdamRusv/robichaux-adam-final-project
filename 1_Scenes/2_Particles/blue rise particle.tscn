@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://bd7k0ca2bcrka"]
+
+[ext_resource type="Texture2D" uid="uid://cbmr7p0dryw1g" path="res://0_Art/hollow square.png" id="1_qap0u"]
+[ext_resource type="Texture2D" uid="uid://cj7uatshnc4ta" path="res://0_Art/square.png" id="2_qp37r"]
+
+[sub_resource type="Gradient" id="Gradient_loxs3"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.44022772, 0.7343454)
+colors = PackedColorArray(0, 0, 1, 1, 0, 0, 0.8039216, 1, 0, 0, 0.21568628, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_o87n1"]
+gradient = SubResource("Gradient_loxs3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qmqqm"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(170.92, 0, 0)
+emission_shape = 3
+emission_box_extents = Vector3(202.975, 1, 1)
+angle_min = 1.0728835e-05
+angle_max = 220.30002
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 19.819998
+linear_accel_max = 44.489998
+color_initial_ramp = SubResource("GradientTexture1D_o87n1")
+
+[sub_resource type="Curve" id="Curve_rtwva"]
+_data = [Vector2(0, 1), 0.0, 0.08511769, 0, 0, Vector2(0.51537067, 1), -5.403504e-07, -5.403504e-07, 0, 0, Vector2(0.99999, 0.004328966), -4.8275604, -4.8275604, 0, 0, Vector2(1, 0), -1.5588439, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_f55is"]
+curve = SubResource("Curve_rtwva")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f55is"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(170.92, 0, 0)
+emission_shape = 3
+emission_box_extents = Vector3(202.975, 1, 1)
+angle_min = 1.0728835e-05
+angle_max = 220.30002
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 19.819998
+linear_accel_max = 44.489998
+scale_curve = SubResource("CurveTexture_f55is")
+color_initial_ramp = SubResource("GradientTexture1D_o87n1")
+
+[node name="Blue Rise Particle" type="Control" unique_id=298310495]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=2072862992]
+position = Vector2(-17, 200)
+amount = 40
+texture = ExtResource("1_qap0u")
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_qmqqm")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." unique_id=2061708562]
+position = Vector2(-17, 200)
+amount = 25
+texture = ExtResource("2_qp37r")
+lifetime = 2.5
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_f55is")

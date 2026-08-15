@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://egbphj0vshkb"]
+
+[ext_resource type="Script" uid="uid://dbw3q10gs7jiv" path="res://2_Scripts/2_Independent/oneshot particle.gd" id="1_3lpwi"]
+[ext_resource type="Texture2D" uid="uid://bxh1j56t8nr78" path="res://0_Art/star.png" id="1_7bauw"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g7bh4"]
+particle_flag_disable_z = true
+direction = Vector3(48.665, 0, 0)
+initial_velocity_min = 153.56
+initial_velocity_max = 186.12999
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 99.99998
+gravity = Vector3(0, 98, 0)
+
+[node name="Star Explosion Particle" type="Control" unique_id=298310495 node_paths=PackedStringArray("sameTiming")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_3lpwi")
+sameTiming = [NodePath("GPUParticles2D"), NodePath("GPUParticles2D2")]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1883116538]
+self_modulate = Color(0, 1, 0, 1)
+position = Vector2(-36.999992, 210)
+rotation = -0.65361166
+emitting = false
+amount = 19
+texture = ExtResource("1_7bauw")
+lifetime = 6.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_g7bh4")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." unique_id=1896519276]
+self_modulate = Color(0, 1, 0, 1)
+position = Vector2(354.905, 210)
+rotation = -2.476622
+emitting = false
+amount = 19
+texture = ExtResource("1_7bauw")
+lifetime = 6.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_g7bh4")
