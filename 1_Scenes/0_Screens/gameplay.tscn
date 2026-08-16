@@ -160,7 +160,7 @@ mouse_filter = 2
 script = ExtResource("2_fb3j3")
 mapManager = NodePath("../Map Manager")
 
-[node name="Board Move Manager" type="Button" parent="UI" unique_id=1653113624 node_paths=PackedStringArray("board", "tileMapBoard")]
+[node name="Board Move Manager" type="Button" parent="UI" unique_id=1653113624 node_paths=PackedStringArray("board", "boardBounds")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -169,9 +169,9 @@ grow_vertical = 2
 flat = true
 script = ExtResource("7_rkkk6")
 board = NodePath("../../SubViewportContainer/Board Viewport/Map")
-tileMapBoard = NodePath("../Map Manager")
+boardBounds = NodePath("../../SubViewportContainer/Board Viewport/Map/Visual Map")
 
-[node name="Map Manager" type="Control" parent="UI" unique_id=26708540 node_paths=PackedStringArray("boardMouseDetection", "scoreBoardManager", "mapGenerator", "trayManager", "tileMap")]
+[node name="Map Manager" type="Control" parent="UI" unique_id=26708540 node_paths=PackedStringArray("boardMouseDetection", "boardMoveManager", "scoreBoardManager", "mapGenerator", "trayManager", "tileMap")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -179,6 +179,7 @@ offset_bottom = 40.0
 mouse_filter = 2
 script = ExtResource("5_rkkk6")
 boardMouseDetection = NodePath("../Board Move Manager")
+boardMoveManager = NodePath("../Board Move Manager")
 scoreBoardManager = NodePath("../Scoreboard")
 mapGenerator = NodePath("../../SubViewportContainer/Board Viewport/Map")
 trayManager = NodePath("../Tray")

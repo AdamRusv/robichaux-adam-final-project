@@ -4,6 +4,7 @@ class_name MapManager
 
 @export_category("References")
 @export var boardMouseDetection : Control
+@export var boardMoveManager : BoardMoveManager
 @export var scoreBoardManager : ScoreboardManager
 @export var mapGenerator : MapGenerator
 @export var trayManager : TrayManager
@@ -31,6 +32,7 @@ func _place_cpu_tile(handIndex : int, tilePos : Vector2i):
 	var currentTile : Tile = trayManager._get_current_tile_of_hand_index(handIndex)
 	
 	if _is_pos_valid(tilePos) == true:
+		await boardMoveManager._center_at_global_position(_get_ghost_tile_pos(currentTile, tilePos))
 		_add_tile_to_visual_parent(currentTile, tilePos)
 		trayManager._place_tile_from_hand(handIndex)
 	else:
@@ -48,6 +50,15 @@ func _add_tile_to_visual_parent(currentTile : Tile, hoveredTilePos : Vector2i):
 	newCurrentTile.position += Vector2(-19, -19)
 	
 	_trigger_tile_effect(newCurrentTile)
+func _get_ghost_tile_pos(currentTile : Tile, hoveredTilePos : Vector2i) -> Vector2:
+	var newCurrentTile : Tile = trayManager._clone_tile(currentTile)
+	newCurrentTile.gridLocation = hoveredTilePos
+	
+	tileMap.add_child(newCurrentTile)
+	newCurrentTile.position = tileMap.map_to_local(newCurrentTile.gridLocation)
+	newCurrentTile.position += Vector2(-19, -19)
+	newCurrentTile.visible = false
+	return newCurrentTile.global_position
 
 func _trigger_tile_effect(currentTile : Tile):
 	currentTile._apply_effect(

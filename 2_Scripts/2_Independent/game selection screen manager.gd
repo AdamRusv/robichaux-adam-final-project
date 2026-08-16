@@ -8,6 +8,10 @@ class_name GameSelectionManager
 @export var optionButtons : Array[Button]
 @export var optionButtonBackgrounds : Array[NinePatchRect]
 @export var optionTexts : Array[RichTextLabel]
+@export var settingsButton : Button
+@export var settingsText : RichTextLabel
+@export var returnButton : Button
+@export var returnText : RichTextLabel
 @export_category("Parent Menu Panels")
 @export var firstPanel : Control
 @export_group("Solo")
@@ -52,6 +56,7 @@ var currentPanel : Control = null
 func _ready() -> void:
 	GameManager._clear_score()
 	_intro_panels()
+	_intro_finished()
 	_set_connections()
 	
 	currentPanel = firstPanel
@@ -61,15 +66,42 @@ func _intro_panels():
 	for panel in introPanelParents:
 		var panelTween : Tween = TweenManager._offset_enter_from(TweenManager.ScreenSide.bottom, panel, 700, delay)
 		delay += delayIncrement
+var introFinished : bool = false
+func _intro_finished():
+	await get_tree().create_timer(1).timeout
+	introFinished = true
 func _set_connections():
 	for i in range(0, optionButtons.size()):
 		optionButtons[i].mouse_entered.connect(_hover_gamemode.bind(i))
 		optionButtons[i].mouse_exited.connect(_exit_gamemode.bind(i))
 		optionButtons[i].pressed.connect(_select_gamemode.bind(i))
+	settingsButton.mouse_entered.connect(_set_color_of_text_hovered.bind(settingsText))
+	settingsButton.mouse_exited.connect(_set_color_of_text_exited.bind(settingsText))
+	
+	
+	returnButton.mouse_entered.connect(_set_color_of_text_hovered.bind(returnText))
+	returnButton.mouse_exited.connect(_set_color_of_text_exited.bind(returnText))
+	returnButton.pressed.connect(_return_to_title)
+	
 	_solo_set_connections()
 	_customCPU_set_connections()
 	_local_set_connections()
 	_online_set_connections()
+
+var pressedQuit : bool = false
+func _process(delta : float) -> void:
+	if isPanelMoving == true || introFinished == false:
+		return
+	
+	if Input.is_action_just_pressed("quit"):
+		_return_to_title()
+
+func _return_to_title():
+	if pressedQuit == true:
+		return
+	pressedQuit = true
+	await _exit_panels()
+	get_tree().change_scene_to_file("res://1_Scenes/0_Screens/title.tscn")
 
 #-------Gamemode Button Selection-------
 func _hover_gamemode(i : int):

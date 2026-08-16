@@ -31,7 +31,7 @@ shader_parameter/borderWidthPixels = 1.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ncoyp"]
 
-[node name="Game Selection" type="Control" unique_id=623322757 node_paths=PackedStringArray("introPanelParents", "exitPanelParents", "optionButtons", "optionButtonBackgrounds", "optionTexts", "firstPanel", "soloPanelParent", "campaignButton", "campaignText", "customCPUButton", "customCPUText", "customCPUPanelParent", "cpuButton", "cpuText", "cpuDifficultyPopupMenuParent", "mapCPUButton", "mapCPUText", "cpuMapPopupMenuParent", "deckCPUButton", "deckCPUText", "cpuDeckPopupMenuParent", "playCPUButton", "playCPUText", "returnCustomCPUButton", "returnCustomCPUArrow", "localPanelParent", "mapLocalButton", "mapLocalText", "localMapPopupMenuParent", "decksLocalButton", "decksLocalText", "localDecksPopupMenuParent", "playLocalButton", "playLocalText", "onlinePanelParent", "steamLinkButton", "steamLinkText")]
+[node name="Game Selection" type="Control" unique_id=623322757 node_paths=PackedStringArray("introPanelParents", "exitPanelParents", "optionButtons", "optionButtonBackgrounds", "optionTexts", "settingsButton", "settingsText", "returnButton", "returnText", "firstPanel", "soloPanelParent", "campaignButton", "campaignText", "customCPUButton", "customCPUText", "customCPUPanelParent", "cpuButton", "cpuText", "cpuDifficultyPopupMenuParent", "mapCPUButton", "mapCPUText", "cpuMapPopupMenuParent", "deckCPUButton", "deckCPUText", "cpuDeckPopupMenuParent", "playCPUButton", "playCPUText", "returnCustomCPUButton", "returnCustomCPUArrow", "localPanelParent", "mapLocalButton", "mapLocalText", "localMapPopupMenuParent", "decksLocalButton", "decksLocalText", "localDecksPopupMenuParent", "playLocalButton", "playLocalText", "onlinePanelParent", "steamLinkButton", "steamLinkText")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,6 +44,10 @@ exitPanelParents = [NodePath("HBoxContainer/left panel/quit"), NodePath("HBoxCon
 optionButtons = [NodePath("HBoxContainer/left panel/gamemodes holder/VBoxContainer/vs cpu/Button Holder/Button"), NodePath("HBoxContainer/left panel/gamemodes holder/VBoxContainer/local pvp/Button Holder/Button"), NodePath("HBoxContainer/left panel/gamemodes holder/VBoxContainer/online pvp/Button Holder/Button")]
 optionButtonBackgrounds = [NodePath("HBoxContainer/left panel/gamemodes holder/VBoxContainer/vs cpu/NinePatchRect"), NodePath("HBoxContainer/left panel/gamemodes holder/VBoxContainer/local pvp/NinePatchRect"), NodePath("HBoxContainer/left panel/gamemodes holder/VBoxContainer/online pvp/NinePatchRect")]
 optionTexts = [NodePath("HBoxContainer/left panel/gamemodes holder/VBoxContainer/vs cpu/MarginContainer/HBoxContainer/text holder/RichTextLabel"), NodePath("HBoxContainer/left panel/gamemodes holder/VBoxContainer/local pvp/MarginContainer/HBoxContainer/text holder/RichTextLabel"), NodePath("HBoxContainer/left panel/gamemodes holder/VBoxContainer/online pvp/MarginContainer/HBoxContainer/text holder/RichTextLabel")]
+settingsButton = NodePath("HBoxContainer/left panel/options/Options/Button Holder/Button")
+settingsText = NodePath("HBoxContainer/left panel/options/Options/RichTextLabel")
+returnButton = NodePath("HBoxContainer/left panel/quit/Options/Button Holder/Button")
+returnText = NodePath("HBoxContainer/left panel/quit/Options/RichTextLabel")
 firstPanel = NodePath("HBoxContainer/right panel")
 soloPanelParent = NodePath("Solo Panel (Select Mode)")
 campaignButton = NodePath("Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/campaign/Button Holder/Button")

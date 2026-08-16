@@ -17,6 +17,11 @@ func _ready() -> void:
 func _set_connections():
 	screenButton.pressed.connect(_click)
 
+func _process(delta : float) -> void:
+	#super._process(delta)
+	if Input.is_action_just_pressed("quit"):
+		get_tree().quit()
+
 func _enter_title():
 	_oscillate(lettersParent)
 	

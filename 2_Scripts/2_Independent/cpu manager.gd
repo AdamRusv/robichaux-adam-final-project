@@ -9,9 +9,36 @@ var difficulty : CPUGameSettings.Difficulty = CPUGameSettings.Difficulty.easy
 
 func _place_tile():
 	difficulty = GameManager.currentCpu.difficulty
-	await get_tree().create_timer(1).timeout
+	get_tree().current_scene.screenBlocker.visible = true
+	await get_tree().create_timer(.5).timeout
 	
+	match difficulty:
+		CPUGameSettings.Difficulty.easy:
+			_easy()
+		CPUGameSettings.Difficulty.medium:
+			_medium()
+		CPUGameSettings.Difficulty.hard:
+			_hard()
+	
+
+func _easy():
+	var choice : int = randi_range(1, 10)
+	if choice < 2:
+		_place_at_random_location()
+	elif choice < 6:
+		_capture_tile()
+	else:
+		_develop_tile()
+
+func _medium():
 	_capture_tile()
+
+func _hard():
+	var choice : int = randi_range(1, 10)
+	if choice < 6:
+		_capture_tile()
+	else:
+		_develop_tile()
 
 #- - -
 func _capture_tile():

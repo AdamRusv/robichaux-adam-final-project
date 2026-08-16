@@ -36,6 +36,7 @@ func _ready() -> void:
 	_set_connections()
 	_load_decks()
 	_start_player_turn(playerOneCurrentDeck, playerOneCurrentHand)
+	_cpu_action()
 func _set_connections():
 	for i in range(0, trayTiles.size()):
 		trayTiles[i].releasedTile.connect(tileMap._place_tile.bind(i))
@@ -108,17 +109,19 @@ func _swap_current_player():
 		
 		_start_player_turn(playerTwoCurrentDeck, playerTwoCurrentHand)
 		otherHand._update_cards(playerOneCurrentHand)
-		_cpu_action()
 		if _is_game_over(playerTwoCurrentHand):
 			scoreboard._end_game()
+		else:
+			_cpu_action()
 	else:
 		currentTurn = Player.one
 		
 		_start_player_turn(playerOneCurrentDeck, playerOneCurrentHand)
 		otherHand._update_cards(playerTwoCurrentHand)
-		_cpu_action()
 		if _is_game_over(playerOneCurrentHand):
 			scoreboard._end_game()
+		else:
+			_cpu_action()
 
 func _cpu_action():
 	if GameManager.currentCpu == null:

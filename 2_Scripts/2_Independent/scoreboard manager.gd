@@ -69,6 +69,7 @@ func _cpu_victory_popup():
 	PopupMenuManager._open_popup_menu(cpuVictory)
 
 func _cpu_defeat_popup():
+	await get_tree().create_timer(1).timeout
 	PopupMenuManager._preload_window()
 	cpuDefeat._trigger_x_rain()
 	gameplayManager.screenBlocker.visible = true
@@ -78,6 +79,7 @@ func _cpu_defeat_popup():
 	PopupMenuManager._open_popup_menu(cpuDefeat)
 
 func _blue_wins_popup():
+	await get_tree().create_timer(1).timeout
 	PopupMenuManager._preload_window()
 	blueWins._trigger_particle()
 	gameplayManager.screenBlocker.visible = true
@@ -87,6 +89,7 @@ func _blue_wins_popup():
 	PopupMenuManager._open_popup_menu(blueWins)
 
 func _red_wins_popup():
+	await get_tree().create_timer(1).timeout
 	PopupMenuManager._preload_window()
 	redWins._trigger_particle()
 	gameplayManager.screenBlocker.visible = true
