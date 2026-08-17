@@ -6,6 +6,8 @@ class_name ScoreboardManager
 @export var gameplayManager : GameplayManager
 @export var playerOneText : RichTextLabel
 @export var playerTwoText : RichTextLabel
+@export var playerOneScoreParent : Control
+@export var playerTwoScoreParent : Control
 @export_group("End Screens")
 @export var cpuVictory : CPUVictoryPopup
 @export var cpuDefeat : CPUDefeatPopup
@@ -19,8 +21,16 @@ func _ready() -> void:
 
 #------------------------------
 func _update_score():
+	_manage_bounce(int(playerOneText.text), GameManager.playerOneScore, playerOneScoreParent)
+	_manage_bounce(int(playerTwoText.text), GameManager.playerTwoScore, playerTwoScoreParent)
 	playerOneText.text = str(GameManager.playerOneScore)
 	playerTwoText.text = str(GameManager.playerTwoScore)
+
+func _manage_bounce(previousValue : int, newValue : int, parentControl : Control):
+	if previousValue < newValue:
+		TweenManager._up_bounce(parentControl)
+	elif previousValue > newValue:
+		TweenManager._down_bounce(parentControl)
 
 #- - -
 ##can be negative or positive

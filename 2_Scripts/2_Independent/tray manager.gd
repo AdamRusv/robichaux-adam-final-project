@@ -109,6 +109,8 @@ func _swap_current_player():
 		
 		_start_player_turn(playerTwoCurrentDeck, playerTwoCurrentHand)
 		otherHand._update_cards(playerOneCurrentHand)
+		TweenManager._big_up_bounce(self)
+		await TweenManager._big_up_bounce(otherHand).finished
 		if _is_game_over(playerTwoCurrentHand):
 			scoreboard._end_game()
 		else:
@@ -118,6 +120,8 @@ func _swap_current_player():
 		
 		_start_player_turn(playerOneCurrentDeck, playerOneCurrentHand)
 		otherHand._update_cards(playerTwoCurrentHand)
+		TweenManager._big_up_bounce(self)
+		await TweenManager._big_up_bounce(otherHand).finished
 		if _is_game_over(playerOneCurrentHand):
 			scoreboard._end_game()
 		else:

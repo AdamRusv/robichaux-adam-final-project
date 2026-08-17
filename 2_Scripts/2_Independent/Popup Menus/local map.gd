@@ -156,4 +156,5 @@ func _apply():
 		false:
 			strayTilesPanelText = displayStrayTileFalse
 	
-	gameSelectionManager.mapLocalText.text = mapLayoutPanelText + " / " + holesPanelText + " / " + strayTilesPanelText
+	#gameSelectionManager.mapLocalText.text = mapLayoutPanelText + " / " + holesPanelText + " / " + strayTilesPanelText
+	gameSelectionManager.mapLocalText.text = mapLayoutPanelText + " / " + holesPanelText

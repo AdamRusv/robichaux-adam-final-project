@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bg7mp5ulsy1ej"]
+
+[ext_resource type="Theme" uid="uid://bo13vq025j5e1" path="res://6_Other/main text font theme.tres" id="1_gfafh"]
+
+[node name="tile value" type="MarginContainer" unique_id=1316074122]
+mouse_filter = 2
+theme_override_constants/margin_right = -1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=692436646]
+custom_minimum_size = Vector2(14, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("1_gfafh")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "1"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1

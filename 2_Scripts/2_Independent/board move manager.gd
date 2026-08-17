@@ -34,7 +34,6 @@ func _drag_board():
 	var xclamp : float = clamp(rawPostion.x, -boardBounds.size.x + boardBounds.size.x/2, boardBounds.size.x - boardBounds.size.x/2)
 	var yclamp : float = clamp(rawPostion.y, -boardBounds.size.x + boardBounds.size.x/2, boardBounds.size.y - boardBounds.size.x/2)
 	board.global_position = Vector2(xclamp, yclamp)
-	print(boardBounds.size.x)
 
 func _center_at_global_position(tileGlobalPosition : Vector2):
 	var newTween : Tween = create_tween()

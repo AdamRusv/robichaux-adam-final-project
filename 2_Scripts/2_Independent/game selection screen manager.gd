@@ -20,6 +20,12 @@ class_name GameSelectionManager
 @export var campaignText : RichTextLabel
 @export var customCPUButton : Button
 @export var customCPUText : RichTextLabel
+@export_group("Campaign")
+@export var campaignPanelParent : Control
+@export var returnCampaignButton : Button
+@export var returnCampaignArrow : TextureRect
+@export var campaignSteamLinkButton : Button
+@export var campaignSteamLinkText : RichTextLabel
 @export_group("Custom vs CPU")
 @export var customCPUPanelParent : Control
 @export var cpuButton : Button
@@ -84,6 +90,7 @@ func _set_connections():
 	returnButton.pressed.connect(_return_to_title)
 	
 	_solo_set_connections()
+	_campaign_set_connections()
 	_customCPU_set_connections()
 	_local_set_connections()
 	_online_set_connections()
@@ -126,10 +133,17 @@ func _select_gamemode(i : int):
 #-------Solo-------
 func _solo_set_connections():
 	_setup_button_hover_connections(campaignButton, campaignText)
+	campaignButton.pressed.connect(_set_current_panel.bind(campaignPanelParent))
 	
 	_setup_button_hover_connections(customCPUButton, customCPUText)
 	customCPUButton.pressed.connect(_set_current_panel.bind(customCPUPanelParent))
 
+#-------Campaign-------
+func _campaign_set_connections():
+	_texture_setup_button_hover_connections(returnCampaignButton, returnCampaignArrow)
+	returnCampaignButton.pressed.connect(_set_current_panel.bind(soloPanelParent))
+	
+	_setup_button_hover_connections(campaignSteamLinkButton, campaignSteamLinkText)
 
 #-------Local-------
 var currentLocalGameSettings : LocalGameSettings

@@ -4,6 +4,7 @@ class_name LocalDecks
 
 @export_category("References")
 @export var gameSelectionManager : GameSelectionManager
+@export var viewDeckPopupParent : ViewDeckPopup
 
 @export var blueDeckButton : Button
 @export var blueDeckText : RichTextLabel
@@ -47,6 +48,33 @@ func _set_connections():
 	_texture_popup_setup_button_hover_connections(returnButton, returnTexture)
 	returnButton.pressed.connect(gameSelectionManager._close_popup_menu)
 
+func _view_player_deck():
+	var deckName : String = _get_deck_name(gameSelectionManager.temporaryLocalSettings.blueDeck)
+	var newDeck : Deck = gameSelectionManager.temporaryLocalSettings._get_deck(gameSelectionManager.temporaryLocalSettings.blueDeck)
+	viewDeckPopupParent._open_menu(newDeck)
+	viewDeckPopupParent._set_up(deckName, newDeck)
+func _view_cpu_deck():
+	var deckName : String = _get_deck_name(gameSelectionManager.temporaryLocalSettings.redDeck)
+	var newDeck : Deck = gameSelectionManager.temporaryLocalSettings._get_deck(gameSelectionManager.temporaryLocalSettings.redDeck)
+	viewDeckPopupParent._open_menu(newDeck)
+	viewDeckPopupParent._set_up(deckName, newDeck)
+func _get_deck_name(newDeck : LocalGameSettings.Decks) -> String:
+	var deckName : String = "?"
+	match newDeck:
+		CPUGameSettings.Decks.standard:
+			deckName = displayStandard
+		CPUGameSettings.Decks.half:
+			deckName = displayHalf
+		CPUGameSettings.Decks.doubled:
+			deckName = displayDoubled
+		CPUGameSettings.Decks.low:
+			deckName = displayLow
+		CPUGameSettings.Decks.high:
+			deckName = displayHigh
+		CPUGameSettings.Decks.custom:
+			deckName = displayCustom
+	return deckName
+
 func _change_blue_deck():
 	var temporaryLocalSettings : LocalGameSettings = gameSelectionManager.temporaryLocalSettings
 	match temporaryLocalSettings.blueDeck:
@@ -68,6 +96,10 @@ func _change_blue_deck():
 		LocalGameSettings.Decks.custom:
 			blueDeckText.text = displayStandard
 			temporaryLocalSettings.blueDeck = LocalGameSettings.Decks.standard
+	if temporaryLocalSettings.blueDeck == LocalGameSettings.Decks.custom:
+		blueViewText.text = "Edit"
+	else:
+		blueViewText.text = "View"
 func _change_red_deck():
 	var temporaryLocalSettings : LocalGameSettings = gameSelectionManager.temporaryLocalSettings
 	match temporaryLocalSettings.redDeck:
@@ -89,12 +121,23 @@ func _change_red_deck():
 		LocalGameSettings.Decks.custom:
 			redDeckText.text = displayStandard
 			temporaryLocalSettings.redDeck = LocalGameSettings.Decks.standard
+	if temporaryLocalSettings.redDeck == LocalGameSettings.Decks.custom:
+		redViewText.text = "Edit"
+	else:
+		redViewText.text = "View"
 
 #- - - - - - - -
+var beenOpened : bool = false
 func _open():
 	gameSelectionManager.temporaryLocalSettings = LocalGameSettings.new()
 	gameSelectionManager.temporaryLocalSettings.blueDeck = gameSelectionManager.currentLocalGameSettings.blueDeck
 	gameSelectionManager.temporaryLocalSettings.redDeck = gameSelectionManager.currentLocalGameSettings.redDeck
+	
+	if beenOpened == false:
+		beenOpened = true
+		blueViewButton.pressed.connect(_view_player_deck)
+		redViewButton.pressed.connect(_view_cpu_deck)
+	
 	_update()
 func _update():
 	match gameSelectionManager.currentLocalGameSettings.blueDeck:
@@ -124,6 +167,16 @@ func _update():
 			redDeckText.text = displayHigh
 		LocalGameSettings.Decks.custom:
 			redDeckText.text = displayCustom
+	
+	if gameSelectionManager.temporaryLocalSettings.blueDeck == LocalGameSettings.Decks.custom:
+		blueViewText.text = "Edit"
+	else:
+		blueViewText.text = "View"
+	
+	if gameSelectionManager.temporaryLocalSettings.redDeck == LocalGameSettings.Decks.custom:
+		redViewText.text = "Edit"
+	else:
+		redViewText.text = "View"
 
 func _apply():
 	gameSelectionManager.currentLocalGameSettings.blueDeck = gameSelectionManager.temporaryLocalSettings.blueDeck

@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://oy7ktb8cosf3" path="res://2_Scripts/2_Independent/Popup Menus/cpu decks.gd" id="8_hhyvw"]
 [ext_resource type="Script" uid="uid://b5ks3wrbk2vnn" path="res://2_Scripts/2_Independent/Popup Menus/local map.gd" id="9_cya4l"]
 [ext_resource type="Script" uid="uid://besuvf8cip3tc" path="res://2_Scripts/2_Independent/Popup Menus/local decks.gd" id="10_ihb6c"]
+[ext_resource type="Script" uid="uid://btosam4pyysrk" path="res://2_Scripts/2_Independent/Popup Menus/view deck.gd" id="11_24rav"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tewlh"]
 
@@ -31,7 +32,7 @@ shader_parameter/borderWidthPixels = 1.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ncoyp"]
 
-[node name="Game Selection" type="Control" unique_id=623322757 node_paths=PackedStringArray("introPanelParents", "exitPanelParents", "optionButtons", "optionButtonBackgrounds", "optionTexts", "settingsButton", "settingsText", "returnButton", "returnText", "firstPanel", "soloPanelParent", "campaignButton", "campaignText", "customCPUButton", "customCPUText", "customCPUPanelParent", "cpuButton", "cpuText", "cpuDifficultyPopupMenuParent", "mapCPUButton", "mapCPUText", "cpuMapPopupMenuParent", "deckCPUButton", "deckCPUText", "cpuDeckPopupMenuParent", "playCPUButton", "playCPUText", "returnCustomCPUButton", "returnCustomCPUArrow", "localPanelParent", "mapLocalButton", "mapLocalText", "localMapPopupMenuParent", "decksLocalButton", "decksLocalText", "localDecksPopupMenuParent", "playLocalButton", "playLocalText", "onlinePanelParent", "steamLinkButton", "steamLinkText")]
+[node name="Game Selection" type="Control" unique_id=623322757 node_paths=PackedStringArray("introPanelParents", "exitPanelParents", "optionButtons", "optionButtonBackgrounds", "optionTexts", "settingsButton", "settingsText", "returnButton", "returnText", "firstPanel", "soloPanelParent", "campaignButton", "campaignText", "customCPUButton", "customCPUText", "campaignPanelParent", "returnCampaignButton", "returnCampaignArrow", "campaignSteamLinkButton", "campaignSteamLinkText", "customCPUPanelParent", "cpuButton", "cpuText", "cpuDifficultyPopupMenuParent", "mapCPUButton", "mapCPUText", "cpuMapPopupMenuParent", "deckCPUButton", "deckCPUText", "cpuDeckPopupMenuParent", "playCPUButton", "playCPUText", "returnCustomCPUButton", "returnCustomCPUArrow", "localPanelParent", "mapLocalButton", "mapLocalText", "localMapPopupMenuParent", "decksLocalButton", "decksLocalText", "localDecksPopupMenuParent", "playLocalButton", "playLocalText", "onlinePanelParent", "steamLinkButton", "steamLinkText")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,6 +55,11 @@ campaignButton = NodePath("Solo Panel (Select Mode)/modes/VBoxContainer/HBoxCont
 campaignText = NodePath("Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/campaign/MarginContainer/HBoxContainer/text holder/RichTextLabel")
 customCPUButton = NodePath("Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/custom vs cpu/Button Holder/Button")
 customCPUText = NodePath("Solo Panel (Select Mode)/modes/VBoxContainer/HBoxContainer/custom vs cpu/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+campaignPanelParent = NodePath("Campaign (Steam Link)")
+returnCampaignButton = NodePath("Campaign (Steam Link)/return/Button Holder/Button")
+returnCampaignArrow = NodePath("Campaign (Steam Link)/return/MarginContainer/HBoxContainer/text holder/TextureRect")
+campaignSteamLinkButton = NodePath("Campaign (Steam Link)/modes/VBoxContainer/campaign/Button Holder/Button")
+campaignSteamLinkText = NodePath("Campaign (Steam Link)/modes/VBoxContainer/campaign/MarginContainer/HBoxContainer/text holder/RichTextLabel")
 customCPUPanelParent = NodePath("Solo Panel (Custom vs CPU)")
 cpuButton = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Difficulty and color/difficulty/Button Holder/Button")
 cpuText = NodePath("Solo Panel (Custom vs CPU)/modes/VBoxContainer/Difficulty and color/difficulty/MarginContainer/HBoxContainer/text holder/RichTextLabel")
@@ -635,6 +641,173 @@ offset_bottom = 29.0
 focus_mode = 0
 flat = true
 
+[node name="Campaign (Steam Link)" type="MarginContainer" parent="." unique_id=180985946]
+visible = false
+layout_mode = 0
+offset_left = 100.0
+offset_right = 314.0
+offset_bottom = 180.0
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_visual_only = false
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Campaign (Steam Link)" unique_id=1956827375]
+visible = false
+self_modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="modes" type="MarginContainer" parent="Campaign (Steam Link)" unique_id=1229937393]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Campaign (Steam Link)/modes" unique_id=554853024]
+layout_mode = 2
+theme_override_constants/separation = 17
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Campaign (Steam Link)/modes/VBoxContainer" unique_id=1934151709]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Only available 
+in Steam Version!"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="campaign" type="MarginContainer" parent="Campaign (Steam Link)/modes/VBoxContainer" unique_id=1015930970]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Campaign (Steam Link)/modes/VBoxContainer/campaign" unique_id=1590720844]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Campaign (Steam Link)/modes/VBoxContainer/campaign" unique_id=1942220443]
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Campaign (Steam Link)/modes/VBoxContainer/campaign/MarginContainer" unique_id=1748016508]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="Campaign (Steam Link)/modes/VBoxContainer/campaign/MarginContainer/HBoxContainer" unique_id=1400077430]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Campaign (Steam Link)/modes/VBoxContainer/campaign/MarginContainer/HBoxContainer/text holder" unique_id=1644738780]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Go to Store Page"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="Control" parent="Campaign (Steam Link)/modes/VBoxContainer/campaign" unique_id=1332186425]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Campaign (Steam Link)/modes/VBoxContainer/campaign/Button Holder" unique_id=639549544]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 114.0
+offset_bottom = 29.0
+focus_mode = 0
+flat = true
+
+[node name="return" type="MarginContainer" parent="Campaign (Steam Link)" unique_id=182968071]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Campaign (Steam Link)/return" unique_id=1417670437]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_tewlh")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Campaign (Steam Link)/return" unique_id=1873198577]
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Campaign (Steam Link)/return/MarginContainer" unique_id=597660395]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="Campaign (Steam Link)/return/MarginContainer/HBoxContainer" unique_id=1450844875]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = -4
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_right = -5
+theme_override_constants/margin_bottom = -4
+
+[node name="TextureRect" type="TextureRect" parent="Campaign (Steam Link)/return/MarginContainer/HBoxContainer/text holder" unique_id=1541803485]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_rotation = -1.5707964
+texture = ExtResource("5_kfm0n")
+stretch_mode = 3
+
+[node name="Button Holder" type="MarginContainer" parent="Campaign (Steam Link)/return" unique_id=2081938666]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="Campaign (Steam Link)/return/Button Holder" unique_id=1268111880]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
 [node name="Solo Panel (Custom vs CPU)" type="MarginContainer" parent="." unique_id=23328340]
 visible = false
 layout_mode = 0
@@ -812,7 +985,7 @@ size_flags_vertical = 4
 mouse_filter = 2
 theme = ExtResource("3_pjjm5")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-text = "10 x 10 / 20% / Off"
+text = "10 x 10 / 20%"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -1134,7 +1307,7 @@ size_flags_vertical = 4
 mouse_filter = 2
 theme = ExtResource("3_pjjm5")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-text = "10 x 10 / 20% / false"
+text = "10 x 10 / 20%"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -1404,7 +1577,7 @@ layout_mode = 2
 layout_mode = 0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 74.0
+offset_right = 114.0
 offset_bottom = 29.0
 focus_mode = 0
 flat = true
@@ -2039,6 +2212,7 @@ focus_mode = 0
 flat = true
 
 [node name="Stray" type="HBoxContainer" parent="Popup Menus/cpu map/CPU edit/modes/VBoxContainer" unique_id=782722459]
+visible = false
 layout_mode = 2
 alignment = 1
 
@@ -2244,7 +2418,7 @@ layout_mode = 2
 focus_mode = 0
 flat = true
 
-[node name="cpu decks" type="Control" parent="Popup Menus" unique_id=412025080 node_paths=PackedStringArray("gameSelectionManager", "playerDeckButton", "playerDeckText", "playerViewButton", "playerViewText", "cpuDeckButton", "cpuDeckText", "cpuViewButton", "cpuViewText", "applyButton", "applyText", "returnButton", "returnTexture")]
+[node name="cpu decks" type="Control" parent="Popup Menus" unique_id=412025080 node_paths=PackedStringArray("gameSelectionManager", "viewDeckPopupParent", "playerDeckButton", "playerDeckText", "playerViewButton", "playerViewText", "cpuDeckButton", "cpuDeckText", "cpuViewButton", "cpuViewText", "applyButton", "applyText", "returnButton", "returnTexture")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -2254,6 +2428,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_hhyvw")
 gameSelectionManager = NodePath("../..")
+viewDeckPopupParent = NodePath("../view deck")
 playerDeckButton = NodePath("CPU edit/decks/VBoxContainer/player deck/HBoxContainer/deck/Button Holder/Button")
 playerDeckText = NodePath("CPU edit/decks/VBoxContainer/player deck/HBoxContainer/deck/MarginContainer/HBoxContainer/text holder/RichTextLabel")
 playerViewButton = NodePath("CPU edit/decks/VBoxContainer/player deck/HBoxContainer/view/Button Holder/Button")
@@ -3002,6 +3177,7 @@ focus_mode = 0
 flat = true
 
 [node name="Stray" type="HBoxContainer" parent="Popup Menus/local map/CPU edit/modes/VBoxContainer" unique_id=1007509070]
+visible = false
 layout_mode = 2
 alignment = 1
 
@@ -3207,7 +3383,7 @@ layout_mode = 2
 focus_mode = 0
 flat = true
 
-[node name="local decks" type="Control" parent="Popup Menus" unique_id=42072767 node_paths=PackedStringArray("gameSelectionManager", "blueDeckButton", "blueDeckText", "blueViewButton", "blueViewText", "redDeckButton", "redDeckText", "redViewButton", "redViewText", "applyButton", "applyText", "returnButton", "returnTexture")]
+[node name="local decks" type="Control" parent="Popup Menus" unique_id=42072767 node_paths=PackedStringArray("gameSelectionManager", "viewDeckPopupParent", "blueDeckButton", "blueDeckText", "blueViewButton", "blueViewText", "redDeckButton", "redDeckText", "redViewButton", "redViewText", "applyButton", "applyText", "returnButton", "returnTexture")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -3217,6 +3393,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("10_ihb6c")
 gameSelectionManager = NodePath("../..")
+viewDeckPopupParent = NodePath("../view deck")
 blueDeckButton = NodePath("local edit/decks/VBoxContainer/blue deck/HBoxContainer/deck/Button Holder/Button")
 blueDeckText = NodePath("local edit/decks/VBoxContainer/blue deck/HBoxContainer/deck/MarginContainer/HBoxContainer/text holder/RichTextLabel")
 blueViewButton = NodePath("local edit/decks/VBoxContainer/blue deck/HBoxContainer/view/Button Holder/Button")
@@ -3712,3 +3889,383 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 focus_mode = 0
 flat = true
+
+[node name="view deck" type="Control" parent="Popup Menus" unique_id=1373745648 node_paths=PackedStringArray("gameSelectionManager", "headerText", "closeButton", "closeText", "gridParent", "editDeckParent", "editCloseButton", "editCloseText")]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_24rav")
+gameSelectionManager = NodePath("../..")
+headerText = NodePath("local edit/decks/VBoxContainer/Header/RichTextLabel")
+closeButton = NodePath("local edit/decks/VBoxContainer/Apply/Button Holder/Button")
+closeText = NodePath("local edit/decks/VBoxContainer/Apply/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+gridParent = NodePath("local edit/decks/VBoxContainer/deck/MarginContainer/HBoxContainer/GridContainer")
+editDeckParent = NodePath("../edit deck")
+editCloseButton = NodePath("../edit deck/local edit/decks/VBoxContainer/Apply/Button Holder/Button")
+editCloseText = NodePath("../edit deck/local edit/decks/VBoxContainer/Apply/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+
+[node name="local edit" type="MarginContainer" parent="Popup Menus/view deck" unique_id=482543077]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -72.0
+offset_right = 81.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_visual_only = false
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/view deck/local edit" unique_id=1904200417]
+self_modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_kfm0n")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="decks" type="MarginContainer" parent="Popup Menus/view deck/local edit" unique_id=1329710387]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup Menus/view deck/local edit/decks" unique_id=265827796]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Popup Menus/view deck/local edit/decks/VBoxContainer" unique_id=935329645]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ncoyp")
+
+[node name="Header" type="HBoxContainer" parent="Popup Menus/view deck/local edit/decks/VBoxContainer" unique_id=590929695]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/view deck/local edit/decks/VBoxContainer/Header" unique_id=1034428668]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "- View Deck \"?\" -"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator4" type="HSeparator" parent="Popup Menus/view deck/local edit/decks/VBoxContainer" unique_id=1747122464]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ncoyp")
+
+[node name="deck" type="MarginContainer" parent="Popup Menus/view deck/local edit/decks/VBoxContainer" unique_id=1872875563]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/view deck/local edit/decks/VBoxContainer/deck" unique_id=1205422865]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_kfm0n")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/view deck/local edit/decks/VBoxContainer/deck" unique_id=771085084]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/view deck/local edit/decks/VBoxContainer/deck/MarginContainer" unique_id=1715121195]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Popup Menus/view deck/local edit/decks/VBoxContainer/deck/MarginContainer/HBoxContainer" unique_id=704959648]
+layout_mode = 2
+columns = 10
+
+[node name="Button Holder" type="MarginContainer" parent="Popup Menus/view deck/local edit/decks/VBoxContainer/deck" unique_id=1179007523]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="Popup Menus/view deck/local edit/decks/VBoxContainer/deck/Button Holder" unique_id=1840954544]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="HSeparator" type="HSeparator" parent="Popup Menus/view deck/local edit/decks/VBoxContainer" unique_id=1893017788]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ncoyp")
+
+[node name="Apply" type="MarginContainer" parent="Popup Menus/view deck/local edit/decks/VBoxContainer" unique_id=554046758]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/view deck/local edit/decks/VBoxContainer/Apply" unique_id=1976975014]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_kfm0n")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/view deck/local edit/decks/VBoxContainer/Apply" unique_id=1772045422]
+custom_minimum_size = Vector2(135, 0)
+layout_mode = 2
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/view deck/local edit/decks/VBoxContainer/Apply/MarginContainer" unique_id=239779266]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="Popup Menus/view deck/local edit/decks/VBoxContainer/Apply/MarginContainer/HBoxContainer" unique_id=362417498]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/view deck/local edit/decks/VBoxContainer/Apply/MarginContainer/HBoxContainer/text holder" unique_id=747891239]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Close"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="MarginContainer" parent="Popup Menus/view deck/local edit/decks/VBoxContainer/Apply" unique_id=1058095497]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="Popup Menus/view deck/local edit/decks/VBoxContainer/Apply/Button Holder" unique_id=369869193]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="HSeparator3" type="HSeparator" parent="Popup Menus/view deck/local edit/decks/VBoxContainer" unique_id=1814300986]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ncoyp")
+
+[node name="Control" type="Control" parent="Popup Menus/view deck" unique_id=914721299]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="edit deck" type="Control" parent="Popup Menus" unique_id=836788847]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="local edit" type="MarginContainer" parent="Popup Menus/edit deck" unique_id=859541475]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -72.0
+offset_right = 81.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_visual_only = false
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/edit deck/local edit" unique_id=1017662067]
+self_modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_kfm0n")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="decks" type="MarginContainer" parent="Popup Menus/edit deck/local edit" unique_id=1428740575]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup Menus/edit deck/local edit/decks" unique_id=1635198097]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Popup Menus/edit deck/local edit/decks/VBoxContainer" unique_id=1926504352]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ncoyp")
+
+[node name="Header" type="HBoxContainer" parent="Popup Menus/edit deck/local edit/decks/VBoxContainer" unique_id=657418602]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/edit deck/local edit/decks/VBoxContainer/Header" unique_id=1410690295]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "- Edit Custom Deck -"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator4" type="HSeparator" parent="Popup Menus/edit deck/local edit/decks/VBoxContainer" unique_id=460430105]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ncoyp")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/edit deck/local edit/decks/VBoxContainer" unique_id=1709006717]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Only available in 
+Steam Version!
+(deck defaults to 1, 2, 3)"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Popup Menus/edit deck/local edit/decks/VBoxContainer" unique_id=1472425407]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ncoyp")
+
+[node name="Apply" type="MarginContainer" parent="Popup Menus/edit deck/local edit/decks/VBoxContainer" unique_id=1009502803]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Popup Menus/edit deck/local edit/decks/VBoxContainer/Apply" unique_id=827038767]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_kfm0n")
+layout_mode = 2
+texture = ExtResource("2_pjjm5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup Menus/edit deck/local edit/decks/VBoxContainer/Apply" unique_id=1209627297]
+custom_minimum_size = Vector2(135, 0)
+layout_mode = 2
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup Menus/edit deck/local edit/decks/VBoxContainer/Apply/MarginContainer" unique_id=1134085535]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="Popup Menus/edit deck/local edit/decks/VBoxContainer/Apply/MarginContainer/HBoxContainer" unique_id=1218639355]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup Menus/edit deck/local edit/decks/VBoxContainer/Apply/MarginContainer/HBoxContainer/text holder" unique_id=849946080]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_pjjm5")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Close"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="MarginContainer" parent="Popup Menus/edit deck/local edit/decks/VBoxContainer/Apply" unique_id=1047937946]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="Popup Menus/edit deck/local edit/decks/VBoxContainer/Apply/Button Holder" unique_id=295324763]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="HSeparator3" type="HSeparator" parent="Popup Menus/edit deck/local edit/decks/VBoxContainer" unique_id=44559340]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ncoyp")
+
+[node name="Control" type="Control" parent="Popup Menus/edit deck" unique_id=2064625202]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2

@@ -74,6 +74,6 @@ func _get_deck(deckToGet : Decks) -> Deck:
 		Decks.high:
 			newDeck = load("res://5_Resources/0_Premade Decks/high deck.tres")
 		Decks.custom:
-			newDeck = null
+			newDeck = load("res://5_Resources/0_Premade Decks/test deck.tres") #NOTE: only in itch.io verison
 	
 	return newDeck

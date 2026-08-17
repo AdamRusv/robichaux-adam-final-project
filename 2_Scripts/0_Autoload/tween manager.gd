@@ -84,6 +84,39 @@ func _scale_in(nodeToFade : Control, duration : float = 1, delay : float = 0) ->
 	
 	return newTween
 
+#-
+func _up_bounce(nodeToBounce : Control) -> Tween:
+	nodeToBounce.offset_transform_enabled = true
+	
+	var newTween : Tween = create_tween()
+	
+	
+	newTween.tween_property(nodeToBounce, "offset_transform_position", Vector2(0, -1), 0.06).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	newTween.tween_property(nodeToBounce, "offset_transform_position", Vector2.ZERO, 0.06).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	
+	return newTween
+func _big_up_bounce(nodeToBounce : Control) -> Tween:
+	nodeToBounce.offset_transform_enabled = true
+	
+	var newTween : Tween = create_tween()
+	
+	
+	newTween.tween_property(nodeToBounce, "offset_transform_position", Vector2(0, -2), 0.06).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	newTween.tween_property(nodeToBounce, "offset_transform_position", Vector2.ZERO, 0.06).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	
+	return newTween
+
+func _down_bounce(nodeToBounce : Control) -> Tween:
+	nodeToBounce.offset_transform_enabled = true
+	
+	var newTween : Tween = create_tween()
+	
+	
+	newTween.tween_property(nodeToBounce, "offset_transform_position", Vector2(0, 1), 0.06).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	newTween.tween_property(nodeToBounce, "offset_transform_position", Vector2.ZERO, 0.06).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	
+	return newTween
+
 #------------------------------
 func _get_outside_screen_pos(sideToEnterFrom : ScreenSide, nodeToMove : Control) -> Vector2:
 	var startingPos : Vector2

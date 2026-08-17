@@ -4,6 +4,7 @@ class_name CustomCPUDecks
 
 @export_category("References")
 @export var gameSelectionManager : GameSelectionManager
+@export var viewDeckPopupParent : ViewDeckPopup
 
 @export var playerDeckButton : Button
 @export var playerDeckText : RichTextLabel
@@ -49,6 +50,33 @@ func _set_connections():
 	_texture_popup_setup_button_hover_connections(returnButton, returnTexture)
 	returnButton.pressed.connect(gameSelectionManager._close_popup_menu)
 
+func _view_player_deck():
+	var deckName : String = _get_deck_name(gameSelectionManager.temporaryCPUSettings.playerDeck)
+	var newDeck : Deck = gameSelectionManager.temporaryCPUSettings._get_deck(gameSelectionManager.temporaryCPUSettings.playerDeck)
+	viewDeckPopupParent._open_menu(newDeck)
+	viewDeckPopupParent._set_up(deckName, newDeck)
+func _view_cpu_deck():
+	var deckName : String = _get_deck_name(gameSelectionManager.temporaryCPUSettings.cpuDeck)
+	var newDeck : Deck = gameSelectionManager.temporaryCPUSettings._get_deck(gameSelectionManager.temporaryCPUSettings.cpuDeck)
+	viewDeckPopupParent._open_menu(newDeck)
+	viewDeckPopupParent._set_up(deckName, newDeck)
+func _get_deck_name(newDeck : CPUGameSettings.Decks) -> String:
+	var deckName : String = "?"
+	match newDeck:
+		CPUGameSettings.Decks.standard:
+			deckName = displayStandard
+		CPUGameSettings.Decks.half:
+			deckName = displayHalf
+		CPUGameSettings.Decks.doubled:
+			deckName = displayDoubled
+		CPUGameSettings.Decks.low:
+			deckName = displayLow
+		CPUGameSettings.Decks.high:
+			deckName = displayHigh
+		CPUGameSettings.Decks.custom:
+			deckName = displayCustom
+	return deckName
+
 func _change_player_deck():
 	var temporaryCPUSettings : CPUGameSettings = gameSelectionManager.temporaryCPUSettings
 	match temporaryCPUSettings.playerDeck:
@@ -70,6 +98,10 @@ func _change_player_deck():
 		CPUGameSettings.Decks.custom:
 			playerDeckText.text = displayStandard
 			temporaryCPUSettings.playerDeck = CPUGameSettings.Decks.standard
+	if temporaryCPUSettings.playerDeck == CPUGameSettings.Decks.custom:
+		playerViewText.text = "Edit"
+	else:
+		playerViewText.text = "View"
 func _change_cpu_deck():
 	var temporaryCPUSettings : CPUGameSettings = gameSelectionManager.temporaryCPUSettings
 	match temporaryCPUSettings.cpuDeck:
@@ -91,12 +123,23 @@ func _change_cpu_deck():
 		CPUGameSettings.Decks.custom:
 			cpuDeckText.text = displayStandard
 			temporaryCPUSettings.cpuDeck = CPUGameSettings.Decks.standard
+	if temporaryCPUSettings.cpuDeck == CPUGameSettings.Decks.custom:
+		cpuViewText.text = "Edit"
+	else:
+		cpuViewText.text = "View"
 
 #- - - - - - - -
+var beenOpened : bool = false
 func _open():
 	gameSelectionManager.temporaryCPUSettings = CPUGameSettings.new()
 	gameSelectionManager.temporaryCPUSettings.playerDeck = gameSelectionManager.currentCPUGameSettings.playerDeck
 	gameSelectionManager.temporaryCPUSettings.cpuDeck = gameSelectionManager.currentCPUGameSettings.cpuDeck
+	
+	if beenOpened == false:
+		beenOpened = true
+		playerViewButton.pressed.connect(_view_player_deck)
+		cpuViewButton.pressed.connect(_view_cpu_deck)
+	
 	_update()
 func _update():
 	match gameSelectionManager.currentCPUGameSettings.playerDeck:
@@ -126,6 +169,16 @@ func _update():
 			cpuDeckText.text = displayHigh
 		CPUGameSettings.Decks.custom:
 			cpuDeckText.text = displayCustom
+	
+	if gameSelectionManager.temporaryCPUSettings.playerDeck == CPUGameSettings.Decks.custom:
+		playerViewText.text = "Edit"
+	else:
+		playerViewText.text = "View"
+	
+	if gameSelectionManager.temporaryCPUSettings.cpuDeck == CPUGameSettings.Decks.custom:
+		cpuViewText.text = "Edit"
+	else:
+		cpuViewText.text = "View"
 
 func _apply():
 	gameSelectionManager.currentCPUGameSettings.playerDeck = gameSelectionManager.temporaryCPUSettings.playerDeck

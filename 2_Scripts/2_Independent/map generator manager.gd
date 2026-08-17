@@ -43,6 +43,30 @@ func _generate_map():
 			newTile.gridLocation = Vector2i(x, y)
 			newRow.tiles.append(newTile)
 			newRow.horizontalContainer.add_child(newTile)
+	
+	if _is_map_valid() == false:
+		print("rerolled map")
+		_clear_map()
+		_generate_map()
+
+func _clear_map():
+	rows.clear()
+	for child in visualMap.get_children():
+		child.queue_free()
+
+func _is_map_valid() -> bool:
+	var allTiles : Array[Tile] = _get_all_map_tiles()
+	
+	var smallestDeckSize : int = -1
+	if GameManager.playerTwoDeck.deck.size() >= GameManager.playerOneDeck.deck.size():
+		smallestDeckSize = GameManager.playerOneDeck.deck.size()
+	elif GameManager.playerTwoDeck.deck.size() <= GameManager.playerOneDeck.deck.size():
+		smallestDeckSize = GameManager.playerTwoDeck.deck.size()
+	
+	if allTiles.size() > smallestDeckSize * 2:
+		return true
+	else:
+		return false
 
 ##custom map
 func _load_map():
@@ -63,3 +87,11 @@ func _get_all_tiles() -> Array[Tile]:
 		for tile in row.tiles:
 			allTiles.append(tile)
 	return allTiles
+
+func _get_all_map_tiles() -> Array[Tile]:
+	var allMapTiles : Array[Tile] = []
+	for row in rows:
+		for tile in row.tiles:
+			if tile.currentTeam != tile.Team.hole:
+				allMapTiles.append(tile)
+	return allMapTiles
