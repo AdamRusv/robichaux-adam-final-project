@@ -6,6 +6,7 @@ signal togglefullscreen
 
 func _ready() -> void:
 	togglefullscreen.connect(_toggle_fullscreen)
+	_toggle_fullscreen()
 	_update_audio()
 
 func _update_audio():

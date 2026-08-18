@@ -10,11 +10,15 @@ config_version=5
 
 [application]
 
-config/name="RobichauxAdam_FinalProject"
+config/name="Proximity"
+config/description="Place down hexagon tiles with the goal of scoring more points than your opponent. This turn-based strategy game will test your decision making skills when playing solo or against your friends!"
 run/main_scene="uid://d3vxmo0wmua0f"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Proximity"
 config/features=PackedStringArray("4.7", "Mobile")
+run/max_fps=160
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="uid://kxsu1kof6w0y"
 config/icon="uid://lkqkjs4ils2t"
 
 [audio]
