@@ -20,7 +20,7 @@ func _get_map_layout() -> Vector2i:
 		MapLayout.x15x15:
 			newMapLayout = Vector2i(15, 15)
 		MapLayout.custom:
-			newMapLayout = Vector2i(0, 0)
+			newMapLayout = Vector2i(10, 10)
 	
 	return newMapLayout
 var customMapPath : String = ""

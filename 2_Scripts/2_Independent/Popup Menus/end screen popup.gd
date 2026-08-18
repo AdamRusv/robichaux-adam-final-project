@@ -2,6 +2,7 @@ extends MenuPanel
 
 class_name EndPopup
 
+@export var boardManager : BoardMoveManager
 @export var uiReturnParent : Control
 @export var uiReturnButton : Button
 @export var uiReturnText : RichTextLabel
@@ -28,8 +29,10 @@ func _toggle_map_view():
 	if viewingMap == true:
 		PopupMenuManager.currentPopupMenu.visible = false
 		get_tree().current_scene.screenBlocker.visible = false
+		boardManager.disableDrag = false
 		uiReturnParent.visible = true
 	else:
 		PopupMenuManager.currentPopupMenu.visible = true
 		get_tree().current_scene.screenBlocker.visible = true
+		boardManager.disableDrag = true
 		uiReturnParent.visible = false

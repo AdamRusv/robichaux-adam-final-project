@@ -14,6 +14,14 @@ class_name CustomCPUMap
 @export var applyText : RichTextLabel
 @export var returnButton : Button
 @export var returnTexture : TextureRect
+@export_group("Custom Edit")
+@export var editLayoutPopupParent : Control
+@export var editCloseButton : Button
+@export var editCloseText : RichTextLabel
+@export var editButtonParent : Control
+@export var editOpenButton : Button
+@export var editOpenText : RichTextLabel
+@export var holesParent : Control
 
 var displayLayout7x7 : String = "7 x 7"
 var displayLayout10x10 : String = "10 x 10"
@@ -45,6 +53,17 @@ func _set_connections():
 	
 	_texture_popup_setup_button_hover_connections(returnButton, returnTexture)
 	returnButton.pressed.connect(gameSelectionManager._close_popup_menu)
+	
+	_connect_edit_custom()
+
+func _connect_edit_custom():
+	_popup_setup_button_hover_connections(editOpenButton, editOpenText)
+	editOpenButton.pressed.connect(_open_edit_layout_popup)
+	
+	_popup_setup_button_hover_connections(editCloseButton, editCloseText)
+	editCloseButton.pressed.connect(PopupMenuManager._secondary_close_popup_menu)
+func _open_edit_layout_popup():
+	PopupMenuManager._secondary_open_popup_menu(editLayoutPopupParent)
 
 func _change_layout():
 	var temporaryCPUSettings : CPUGameSettings = gameSelectionManager.temporaryCPUSettings
@@ -61,6 +80,12 @@ func _change_layout():
 		CPUGameSettings.MapLayout.custom:
 			layoutText.text = displayLayout7x7
 			temporaryCPUSettings.mapLayout = CPUGameSettings.MapLayout.x7x7
+	if temporaryCPUSettings.mapLayout == CPUGameSettings.MapLayout.custom:
+		holesParent.visible = false
+		editButtonParent.visible = true
+	else:
+		holesParent.visible = true
+		editButtonParent.visible = false
 func _change_holes():
 	var temporaryCPUSettings : CPUGameSettings = gameSelectionManager.temporaryCPUSettings
 	match temporaryCPUSettings.holePercent:
@@ -119,6 +144,10 @@ func _update():
 			strayTilesText.text = displayStrayTileTrue
 		false:
 			strayTilesText.text = displayStrayTileFalse
+		
+	if gameSelectionManager.currentCPUGameSettings.mapLayout == CPUGameSettings.MapLayout.custom:
+		holesParent.visible = false
+		editButtonParent.visible = true
 
 func _apply():
 	gameSelectionManager.currentCPUGameSettings.mapLayout = gameSelectionManager.temporaryCPUSettings.mapLayout

@@ -1,0 +1,728 @@
+[gd_scene format=3 uid="uid://45x35vuh5ye5"]
+
+[ext_resource type="Shader" uid="uid://b587mqqt48v4a" path="res://4_Shaders/0_Scripts/pixel border.gdshader" id="1_fyfs7"]
+[ext_resource type="Script" uid="uid://bgwipa0n23c1j" path="res://2_Scripts/2_Independent/Popup Menus/options menu.gd" id="1_qotfq"]
+[ext_resource type="Texture2D" uid="uid://cj7uatshnc4ta" path="res://0_Art/square.png" id="2_qotfq"]
+[ext_resource type="Theme" uid="uid://bo13vq025j5e1" path="res://6_Other/main text font theme.tres" id="3_ke7l3"]
+[ext_resource type="Texture2D" uid="uid://b5hlgyh3hj2wn" path="res://0_Art/arrow.png" id="4_3u8fs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_et2gt"]
+shader = ExtResource("1_fyfs7")
+shader_parameter/borderEnabled = true
+shader_parameter/borderColor = Color(0, 0.19607843, 0, 1)
+shader_parameter/borderWidthPixels = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bpcmf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fyfs7"]
+shader = ExtResource("1_fyfs7")
+shader_parameter/borderEnabled = true
+shader_parameter/borderColor = Color(0, 0.19607843, 0, 1)
+shader_parameter/borderWidthPixels = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w6bu8"]
+shader = ExtResource("1_fyfs7")
+shader_parameter/borderEnabled = true
+shader_parameter/borderColor = Color(0, 0.19607843, 0, 1)
+shader_parameter/borderWidthPixels = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qotfq"]
+shader = ExtResource("1_fyfs7")
+shader_parameter/borderEnabled = true
+shader_parameter/borderColor = Color(0, 0.19607843, 0, 1)
+shader_parameter/borderWidthPixels = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ke7l3"]
+
+[node name="Options Menu" type="Control" unique_id=934929647 node_paths=PackedStringArray("fullscreenButton", "fullscreenText", "masterButton", "masterText", "musicButton", "musicText", "sfxButton", "sfxText", "returnButton", "returnTexture", "creditsOpenButton", "creditsOpenText", "creditsParent", "creditsCloseButton", "creditsCloseText")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qotfq")
+fullscreenButton = NodePath("options parent/decks/VBoxContainer/Fullscreen/decks/Button Holder/Button")
+fullscreenText = NodePath("options parent/decks/VBoxContainer/Fullscreen/decks/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+masterButton = NodePath("options parent/decks/VBoxContainer/Master Volume/decks/Button Holder/Button")
+masterText = NodePath("options parent/decks/VBoxContainer/Master Volume/decks/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+musicButton = NodePath("options parent/decks/VBoxContainer/Music Volume/decks/Button Holder/Button")
+musicText = NodePath("options parent/decks/VBoxContainer/Music Volume/decks/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+sfxButton = NodePath("options parent/decks/VBoxContainer/SFX Volume/decks/Button Holder/Button")
+sfxText = NodePath("options parent/decks/VBoxContainer/SFX Volume/decks/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+returnButton = NodePath("return/Button Holder/Button")
+returnTexture = NodePath("return/MarginContainer/HBoxContainer/text holder/TextureRect")
+creditsOpenButton = NodePath("options parent/decks/Info/Info/decks/Button Holder/Button")
+creditsOpenText = NodePath("options parent/decks/Info/Info/decks/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+creditsParent = NodePath("Info/Info Menu")
+creditsCloseButton = NodePath("Info/Info Menu/local edit/decks/VBoxContainer/Apply/Button Holder/Button")
+creditsCloseText = NodePath("Info/Info Menu/local edit/decks/VBoxContainer/Apply/MarginContainer/HBoxContainer/text holder/RichTextLabel")
+
+[node name="options parent" type="MarginContainer" parent="." unique_id=177943022]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -72.0
+offset_right = 81.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_visual_only = false
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="options parent" unique_id=302418959]
+self_modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_et2gt")
+layout_mode = 2
+texture = ExtResource("2_qotfq")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="decks" type="MarginContainer" parent="options parent" unique_id=1009601691]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="options parent/decks" unique_id=1337928777]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="options parent/decks/VBoxContainer" unique_id=623949258]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_bpcmf")
+
+[node name="Header" type="HBoxContainer" parent="options parent/decks/VBoxContainer" unique_id=1450480764]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="options parent/decks/VBoxContainer/Header" unique_id=1710816705]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_ke7l3")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "- Options -"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator4" type="HSeparator" parent="options parent/decks/VBoxContainer" unique_id=561292522]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_bpcmf")
+
+[node name="Fullscreen" type="HBoxContainer" parent="options parent/decks/VBoxContainer" unique_id=1996993731]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="options parent/decks/VBoxContainer/Fullscreen" unique_id=455125187]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_ke7l3")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Fullscreen"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="decks" type="MarginContainer" parent="options parent/decks/VBoxContainer/Fullscreen" unique_id=1047423006]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="options parent/decks/VBoxContainer/Fullscreen/decks" unique_id=1421807676]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_fyfs7")
+layout_mode = 2
+texture = ExtResource("2_qotfq")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="options parent/decks/VBoxContainer/Fullscreen/decks" unique_id=1230230119]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="options parent/decks/VBoxContainer/Fullscreen/decks/MarginContainer" unique_id=1951106718]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="options parent/decks/VBoxContainer/Fullscreen/decks/MarginContainer/HBoxContainer" unique_id=1170971646]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="options parent/decks/VBoxContainer/Fullscreen/decks/MarginContainer/HBoxContainer/text holder" unique_id=140788522]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_ke7l3")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "On"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="MarginContainer" parent="options parent/decks/VBoxContainer/Fullscreen/decks" unique_id=1436263057]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="options parent/decks/VBoxContainer/Fullscreen/decks/Button Holder" unique_id=1363374861]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="Master Volume" type="HBoxContainer" parent="options parent/decks/VBoxContainer" unique_id=1952964420]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="options parent/decks/VBoxContainer/Master Volume" unique_id=1086396413]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_ke7l3")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Master Volume"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="decks" type="MarginContainer" parent="options parent/decks/VBoxContainer/Master Volume" unique_id=743869612]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="options parent/decks/VBoxContainer/Master Volume/decks" unique_id=357202969]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_fyfs7")
+layout_mode = 2
+texture = ExtResource("2_qotfq")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="options parent/decks/VBoxContainer/Master Volume/decks" unique_id=2116794064]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="options parent/decks/VBoxContainer/Master Volume/decks/MarginContainer" unique_id=680795463]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="options parent/decks/VBoxContainer/Master Volume/decks/MarginContainer/HBoxContainer" unique_id=487312058]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="options parent/decks/VBoxContainer/Master Volume/decks/MarginContainer/HBoxContainer/text holder" unique_id=1856846207]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_ke7l3")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "3/5
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="MarginContainer" parent="options parent/decks/VBoxContainer/Master Volume/decks" unique_id=619355431]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="options parent/decks/VBoxContainer/Master Volume/decks/Button Holder" unique_id=688065700]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="Music Volume" type="HBoxContainer" parent="options parent/decks/VBoxContainer" unique_id=1684650898]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="options parent/decks/VBoxContainer/Music Volume" unique_id=656393491]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_ke7l3")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Music"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="decks" type="MarginContainer" parent="options parent/decks/VBoxContainer/Music Volume" unique_id=2040978817]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="options parent/decks/VBoxContainer/Music Volume/decks" unique_id=1035356888]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_fyfs7")
+layout_mode = 2
+texture = ExtResource("2_qotfq")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="options parent/decks/VBoxContainer/Music Volume/decks" unique_id=1055109810]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="options parent/decks/VBoxContainer/Music Volume/decks/MarginContainer" unique_id=1864939075]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="options parent/decks/VBoxContainer/Music Volume/decks/MarginContainer/HBoxContainer" unique_id=1548225496]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="options parent/decks/VBoxContainer/Music Volume/decks/MarginContainer/HBoxContainer/text holder" unique_id=605356310]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_ke7l3")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "5/5"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="MarginContainer" parent="options parent/decks/VBoxContainer/Music Volume/decks" unique_id=448254376]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="options parent/decks/VBoxContainer/Music Volume/decks/Button Holder" unique_id=419492261]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="SFX Volume" type="HBoxContainer" parent="options parent/decks/VBoxContainer" unique_id=505587549]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="options parent/decks/VBoxContainer/SFX Volume" unique_id=506130812]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_ke7l3")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "SFX"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="decks" type="MarginContainer" parent="options parent/decks/VBoxContainer/SFX Volume" unique_id=1846469538]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="options parent/decks/VBoxContainer/SFX Volume/decks" unique_id=1824011325]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_fyfs7")
+layout_mode = 2
+texture = ExtResource("2_qotfq")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="options parent/decks/VBoxContainer/SFX Volume/decks" unique_id=846402178]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="options parent/decks/VBoxContainer/SFX Volume/decks/MarginContainer" unique_id=1941249882]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="options parent/decks/VBoxContainer/SFX Volume/decks/MarginContainer/HBoxContainer" unique_id=1499052072]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="options parent/decks/VBoxContainer/SFX Volume/decks/MarginContainer/HBoxContainer/text holder" unique_id=1018548387]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_ke7l3")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "5/5"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="MarginContainer" parent="options parent/decks/VBoxContainer/SFX Volume/decks" unique_id=291796976]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="options parent/decks/VBoxContainer/SFX Volume/decks/Button Holder" unique_id=64153192]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="HSeparator" type="HSeparator" parent="options parent/decks/VBoxContainer" unique_id=625949504]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_bpcmf")
+
+[node name="Info" type="Control" parent="options parent/decks" unique_id=1391745415]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Info" type="HBoxContainer" parent="options parent/decks/Info" unique_id=1395906430]
+layout_mode = 0
+offset_left = 172.0
+offset_top = 125.5
+offset_right = 238.0
+offset_bottom = 150.5
+alignment = 1
+
+[node name="decks" type="MarginContainer" parent="options parent/decks/Info/Info" unique_id=323751600]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="options parent/decks/Info/Info/decks" unique_id=738403812]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_fyfs7")
+layout_mode = 2
+texture = ExtResource("2_qotfq")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="options parent/decks/Info/Info/decks" unique_id=1439337199]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="options parent/decks/Info/Info/decks/MarginContainer" unique_id=92109417]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="options parent/decks/Info/Info/decks/MarginContainer/HBoxContainer" unique_id=726501860]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="options parent/decks/Info/Info/decks/MarginContainer/HBoxContainer/text holder" unique_id=556069641]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_ke7l3")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Credits"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="MarginContainer" parent="options parent/decks/Info/Info/decks" unique_id=2099335958]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="options parent/decks/Info/Info/decks/Button Holder" unique_id=138547829]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="return" type="MarginContainer" parent="." unique_id=760994642]
+layout_mode = 0
+offset_right = 28.0
+offset_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="return" unique_id=2122789981]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_w6bu8")
+layout_mode = 2
+texture = ExtResource("2_qotfq")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="return" unique_id=1594142590]
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="return/MarginContainer" unique_id=1035995789]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="return/MarginContainer/HBoxContainer" unique_id=21096136]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = -4
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_right = -5
+theme_override_constants/margin_bottom = -4
+
+[node name="TextureRect" type="TextureRect" parent="return/MarginContainer/HBoxContainer/text holder" unique_id=1432165810]
+self_modulate = Color(0, 0.19607843, 0, 1)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_rotation = -1.5707964
+texture = ExtResource("4_3u8fs")
+stretch_mode = 3
+
+[node name="Button Holder" type="MarginContainer" parent="return" unique_id=65769355]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="return/Button Holder" unique_id=612543715]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="Info" type="Node" parent="." unique_id=1534942560]
+
+[node name="Info Menu" type="Control" parent="Info" unique_id=1393965550]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="local edit" type="MarginContainer" parent="Info/Info Menu" unique_id=603787732]
+custom_minimum_size = Vector2(176.5, 105.5)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.25
+offset_top = -52.75
+offset_right = 88.25
+offset_bottom = 52.75
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_visual_only = false
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Info/Info Menu/local edit" unique_id=2056065709]
+self_modulate = Color(1, 0, 1, 1)
+material = SubResource("ShaderMaterial_qotfq")
+layout_mode = 2
+texture = ExtResource("2_qotfq")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="decks" type="MarginContainer" parent="Info/Info Menu/local edit" unique_id=988443824]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Info/Info Menu/local edit/decks" unique_id=15657159]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Info/Info Menu/local edit/decks/VBoxContainer" unique_id=1452389563]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ke7l3")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Info/Info Menu/local edit/decks/VBoxContainer" unique_id=49033088]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_ke7l3")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Created By:  Adam Robichaux
+
+Music:  Alan Richardson"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Info/Info Menu/local edit/decks/VBoxContainer" unique_id=1049094766]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ke7l3")
+
+[node name="Apply" type="MarginContainer" parent="Info/Info Menu/local edit/decks/VBoxContainer" unique_id=25123961]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Info/Info Menu/local edit/decks/VBoxContainer/Apply" unique_id=1553860500]
+self_modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_qotfq")
+layout_mode = 2
+texture = ExtResource("2_qotfq")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Info/Info Menu/local edit/decks/VBoxContainer/Apply" unique_id=140751395]
+custom_minimum_size = Vector2(135, 0)
+layout_mode = 2
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Info/Info Menu/local edit/decks/VBoxContainer/Apply/MarginContainer" unique_id=540812108]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="text holder" type="MarginContainer" parent="Info/Info Menu/local edit/decks/VBoxContainer/Apply/MarginContainer/HBoxContainer" unique_id=1508047789]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Info/Info Menu/local edit/decks/VBoxContainer/Apply/MarginContainer/HBoxContainer/text holder" unique_id=41353089]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("3_ke7l3")
+theme_override_colors/default_color = Color(0, 0.19607843, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Close"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Holder" type="MarginContainer" parent="Info/Info Menu/local edit/decks/VBoxContainer/Apply" unique_id=1694488150]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="Info/Info Menu/local edit/decks/VBoxContainer/Apply/Button Holder" unique_id=672041971]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="Control" type="Control" parent="Info/Info Menu" unique_id=978802967]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2

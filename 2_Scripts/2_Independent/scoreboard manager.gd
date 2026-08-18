@@ -4,6 +4,7 @@ class_name ScoreboardManager
 
 @export_category("References")
 @export var gameplayManager : GameplayManager
+@export var boardModeManager : BoardMoveManager
 @export var playerOneText : RichTextLabel
 @export var playerTwoText : RichTextLabel
 @export var playerOneScoreParent : Control
@@ -44,6 +45,7 @@ func _change_score(player : TrayManager.Player, changeValue : int):
 
 #-----------------------------------
 func _end_game():
+	boardModeManager.disableDrag = true
 	if GameManager.currentCpu != null:
 		if GameManager.cpuColor == GameManager.TeamColor.blue:
 			if GameManager.playerTwoScore > GameManager.playerOneScore:

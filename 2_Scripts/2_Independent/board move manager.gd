@@ -5,6 +5,7 @@ class_name BoardMoveManager
 @export var board : Control
 @export var boardBounds : Control
 
+var disableDrag : bool = false
 var isDragging : bool = false
 
 func _ready() -> void:
@@ -28,6 +29,8 @@ func _disable_drag():
 
 #- - -
 func _drag_board():
+	if disableDrag == true:
+		return
 	var mousePos : Vector2 = get_global_mouse_position()
 	
 	var rawPostion : Vector2 = mousePos - mouseOffset

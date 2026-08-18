@@ -1,6 +1,7 @@
 extends Node
 
 var popupMenuRef : PackedScene = preload("res://1_Scenes/0_Screens/popup menu.tscn")
+var optionsMenuRef : PackedScene = preload("res://1_Scenes/0_Screens/options menu.tscn")
 
 var currentPopupMenu : PopupMenuWindow = null
 
@@ -58,3 +59,8 @@ func _preload_window():
 	currentPopupMenu = popupMenuRef.instantiate()
 	get_tree().current_scene.add_child(currentPopupMenu)
 	windowPreloaded = true
+
+func _open_options_menu():
+	var optionsMenu : OptionsMenu = optionsMenuRef.instantiate()
+	get_tree().current_scene.add_child(optionsMenu)
+	_open_popup_menu(optionsMenu)

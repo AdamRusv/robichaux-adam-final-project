@@ -142,7 +142,17 @@ func _take_card_in_deck(playerDeck : Array[int]) -> int:
 	return playerDeck.pop_at(randomIndex)
 
 func _get_current_tile_of_hand_index(handIndex : int) -> Tile:
-	return trayTiles[handIndex].currentTile
+	if trayTiles[handIndex].currentTile != null:
+		return trayTiles[handIndex].currentTile
+	
+	var newHandIndex : int = 0
+	for i in range(0, 4):
+		if trayTiles[i].currentTile != null:
+			newHandIndex = i
+			break
+		else:
+			newHandIndex = i
+	return trayTiles[newHandIndex].currentTile
 
 func _clone_tile(currentTile : Tile) -> Tile:
 	var clonedTile : Tile = null

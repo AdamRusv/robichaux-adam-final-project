@@ -83,7 +83,7 @@ func _set_connections():
 		optionButtons[i].pressed.connect(_select_gamemode.bind(i))
 	settingsButton.mouse_entered.connect(_set_color_of_text_hovered.bind(settingsText))
 	settingsButton.mouse_exited.connect(_set_color_of_text_exited.bind(settingsText))
-	
+	settingsButton.pressed.connect(PopupMenuManager._open_options_menu)
 	
 	returnButton.mouse_entered.connect(_set_color_of_text_hovered.bind(returnText))
 	returnButton.mouse_exited.connect(_set_color_of_text_exited.bind(returnText))
@@ -243,18 +243,23 @@ func _start_game():
 	GameManager.currentLocal = null
 
 func _play_custom_cpu():
+	if isPanelMoving == true:
+		return
 	_start_game()
 	GameManager._apply_cpuGameSettings(currentCPUGameSettings)
 	await _exit_panels()
 	get_tree().change_scene_to_packed(gameplayScene)
 
 func _play_local():
+	if isPanelMoving == true:
+		return
 	_start_game()
 	GameManager._apply_localGameSettings(currentLocalGameSettings)
 	await _exit_panels()
 	get_tree().change_scene_to_packed(gameplayScene)
 
 func _exit_panels():
+	isPanelMoving = true
 	exitPanelParents.insert(exitPanelParents.size() - 2, currentPanel)
 	var delay : float = 0
 	var delayIncrement : float = 0.07
