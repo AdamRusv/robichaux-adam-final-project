@@ -15,15 +15,18 @@ func _connect_return_button():
 	uiReturnButton.pressed.connect(_toggle_map_view)
 
 func _play_again():
+	_play_click_sound()
 	GameManager._clear_score()
 	get_tree().change_scene_to_file(gameplaySceneRef)
 
 func _return():
+	_play_click_sound()
 	GameManager._clear_score()
 	get_tree().change_scene_to_file(gameSelectionSceneRef)
 
 var viewingMap : bool = false
 func _toggle_map_view():
+	_play_click_sound()
 	viewingMap = !viewingMap
 	
 	if viewingMap == true:

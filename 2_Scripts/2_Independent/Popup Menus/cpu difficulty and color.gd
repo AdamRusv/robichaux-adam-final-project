@@ -18,12 +18,15 @@ func _ready():
 func _set_connections():
 	_popup_setup_button_hover_connections(cpuDifficultyPopupDifficultyButton, cpuDifficultyPopupDifficultyText)
 	cpuDifficultyPopupDifficultyButton.pressed.connect(_change_cpu_difficulty)
+	cpuDifficultyPopupDifficultyButton.pressed.connect(_play_click_sound)
 	
 	_popup_setup_button_hover_connections(cpuDifficultyPopupColorButton, cpuDifficultyPopupColorText)
 	cpuDifficultyPopupColorButton.pressed.connect(_change_cpu_color)
+	cpuDifficultyPopupColorButton.pressed.connect(_play_click_sound)
 	
 	_popup_setup_button_hover_connections(cpuDifficultyPopupApplyButton, cpuDifficultyPopupApplyText)
 	cpuDifficultyPopupApplyButton.pressed.connect(_apply_cpu_difficulty)
+	cpuDifficultyPopupApplyButton.pressed.connect(_play_click_sound)
 	
 	_texture_popup_setup_button_hover_connections(cpuDifficultyPopupReturnButton, cpuDifficultyPopupReturnTexture)
 	cpuDifficultyPopupReturnButton.pressed.connect(gameSelectionManager._close_popup_menu)

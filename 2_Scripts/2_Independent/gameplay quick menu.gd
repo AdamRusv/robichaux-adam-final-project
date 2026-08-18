@@ -30,6 +30,11 @@ func _connect_buttons():
 	quitParent._popup_setup_button_hover_connections(quitReturnButton, quitReturnText)
 	quitReturnButton.pressed.connect(PopupMenuManager._animate_close_popup_menu)
 
+func _process(delta: float) -> void:
+	super._process(delta)
+	if Input.is_action_just_pressed("quit"):
+		_open_quit_menu()
+
 #- - -
 func _open_options_menu():
 	PopupMenuManager._open_options_menu()

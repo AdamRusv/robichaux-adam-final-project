@@ -32,15 +32,22 @@ func _enter_title():
 		if i == letters.size() - 1:
 			lastLetter = TweenManager._enter_from(TweenManager.ScreenSide.top, letters[i], 200, delay)
 		else:
-			TweenManager._enter_from(TweenManager.ScreenSide.top, letters[i], 200, delay)
+			var letterTween : Tween = TweenManager._enter_from(TweenManager.ScreenSide.top, letters[i], 200, delay)
+			_play_sfx_when_in_place(letterTween)
 		delay += delayIncrement
 	
 	clickAnywhereText.scale = Vector2.ZERO
 	await lastLetter.finished
+	SoundManager._create_sfx(SoundManager.titleLetterClick)
+	
 	await TweenManager._scale_in(clickAnywhereText, 0.5).finished
 	_blink(clickAnywhereText)
 	
 	introFinished = true
+
+func _play_sfx_when_in_place(letterTween : Tween):
+	await letterTween.finished
+	SoundManager._create_sfx(SoundManager.titleLetterClick)
 
 func _click():
 	if introFinished == false || clicked == true:
@@ -50,22 +57,27 @@ func _click():
 	blinkTween.kill()
 	var flickerTime : float = 0.15
 	clickAnywhereText.visible = true
+	SoundManager._create_sfx(SoundManager.clickAnywhereFlash)
 	await get_tree().create_timer(flickerTime).timeout
 	clickAnywhereText.visible = false
 	await get_tree().create_timer(flickerTime).timeout
 	clickAnywhereText.visible = true
+	SoundManager._create_sfx(SoundManager.clickAnywhereFlash, 1.5)
 	await get_tree().create_timer(flickerTime).timeout
 	clickAnywhereText.visible = false
 	await get_tree().create_timer(flickerTime).timeout
 	clickAnywhereText.visible = true
+	SoundManager._create_sfx(SoundManager.clickAnywhereFlash, 3)
 	await get_tree().create_timer(flickerTime).timeout
 	clickAnywhereText.visible = false
 	await get_tree().create_timer(flickerTime).timeout
 	clickAnywhereText.visible = true
+	SoundManager._create_sfx(SoundManager.clickAnywhereFlash, 4.5)
 	await get_tree().create_timer(flickerTime).timeout
 	clickAnywhereText.visible = false
 	await get_tree().create_timer(flickerTime).timeout
 	clickAnywhereText.visible = true
+	SoundManager._create_sfx(SoundManager.clickAnywhereFlash, 6)
 	
 	var endPosTop : Vector2 = TweenManager._get_outside_screen_pos(TweenManager.ScreenSide.top, lettersParent)
 	var endPosBottom : Vector2 = TweenManager._get_outside_screen_pos(TweenManager.ScreenSide.bottom, clickAnywhereText)
@@ -77,6 +89,8 @@ func _click():
 	newTween.tween_property(lettersParent, "position", endPosTop, 1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	newTween.tween_property(clickAnywhereText, "position", endPosBottom, 1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	
+	await get_tree().create_timer(0.5).timeout
+	SoundManager._create_sfx(SoundManager.menuClose)
 	await newTween.finished
 	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_packed(gameSelectionScreen)
@@ -109,5 +123,7 @@ func _blink(nodeToBlink : Control):
 	blinkTween.tween_callback(_set_blink.bind(nodeToBlink, false))
 	blinkTween.tween_interval(0.7)
 	blinkTween.tween_callback(_set_blink.bind(nodeToBlink, true))
+	blinkTween.tween_callback(SoundManager._create_sfx.bind(SoundManager.clickAnywhereFlash))
+	SoundManager._create_sfx(SoundManager.clickAnywhereFlash)
 func _set_blink(nodeToBlink : Control, state : bool):
 	nodeToBlink.visible = state

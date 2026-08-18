@@ -60,6 +60,7 @@ var isPanelMoving : bool = false
 var currentPanel : Control = null
 
 func _ready() -> void:
+	SoundManager._swap_to_menu()
 	GameManager._clear_score()
 	_intro_panels()
 	_intro_finished()
@@ -70,8 +71,10 @@ func _intro_panels():
 	var delay : float = 0
 	var delayIncrement : float = 0.07
 	for panel in introPanelParents:
-		var panelTween : Tween = TweenManager._offset_enter_from(TweenManager.ScreenSide.bottom, panel, 700, delay)
+		var panelTween : Tween = TweenManager._offset_enter_from(TweenManager.ScreenSide.bottom, panel, 700, delay, Tween.TRANS_QUART, true)
 		delay += delayIncrement
+	await get_tree().create_timer(0.1).timeout
+	SoundManager._create_sfx(SoundManager.menuOpen)
 var introFinished : bool = false
 func _intro_finished():
 	await get_tree().create_timer(1).timeout
@@ -198,6 +201,7 @@ func _setup_button_hover_connections(newButton : Button, newText : RichTextLabel
 	newButton.mouse_exited.connect(_set_color_of_text_exited.bind(newText))
 func _set_color_of_text_hovered(newText : RichTextLabel):
 	newText.add_theme_color_override("default_color", Color(0, 1, 1))
+	SoundManager._create_sfx(SoundManager.textHover)
 func _set_color_of_text_exited(newText : RichTextLabel):
 	newText.add_theme_color_override("default_color", Color(0, 0, 0))
 
@@ -206,6 +210,7 @@ func _texture_setup_button_hover_connections(newButton : Button, newText : Textu
 	newButton.mouse_exited.connect(_texture_set_color_of_texture_exited.bind(newText))
 func _texture_set_color_of_texture_hovered(newTexture : TextureRect):
 	newTexture.self_modulate = Color(0, 1, 1)
+	SoundManager._create_sfx(SoundManager.textHover)
 func _texture_set_color_of_texture_exited(newTexture : TextureRect):
 	newTexture.self_modulate = Color(0, 0, 0)
 
@@ -265,10 +270,12 @@ func _exit_panels():
 	var delayIncrement : float = 0.07
 	var lastTween : Tween = null
 	for i in range(0, exitPanelParents.size()):
-		var panelTween : Tween = TweenManager._offset_exit_to(TweenManager.ScreenSide.bottom, exitPanelParents[i], 700, delay)
+		var panelTween : Tween = TweenManager._offset_exit_to(TweenManager.ScreenSide.bottom, exitPanelParents[i], 700, delay, Tween.TRANS_QUART, true)
 		delay += delayIncrement
 		if i == introPanelParents.size() - 1:
 			lastTween = panelTween
+	await get_tree().create_timer(0.1).timeout
+	SoundManager._create_sfx(SoundManager.menuClose)
 	await lastTween.finished
 	await get_tree().create_timer(0.5).timeout
 #- - - - - - - - - -

@@ -36,10 +36,12 @@ func _ready():
 func _set_connections():
 	_popup_setup_button_hover_connections(blueDeckButton, blueDeckText)
 	blueDeckButton.pressed.connect(_change_blue_deck)
+	blueDeckButton.pressed.connect(_play_click_sound)
 	_popup_setup_button_hover_connections(blueViewButton, blueViewText)
 	
 	_popup_setup_button_hover_connections(redDeckButton, redDeckText)
 	redDeckButton.pressed.connect(_change_red_deck)
+	redDeckButton.pressed.connect(_play_click_sound)
 	_popup_setup_button_hover_connections(redViewButton, redViewText)
 	
 	_popup_setup_button_hover_connections(applyButton, applyText)

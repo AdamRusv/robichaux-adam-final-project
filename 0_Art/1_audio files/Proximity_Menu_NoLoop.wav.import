@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://fh2gc35fjr3f"
+path="res://.godot/imported/Proximity_Menu_NoLoop.wav-de6ec402c0953ff336bb712b9f9b710f.sample"
+
+[deps]
+
+source_file="res://0_Art/1_audio files/Proximity_Menu_NoLoop.wav"
+dest_files=["res://.godot/imported/Proximity_Menu_NoLoop.wav-de6ec402c0953ff336bb712b9f9b710f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

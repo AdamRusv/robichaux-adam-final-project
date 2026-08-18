@@ -26,6 +26,7 @@ signal releasedTile
 
 func _hover():
 	pass
+	#SoundManager._create_sfx(SoundManager.tileHover)
 
 func _exit():
 	pass
@@ -36,6 +37,7 @@ func _click_down():
 	if _is_cpu() == true:
 		return
 	
+	SoundManager._create_sfx(SoundManager.tileClick)
 	mouseOffset = get_global_mouse_position() - currentTile.global_position
 	GameManager._assign_current_tile(currentTile, self)
 	currentTile.reparent(GameManager.gameplayManager.uiParent)
@@ -47,6 +49,7 @@ func _release():
 	if _is_cpu() == true:
 		return
 	
+	SoundManager._create_sfx(SoundManager.tilePlace)
 	isDragging = false
 	currentTile.reparent(currentTile.get_meta("trayparent"))
 	releasedTile.emit()

@@ -13,6 +13,7 @@ func _ready() -> void:
 
 func _open_menu():
 	_clear_previous_tweens()
+	SoundManager._create_sfx(SoundManager.menuOpen)
 	var tween : Tween = create_tween()
 	tweens.append(tween)
 	
@@ -24,6 +25,7 @@ func _open_menu():
 	tween.tween_property(self, "position:x", endPosX, duration)
 func _close_menu():
 	_clear_previous_tweens()
+	SoundManager._create_sfx(SoundManager.menuClose)
 	var tween : Tween = create_tween()
 	tweens.append(tween)
 	

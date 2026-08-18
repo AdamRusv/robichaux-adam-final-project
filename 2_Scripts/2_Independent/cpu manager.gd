@@ -23,7 +23,7 @@ func _place_tile():
 
 func _easy():
 	var choice : int = randi_range(1, 10)
-	if choice < 2:
+	if choice < 3:
 		_place_at_random_location()
 	elif choice < 6:
 		_capture_tile()
@@ -100,7 +100,7 @@ func _develop_tile():
 	
 	var allBestPositions : Array[EmptyTileData] = []
 	for opposingTile in _get_all_same_cpuColor_tiles():
-		var capturePosition : EmptyTileData = _get_best_capture_position(opposingTile)
+		var capturePosition : EmptyTileData = _get_best_develop_position(opposingTile)
 		if capturePosition != null:
 			allBestPositions.append(capturePosition)
 	var bestCapturePosition : EmptyTileData = null
@@ -124,7 +124,7 @@ func _place_at_random_location():
 	var cpuHandIndex : int = -1
 	var cpuhand : Array[int] = _get_trayManager_cpu_hand()
 	for i in range(0, cpuhand.size()):
-		if cpuhand[i] != null:
+		if cpuhand[i] != 0:
 			cpuHandIndex = i
 	
 	var randomValidPosition : Vector2i = possiblePositions[randi_range(0, possiblePositions.size() - 1)]
@@ -148,7 +148,7 @@ func _get_best_capture_position(tile : Tile) -> EmptyTileData: #tile argument sh
 	
 	var allEmptyTileData : Array[EmptyTileData] = []
 	for emptyTile in emptyTiles:
-		var surroundingAllyTiles : Array[Tile] = tile._get_surrounding_ally_tiles(mapManager, mapManager.tileMap)
+		var surroundingAllyTiles : Array[Tile] = emptyTile._get_surrounding_ally_tiles(mapManager, mapManager.tileMap)
 		var numberOfEffectedTiles : int = 0
 		for allyTile in surroundingAllyTiles:
 			if tile.currentValue > allyTile.currentValue:
@@ -172,7 +172,7 @@ func _get_best_develop_position(tile : Tile) -> EmptyTileData:
 	
 	var allEmptyTileData : Array[EmptyTileData] = []
 	for emptyTile in emptyTiles:
-		var surroundingAllyTiles : Array[Tile] = tile._get_surrounding_ally_tiles(mapManager, mapManager.tileMap)
+		var surroundingAllyTiles : Array[Tile] = emptyTile._get_surrounding_ally_tiles(mapManager, mapManager.tileMap)
 		var numberOfEffectedTiles : int = 0
 		for allyTile in surroundingAllyTiles:
 			numberOfEffectedTiles += 1

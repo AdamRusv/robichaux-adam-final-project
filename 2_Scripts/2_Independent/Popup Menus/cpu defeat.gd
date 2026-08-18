@@ -42,6 +42,8 @@ func _set_score():
 
 func _trigger_x_rain():
 	xRain.reparent(PopupMenuManager.currentPopupMenu)
+	await get_tree().create_timer(0.1).timeout
+	SoundManager._create_sfx(SoundManager.cpuDefeat)
 
 #
 func _set_up():

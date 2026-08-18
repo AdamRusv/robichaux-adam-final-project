@@ -43,6 +43,8 @@ func _set_score():
 func _trigger_stars():
 	starExplosion.reparent(PopupMenuManager.currentPopupMenu)
 	starExplosion._trigger_sameTiming()
+	await get_tree().create_timer(0.1).timeout
+	SoundManager._create_sfx(SoundManager.starVictory)
 
 #
 func _set_up():

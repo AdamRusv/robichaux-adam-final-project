@@ -7,6 +7,7 @@ func _popup_setup_button_hover_connections(newButton : Button, newText : RichTex
 	newButton.mouse_exited.connect(_popup_set_color_of_text_exited.bind(newText))
 func _popup_set_color_of_text_hovered(newText : RichTextLabel):
 	newText.add_theme_color_override("default_color", Color(0, 1, 1))
+	SoundManager._create_sfx(SoundManager.textHover)
 func _popup_set_color_of_text_exited(newText : RichTextLabel):
 	newText.add_theme_color_override("default_color", Color(0.0, 0.196, 0.0, 1.0))
 func _texture_popup_setup_button_hover_connections(newButton : Button, newText : TextureRect):
@@ -14,6 +15,7 @@ func _texture_popup_setup_button_hover_connections(newButton : Button, newText :
 	newButton.mouse_exited.connect(_texture_popup_set_color_of_texture_exited.bind(newText))
 func _texture_popup_set_color_of_texture_hovered(newTexture : TextureRect):
 	newTexture.self_modulate = Color(0, 1, 1)
+	SoundManager._create_sfx(SoundManager.textHover)
 func _texture_popup_set_color_of_texture_exited(newTexture : TextureRect):
 	newTexture.self_modulate = Color(0.0, 0.196, 0.0, 1.0)
 
@@ -23,5 +25,9 @@ func _setup_button_hover_connections(newButton : Button, newText : RichTextLabel
 	newButton.mouse_exited.connect(_set_color_of_text_exited.bind(newText))
 func _set_color_of_text_hovered(newText : RichTextLabel):
 	newText.add_theme_color_override("default_color", Color(0, 1, 1))
+	SoundManager._create_sfx(SoundManager.textHover)
 func _set_color_of_text_exited(newText : RichTextLabel):
 	newText.add_theme_color_override("default_color", Color(0.0, 0.0, 0.0, 1.0))
+
+func _play_click_sound():
+	SoundManager._create_sfx(SoundManager.textClick)

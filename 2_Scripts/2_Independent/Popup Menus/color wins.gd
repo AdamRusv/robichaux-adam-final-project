@@ -30,6 +30,7 @@ func _set_connections():
 	_popup_setup_button_hover_connections(playAgainButton, playAgainText)
 	playAgainButton.pressed.connect(_play_again)
 	
+	
 	_popup_setup_button_hover_connections(viewMapButton, viewMapText)
 	viewMapButton.pressed.connect(_toggle_map_view)
 	
@@ -42,6 +43,8 @@ func _set_score():
 
 func _trigger_particle():
 	colorParticle.reparent(PopupMenuManager.currentPopupMenu)
+	await get_tree().create_timer(0.1).timeout
+	SoundManager._create_sfx(SoundManager.colorVictory)
 
 #
 func _set_up():

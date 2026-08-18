@@ -27,12 +27,16 @@ func _ready():
 func _set_connections():
 	_popup_setup_button_hover_connections(fullscreenButton, fullscreenText)
 	fullscreenButton.pressed.connect(_change_fullscreen)
+	fullscreenButton.pressed.connect(_play_click_sound)
 	_popup_setup_button_hover_connections(masterButton, masterText)
 	masterButton.pressed.connect(_change_master)
+	masterButton.pressed.connect(_play_click_sound)
 	_popup_setup_button_hover_connections(musicButton, musicText)
 	musicButton.pressed.connect(_change_music)
+	musicButton.pressed.connect(_play_click_sound)
 	_popup_setup_button_hover_connections(sfxButton, sfxText)
 	sfxButton.pressed.connect(_change_sfx)
+	sfxButton.pressed.connect(_play_click_sound)
 	
 	_popup_setup_button_hover_connections(creditsOpenButton, creditsOpenText)
 	creditsOpenButton.pressed.connect(PopupMenuManager._secondary_open_popup_menu.bind(creditsParent))

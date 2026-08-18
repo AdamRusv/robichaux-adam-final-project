@@ -70,7 +70,7 @@ func _is_mouse_over_hover_bitmap() -> bool:
 
 func _create_bitmap():
 	var newBitmap : BitMap = BitMap.new()
-	var bitMapTexture : Image = Image.load_from_file(bitMapPath)
+	var bitMapTexture : Image = (load(bitMapPath) as Texture2D).get_image()
 	newBitmap.create_from_image_alpha(bitMapTexture)
 	hoverZone.texture_click_mask = newBitmap
 
@@ -82,6 +82,7 @@ func _clear_previous_tweens():
 
 func _open_menu():
 	_clear_previous_tweens()
+	SoundManager._create_sfx(SoundManager.menuOpen)
 	var tween : Tween = create_tween()
 	tweens.append(tween)
 	
@@ -94,6 +95,7 @@ func _open_menu():
 
 func _close_menu():
 	_clear_previous_tweens()
+	SoundManager._create_sfx(SoundManager.menuClose)
 	var tween : Tween = create_tween()
 	tweens.append(tween)
 	
@@ -105,6 +107,7 @@ func _close_menu():
 #----------------------------------
 func _hover_text(currentText : RichTextLabel):
 	currentText.add_theme_color_override("default_color", Color(0, 1, 1))
+	SoundManager._create_sfx(SoundManager.textHover)
 
 func _exit_text(currentText : RichTextLabel):
 	currentText.add_theme_color_override("default_color", Color(0, 0, 0))

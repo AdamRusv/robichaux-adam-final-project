@@ -23,7 +23,7 @@ func _enter_from(sideToEnterFrom : ScreenSide, nodeToMove : Control, speed : flo
 	newTween.tween_property(nodeToMove, "position", endPos, duration).set_custom_interpolator(_tween_curve)
 	
 	return newTween
-func _offset_enter_from(sideToEnterFrom : ScreenSide, nodeToMove : Control, speed : float = 300, delay : float = 0, transition : Tween.TransitionType = Tween.TRANS_QUART) -> Tween:
+func _offset_enter_from(sideToEnterFrom : ScreenSide, nodeToMove : Control, speed : float = 300, delay : float = 0, transition : Tween.TransitionType = Tween.TRANS_QUART, disableSound : bool = false) -> Tween:
 	nodeToMove.offset_transform_enabled = true
 	var endPos : Vector2 = nodeToMove.position
 	nodeToMove.offset_transform_position = _offset_get_outside_screen_pos(sideToEnterFrom)
@@ -32,6 +32,8 @@ func _offset_enter_from(sideToEnterFrom : ScreenSide, nodeToMove : Control, spee
 	
 	if delay > 0:
 		newTween.tween_interval(delay)
+	if disableSound == false:
+		_play_open_sound(delay)
 	
 	var distance : float = nodeToMove.offset_transform_position.distance_to(endPos)
 	var duration : float = distance / speed
@@ -54,7 +56,7 @@ func _exit_to(sideToExitTo : ScreenSide, nodeToMove : Control, speed : float = 3
 	newTween.tween_property(nodeToMove, "position", endPos, duration).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
 	
 	return newTween
-func _offset_exit_to(sideToExitTo : ScreenSide, nodeToMove : Control, speed : float = 300, delay : float = 0, transition : Tween.TransitionType = Tween.TRANS_QUART) -> Tween:
+func _offset_exit_to(sideToExitTo : ScreenSide, nodeToMove : Control, speed : float = 300, delay : float = 0, transition : Tween.TransitionType = Tween.TRANS_QUART, disableSound : bool = false) -> Tween:
 	nodeToMove.offset_transform_enabled = true
 	var endPos : Vector2 = _offset_get_outside_screen_pos(sideToExitTo)
 	
@@ -62,6 +64,8 @@ func _offset_exit_to(sideToExitTo : ScreenSide, nodeToMove : Control, speed : fl
 	
 	if delay > 0:
 		newTween.tween_interval(delay)
+	if disableSound == false:
+		_play_close_sound(delay)
 	
 	var distance : float = nodeToMove.position.distance_to(endPos)
 	var duration : float = distance / speed
@@ -151,3 +155,10 @@ func _offset_get_outside_screen_pos(sideToEnterFrom : ScreenSide) -> Vector2:
 var doubleBackCurve : Curve = load("res://6_Other/tween curve double back.tres")
 func _tween_curve(v):
 	return doubleBackCurve.sample_baked(v)
+
+func _play_open_sound(delay : float):
+	await get_tree().create_timer(delay).timeout
+	SoundManager._create_sfx(SoundManager.menuOpen)
+func _play_close_sound(delay : float):
+	await get_tree().create_timer(delay).timeout
+	SoundManager._create_sfx(SoundManager.menuClose)

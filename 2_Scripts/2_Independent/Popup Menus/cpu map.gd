@@ -41,15 +41,19 @@ func _ready():
 func _set_connections():
 	_popup_setup_button_hover_connections(layoutButton, layoutText)
 	layoutButton.pressed.connect(_change_layout)
+	layoutButton.pressed.connect(_play_click_sound)
 	
 	_popup_setup_button_hover_connections(holesButton, holesText)
 	holesButton.pressed.connect(_change_holes)
+	holesButton.pressed.connect(_play_click_sound)
 	
 	_popup_setup_button_hover_connections(strayTilesButton, strayTilesText)
 	strayTilesButton.pressed.connect(_change_stray_tiles)
+	strayTilesButton.pressed.connect(_play_click_sound)
 	
 	_popup_setup_button_hover_connections(applyButton, applyText)
 	applyButton.pressed.connect(_apply)
+	applyButton.pressed.connect(_play_click_sound)
 	
 	_texture_popup_setup_button_hover_connections(returnButton, returnTexture)
 	returnButton.pressed.connect(gameSelectionManager._close_popup_menu)

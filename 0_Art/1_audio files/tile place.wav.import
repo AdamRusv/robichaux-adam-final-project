@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://0fnts2r0ekvi"
+path="res://.godot/imported/tile place.wav-056634afc2149c7117db3bdf101f451f.sample"
+
+[deps]
+
+source_file="res://0_Art/1_audio files/tile place.wav"
+dest_files=["res://.godot/imported/tile place.wav-056634afc2149c7117db3bdf101f451f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

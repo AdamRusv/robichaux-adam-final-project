@@ -33,6 +33,7 @@ func _place_cpu_tile(handIndex : int, tilePos : Vector2i):
 	
 	if _is_pos_valid(tilePos) == true:
 		await boardMoveManager._center_at_global_position(_get_ghost_tile_pos(currentTile, tilePos))
+		SoundManager._create_sfx(SoundManager.tilePlace)
 		_add_tile_to_visual_parent(currentTile, tilePos)
 		trayManager._place_tile_from_hand(handIndex)
 	else:

@@ -17,6 +17,10 @@ config/custom_user_dir_name="Proximity"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="uid://lkqkjs4ils2t"
 
+[audio]
+
+buses/default_bus_layout="uid://s3qw6e3h3al"
+
 [autoload]
 
 Settings="*uid://5hv8ri514r8s"
@@ -25,6 +29,7 @@ SceneRouter="*uid://cqvty17xseul3"
 TweenManager="*uid://b1iu4e1oxr4ai"
 PopupMenuManager="*uid://dtjvstk444316"
 GameManager="*uid://bg4p4yra4o8cl"
+SoundManager="*uid://c6i6dyadve6qb"
 Background="*uid://bgqrvtpns3fw7"
 Overlay="*uid://dr7wxf0bqidpr"
 

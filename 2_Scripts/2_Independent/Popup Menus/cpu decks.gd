@@ -36,11 +36,13 @@ func _ready():
 func _set_connections():
 	_popup_setup_button_hover_connections(playerDeckButton, playerDeckText)
 	playerDeckButton.pressed.connect(_change_player_deck)
+	playerDeckButton.pressed.connect(_play_click_sound)
 	_popup_setup_button_hover_connections(playerViewButton, playerViewText)
 	#playerViewButton.pressed.connect(_change_holes)
 	
 	_popup_setup_button_hover_connections(cpuDeckButton, cpuDeckText)
 	cpuDeckButton.pressed.connect(_change_cpu_deck)
+	cpuDeckButton.pressed.connect(_play_click_sound)
 	_popup_setup_button_hover_connections(cpuViewButton, cpuViewText)
 	#cpuViewButton.pressed.connect(_change_stray_tiles)
 	
